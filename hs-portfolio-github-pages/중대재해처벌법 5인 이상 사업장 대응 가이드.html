@@ -46,6 +46,7 @@ a{color:var(--rec)}
 .main{margin-left:var(--side);min-height:100vh}
 .topbar{position:sticky;top:0;z-index:30;background:rgba(245,245,242,.94);backdrop-filter:blur(6px);display:flex;align-items:center;gap:12px;padding:12px 28px;border-bottom:1px solid var(--line)}
 .topbar h1{font-size:16px;margin:0;flex:1;letter-spacing:-.2px}
+.topbar-author{font-size:.9rem;font-weight:650;line-height:1.5;margin:0;white-space:nowrap}
 .topbar h1 small{font-weight:400;color:var(--ink-3);font-size:12.5px;margin-left:8px}
 .menu-btn{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
 .toggle{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2);cursor:pointer;user-select:none}
@@ -361,8 +362,13 @@ body.hide-cites .cite{display:none}
   .banner{flex-wrap:wrap}
   .banner .pill{margin-left:0}
   .print-label{display:none}
-  .topbar{gap:8px}
-  .topbar h1{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .topbar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px 8px}
+  .topbar .menu-btn{grid-column:1;grid-row:1;justify-self:start}
+  .topbar .toggle{grid-column:2;grid-row:1}
+  .topbar #printBtn{grid-column:3;grid-row:1}
+  .topbar h1{grid-column:1 / 3;grid-row:2;font-size:14px;line-height:1.4;word-break:keep-all}
+  .topbar-author{grid-column:3;grid-row:2;font-size:.8rem;justify-self:end}
+  .decide th,.decide td:first-child{white-space:normal;overflow-wrap:anywhere}
   .vchart{gap:12px}.vlabels{gap:12px}.vchart .b{width:20px}
 }
 /* print */
@@ -535,7 +541,7 @@ h1,h2,h3,h4,.kpi .l,.steps div,.btn,.ex-h,.split2 b,th,td.h,td.c small{text-wrap
 <div class="main">
   <header class="topbar">
     <button class="menu-btn" id="menuBtn" aria-label="목차 열기">☰ 목차</button>
-    <h1>5인 이상 사업장 준비 안내 <small>가상 사례 · 일반 배포판 · 2026-10-13</small></h1>
+    <h1>5인 이상 사업장 준비 안내 <small>가상 사례 · 일반 배포판 · 2026-10-13</small></h1><p class="topbar-author">제작 · 이재호</p>
     <label class="toggle"><input type="checkbox" id="citeToggle" checked><span class="switch"></span>근거 표시</label>
     <button class="btn" id="printBtn">🖨 <span class="print-label">전체 인쇄</span></button>
   </header>

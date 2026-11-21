@@ -83,11 +83,10 @@
     .feature p { margin-bottom: .9rem; }
     .feature .button { margin-top: .2rem; }
 
-    .preview { padding: .8rem; border: 2px solid var(--edge); background: #efe3fa; box-shadow: 3px 3px #a182c3; }
-    .preview figcaption { font-weight: 850; margin-bottom: .55rem; }
-    .preview ul { display: grid; gap: .4rem; list-style: none; margin: 0; padding: 0; }
-    .preview li { display: flex; gap: .55rem; align-items: center; padding: .45rem .55rem; background: #fff7e8; border: 1px solid #b5a0cd; font-weight: 700; }
-    .preview li::before { content: ""; width: .68rem; height: .68rem; flex: none; background: var(--purple); box-shadow: 2px 2px var(--orange); }
+    .preview { padding: .7rem; border: 2px solid var(--edge); background: #efe3fa; box-shadow: 3px 3px #a182c3; }
+    .preview a { display: block; }
+    .preview img { display: block; width: 100%; height: auto; border: 1px solid var(--edge); }
+    .preview figcaption { margin-top: .55rem; font-size: .9rem; }
 
     .other { background: #176a68; margin-top: 3.5rem; padding-block: 2.25rem 3rem; }
     .other h2 { font-size: 1.55rem; margin-bottom: 1rem; }
@@ -113,7 +112,7 @@
 <body>
   <header class="site-header">
     <nav class="wrap" aria-label="주 메뉴">
-      <a class="brand" href="#top">안전관리자 포트폴리오</a>
+      <a class="brand" href="#top">안전관리자 포트폴리오<span style="font-size:.83em;font-weight:650"> · 이재호</span></a>
       <a class="nav-link" href="#projects">프로젝트</a>
     </nav>
   </header>
@@ -137,12 +136,10 @@
           <a class="button" href="서류로 배우는 안전관리자 실무 교육 플랫폼.html" target="_blank" rel="noopener noreferrer">교육 플랫폼 열기 <span aria-hidden="true">↗</span></a>
         </div>
         <figure class="preview">
-          <figcaption>플랫폼에서 볼 수 있는 기능</figcaption>
-          <ul>
-            <li>연간 업무 흐름</li>
-            <li>안전인증서 유효기간 점검</li>
-            <li>온도 시뮬레이터</li>
-          </ul>
+          <a href="서류로 배우는 안전관리자 실무 교육 플랫폼.html#s6" target="_blank" rel="noopener noreferrer" aria-label="교육 플랫폼의 연간 업무 캘린더 열기 (새 탭)">
+            <img src="assets/training-calendar.png" width="1040" height="660" alt="연간 업무 캘린더의 월별 선택 화면과 11월 안전업무 예시">
+          </a>
+          <figcaption><strong>연간 업무 캘린더</strong> · 이미지를 누르면 캘린더가 새 탭에서 열립니다.</figcaption>
         </figure>
       </div>
     </article>
@@ -173,7 +170,7 @@
             <div class="window-bar">PDF 보고서 · 문서관리</div>
             <div class="project-body">
               <h3>안전서류 통합관리·검색 시스템</h3>
-              <p>안전 관련 문서를 한곳에서 관리하고 검색할 수 있도록 구성한 프로젝트를 보고서로 정리했습니다.</p>
+              <p>안전보건 의무 순서에 맞춰 서류를 대분류 15개·중분류 68개로 정리하고, 평소 쓰는 말이나 기존 문서번호로 관련 폴더와 파일을 찾는 검색 도구를 개발했습니다.</p>
               <a class="button" href="안전서류 통합관리·검색 시스템 구축.pdf" target="_blank" rel="noopener noreferrer">PDF 보고서 보기 <span aria-hidden="true">↗</span></a>
             </div>
           </article>
