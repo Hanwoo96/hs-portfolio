@@ -1,0 +1,1091 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>안전관리자 실무 교육 (포트폴리오용 · 마스킹본)</title>
+<script>document.documentElement.classList.add("js")</script>
+<style>
+:root{--bg:#2f302e;--bg2:#383a37;--bg3:#444642;--paper:#dddcd9;--paper2:#cfcecb;--ink:#1d1e1c;--txt:#ecebe8;--mut:#a9aaa4;--or:#ff4d12;--or2:#ff7a45;--yel:#ffc933;--ice:#9fd0ff;--ok:#1f8a4c;--line:#51534e;--r:26px}
+*{box-sizing:border-box}
+html{scroll-padding-top:90px}
+body{margin:0;background:#1d1e1c;color:var(--txt);font:15px/1.7 "Pretendard Variable","Pretendard","Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--yel);outline-offset:2px}
+.shell{max-width:1220px;margin:22px auto;background:var(--bg);border-radius:34px;padding:0 clamp(16px,4vw,52px) 40px;position:relative}
+/* nav */
+.top{position:sticky;top:10px;z-index:50;margin:0 -8px;padding:14px 8px 0;background:linear-gradient(var(--bg) 70%,transparent)}
+.top .row{display:flex;align-items:center;gap:18px;padding:0 6px 14px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;white-space:nowrap}
+.logo svg{width:36px;height:36px}
+.menu{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+.menu::-webkit-scrollbar{display:none}
+.menu a{padding:6px 12px;border-radius:99px;text-decoration:none;color:var(--mut);font-weight:600;font-size:14px;white-space:nowrap;transition:.2s}
+.menu a:hover{color:var(--txt)}
+.menu a.on{color:#fff;background:var(--bg3)}
+.pill{border:1.5px solid var(--txt);border-radius:99px;padding:6px 16px;text-decoration:none;font-weight:700;font-size:14px;white-space:nowrap}
+.pill:hover{background:var(--txt);color:var(--bg)}
+.prog{height:2px;background:var(--line)}
+.prog i{display:block;height:100%;width:0;background:var(--or)}
+/* hero */
+.hero{position:relative;padding:54px 0 30px;text-align:center;overflow:clip}
+.eyebrow{display:inline-block;font-weight:800;letter-spacing:.18em;font-size:12px;color:var(--or);margin-bottom:10px}
+.hero h1{margin:0;font-weight:900;line-height:1.02;letter-spacing:-.04em;font-size:clamp(44px,9.4vw,118px);color:#dcdcd9}
+.hero h1 .hash{color:var(--or)}
+.hero h1 em{font-style:normal;color:var(--or)}
+.scribble{position:absolute;pointer-events:none}
+.scribble path{stroke:var(--or);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1.4s .4s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.stamp{position:absolute;right:6%;bottom:36%;width:104px;height:104px;animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.herorow{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;text-align:left;margin:46px auto 0;max-width:900px}
+.herorow p{margin:0;color:var(--mut);max-width:360px}
+.herorow p b{color:var(--txt)}
+.join{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--txt);border-radius:99px;padding:6px 8px 6px 18px;text-decoration:none;font-weight:800}
+.join span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--paper);color:var(--ink)}
+.join:hover{background:var(--or);border-color:var(--or)}
+.scenes{display:flex;gap:18px;justify-content:center;align-items:flex-end;margin:48px auto 0;max-width:900px}
+.scene{flex:1;max-width:260px;background:#d4d4d1;border-radius:26px;overflow:hidden;aspect-ratio:230/330;transition:transform .4s}
+.scene:nth-child(2){aspect-ratio:230/370}
+.scene:hover{transform:translateY(-8px) rotate(-1deg)}
+.scene svg{width:100%;height:100%;display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:46px auto 0;max-width:900px}
+.stat{border:1.5px solid var(--line);border-radius:20px;padding:16px 10px}
+.stat b{display:block;font-size:clamp(30px,5vw,48px);font-weight:900;line-height:1;color:var(--or)}
+.stat span{font-size:13px;color:var(--mut)}
+.marq{margin:40px -60px 0;overflow:hidden;border-block:1.5px solid var(--line);padding:12px 0;white-space:nowrap}
+.marq div{display:inline-block;animation:mq 38s linear infinite;font-weight:900;font-size:20px;letter-spacing:-.01em}
+.marq span{margin:0 18px}
+.marq span:nth-child(3n+1){color:var(--or)}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* sections */
+.sec{margin-top:56px}
+.frame{border:1.5px solid #cfcfcc;border-radius:34px;padding:clamp(18px,3.2vw,44px)}
+.sh{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:26px}
+.sh h2{margin:0;font-size:clamp(26px,4vw,40px);line-height:1.15;font-weight:900;letter-spacing:-.03em}
+.sh h2 small{display:block;font-size:13px;font-weight:800;letter-spacing:.18em;color:var(--or);margin-bottom:6px}
+.sh p{margin:0;max-width:470px;color:#d0cfcc;font-size:16px}
+.rv{transition:opacity .7s,transform .7s}
+.js .rv{opacity:0;transform:translateY(26px)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none}.marq div,.stamp{animation:none}.scribble path{animation:none;stroke-dashoffset:0}html{scroll-behavior:auto}}
+/* paper (light content) */
+.paper{background:var(--paper);color:var(--ink);border-radius:var(--r);padding:clamp(16px,2.4vw,30px)}
+.paper h3{margin:20px 0 8px;font-size:18px;font-weight:900;letter-spacing:-.02em}
+.paper h4{margin:10px 0 4px;font-size:13px;color:#4a4b47;letter-spacing:.02em}
+.paper p{margin:6px 0}
+.paper ul,.paper ol{margin:4px 0;padding-left:20px}
+.paper a{color:var(--or);font-weight:700}
+.paper table{border-collapse:separate;border-spacing:0;width:100%;font-size:14px;line-height:1.6;margin:10px 0;background:#f1f0ee;border-radius:14px}
+.paper th{background:var(--ink);color:#fff;text-align:left;padding:11px 13px;font-size:13px;position:sticky;top:76px;z-index:2;white-space:nowrap}
+.paper th:first-child{border-top-left-radius:14px}.paper th:last-child{border-top-right-radius:14px}
+.paper td{padding:11px 13px;border-top:1px solid #d6d5d1;vertical-align:top}
+.paper tr:nth-child(even) td{background:#e7e6e3}
+.paper tr:hover td{background:#ffe3d6}
+.paper td:first-child{font-weight:800;color:#3a3b37}
+.paper td b{background:linear-gradient(transparent 58%,#ffc9b0 58%);padding:0 1px}
+.paper td:last-child b{background:none}
+#s10 table,#s9 table,#s3 table{table-layout:fixed}
+#s10 th:nth-child(1),#s10 td:nth-child(1),#s9 th:nth-child(1),#s9 td:nth-child(1){width:46px;text-align:center}
+#s10 th:nth-child(2){width:15%}#s10 th:nth-child(3){width:20%}#s10 th:nth-child(4){width:42%}#s10 th:nth-child(5){width:17%}
+#s9 th:nth-child(2){width:42%}
+#s3 th:nth-child(1){width:24%}#s3 th:nth-child(2){width:20%}#s3 th:nth-child(3){width:30%}
+tr[data-v] td:first-child{border-left:7px solid var(--vc,#999)}
+tr[data-v="일치"]{--vc:#1f8a4c}tr[data-v="보완"]{--vc:#ff4d12}tr[data-v="확인 필요"]{--vc:#d9a400}tr[data-v="불일치"]{--vc:#8c1f0a}tr[data-v="참고"]{--vc:#8a8b85}
+tr[data-v] td:last-child{font-weight:700;background:color-mix(in srgb,var(--vc) 16%,#f1f0ee)}
+tr[data-v] td:last-child b{display:inline-block;color:#fff;background:var(--vc);border-radius:99px;padding:1px 11px;margin-bottom:3px;font-size:13px}
+.pf{display:inline-block;background:var(--or);color:#fff;border-radius:8px;padding:0 7px;font-size:12px;font-weight:800;margin:0 2px;line-height:1.6;vertical-align:1px}
+.fl{list-style:none;padding:0;margin:6px 0}
+.fl li{margin:9px 0;padding:10px 12px;background:#e8e7e4;border-radius:14px}
+.fl .fn{display:inline-block;background:var(--or);color:#fff;font-weight:900;border-radius:9px;padding:0 9px;margin-right:7px;font-size:13px}
+.fl small{display:block;color:#4a4b47;margin-top:3px;line-height:1.55}
+.tile .fo{display:block;margin-top:8px;font-size:12px;font-weight:700;color:#55564f}
+.tile:hover .fo{color:#fff}
+.subs{margin:8px 0 0;padding:0;list-style:none;columns:2;column-gap:20px}
+.subs li{padding:3px 0;font-size:14px;break-inside:avoid}
+.paper .tag{display:inline-block;font-size:11.5px;font-weight:800;padding:1px 9px;border-radius:99px;background:var(--ink);color:#fff;margin-right:4px}
+.paper .num{background:var(--or);color:#fff;border-radius:10px;padding:1px 10px;font-size:13px;font-weight:900}
+.box{border-radius:14px;padding:11px 15px;margin:12px 0;font-size:14px;border-left:5px solid}
+.paper .warn{background:#f4dccb;border-color:var(--or)}
+.paper .ok{background:#d1e6d8;border-color:var(--ok)}
+.paper .info{background:#e8e7e4;border-color:#6a6b66}
+.paper .flow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.paper .flow div{flex:1;min-width:140px;background:var(--ink);color:#e9e8e5;border-radius:14px;padding:10px 12px;font-size:13px;position:relative}
+.paper .flow b{display:block;color:var(--yel);font-size:15px}
+.paper .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.paper details{background:#e9e8e5;border-radius:18px;margin:10px 0;overflow:hidden}
+.paper summary{cursor:pointer;padding:13px 16px;font-weight:800;list-style:none;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.paper summary::-webkit-details-marker{display:none}
+.paper summary::after{content:"+";margin-left:auto;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-weight:900;transition:.25s}
+.paper details[open] summary::after{transform:rotate(45deg);background:var(--or)}
+.paper details .body{padding:4px 18px 16px}
+.more{margin-top:18px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.chip{border:1.5px solid var(--line);background:transparent;border-radius:99px;padding:6px 15px;font-weight:700;font-size:14px;transition:.2s;color:var(--txt)}
+.chip:hover{border-color:var(--txt)}
+.chip.on{background:var(--or);border-color:var(--or);color:#fff}
+.paper .chip{color:var(--ink);border-color:#a4a39f}
+.paper .chip.on{color:#fff}
+.search{width:100%;max-width:340px;padding:9px 16px;border-radius:99px;border:1.5px solid var(--line);background:transparent;color:inherit;font:inherit}
+.paper .search{border-color:#a4a39f}
+.search::placeholder{color:#8d8e88}
+/* structure */
+.layers{display:grid;gap:12px}
+.layer{display:flex;gap:16px;align-items:center;text-align:left;border:1.5px solid var(--line);border-radius:22px;padding:16px 20px;background:var(--bg2);transition:.3s}
+.layer b{font-size:clamp(20px,2.6vw,28px);font-weight:900}
+.layer .n{display:grid;place-items:center;flex:none;width:48px;height:48px;border-radius:50%;background:var(--bg3);font-weight:900;font-size:20px}
+.layer span{color:var(--mut);font-size:14px}
+.layer:hover{transform:translateX(8px)}
+.layer.on{background:var(--or);border-color:var(--or);color:#fff}
+.layer.on .n{background:#fff;color:var(--or)}
+.layer.on span{color:#fff}
+.lp{margin-top:14px;min-height:130px}
+.lp h4{font-size:15px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px;margin-top:10px}
+.fold{border:0;border-radius:18px;padding:12px 10px;background:var(--bg2);text-align:left;transition:.25s;border:1.5px solid transparent}
+.fold i{display:block;font-style:normal;font-weight:900;font-size:26px;line-height:1;color:var(--mut)}
+.fold span{font-size:13px;font-weight:700}
+.fold.t1 i{color:var(--or)}.fold.t2 i{color:var(--yel)}
+.fold:hover{border-color:var(--txt);transform:translateY(-3px)}
+.fold.on{background:var(--paper);color:var(--ink)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mut);margin-top:10px}
+.legend b{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.tile{position:relative;text-align:left;border:0;background:#d4d4d1;color:var(--ink);border-radius:26px 26px 26px 26px;padding:18px 18px 16px;transition:.3s;overflow:hidden;min-height:176px}
+.tile .no{font-size:46px;font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--ink)}
+.tile h3{margin:6px 0 2px;font-size:19px;font-weight:900;letter-spacing:-.02em}
+.tile .code{font-size:12px;font-weight:700;color:#55564f}
+.tile .fr{position:absolute;right:14px;top:14px;width:46px;height:46px;border-radius:50%;background:var(--or);color:#fff;display:grid;place-items:center;font-weight:900;transition:.3s}
+.tile .law{display:block;margin-top:12px;font-size:12.5px;color:#3a3b37;border-top:1.5px dashed #9a9a95;padding-top:8px}
+.tile .bd{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap}
+.tile .bd em{font-style:normal;font-size:11.5px;font-weight:800;background:var(--ink);color:#fff;border-radius:99px;padding:1px 9px}
+.tile:hover{background:var(--or);color:#fff;transform:translateY(-6px)}
+.tile:hover .no,.tile:hover .code,.tile:hover .law{color:#fff}
+.tile:hover .fr{background:#d4d4d1;color:var(--ink);transform:rotate(45deg)}
+.tile.dim{opacity:.28;transform:scale(.97)}
+dialog{border:0;border-radius:30px;padding:0;width:min(920px,94vw);max-height:90vh;background:var(--paper);color:var(--ink);overflow:hidden}
+dialog::backdrop{background:rgba(10,10,10,.72);backdrop-filter:blur(4px)}
+dialog[open]{animation:pop .3s ease}
+@keyframes pop{from{transform:translateY(24px) scale(.97);opacity:0}}
+.dh{display:flex;align-items:center;gap:12px;padding:16px 22px;background:var(--ink);color:#fff}
+.dh h3{margin:0;font-size:20px;font-weight:900;flex:1}
+.dh button{border:0;background:#fff;color:var(--ink);width:36px;height:36px;border-radius:50%;font-weight:900}
+.dh button:hover{background:var(--or);color:#fff}
+.db{padding:20px 24px 26px;overflow:auto;max-height:calc(90vh - 70px)}
+.db .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.db h4{margin:10px 0 4px;font-size:13px;color:#4a4b47}
+.db ul{margin:4px 0;padding-left:20px}
+.db .ok{background:#d1e6d8;border-color:var(--ok)}.db .info{background:#e8e7e4;border-color:#6a6b66}.db .warn{background:#f4dccb;border-color:var(--or)}
+/* bars */
+.bars{display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:150px 1fr 70px;gap:10px;align-items:center;border:0;background:transparent;text-align:left;padding:4px;border-radius:14px;color:inherit}
+.bar .l{font-weight:700;font-size:14px}
+.bar .tr{height:26px;background:#bdbcb8;border-radius:99px;overflow:hidden}
+.bar .tr i{display:block;height:100%;width:0;border-radius:99px;background:var(--ink);transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.bar .v{font-weight:900;text-align:right}
+.bar:hover .tr i,.bar.on .tr i{background:var(--or)}
+.bar.on{background:#cac9c5}
+.edu-d{margin-top:14px;background:var(--ink);color:#fff;border-radius:20px;padding:16px 20px;display:grid;grid-template-columns:auto 1fr;gap:6px 22px;align-items:center}
+.edu-d .big{grid-row:span 3;font-size:56px;font-weight:900;color:var(--or);line-height:1}
+.edu-d small{color:#bbbab6}
+/* who */
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.sbtn{border:1.5px solid #a4a39f;background:transparent;border-radius:16px;padding:10px 14px;text-align:left;font-weight:700;transition:.2s;color:var(--ink)}
+.sbtn:hover{border-color:var(--ink)}
+.sbtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.wh{border-radius:22px;padding:18px;background:#c8c7c3;color:#6a6b66;transition:.4s;position:relative}
+.wh b{display:block;font-size:20px;font-weight:900}
+.wh .st{display:inline-block;margin-top:8px;font-weight:800;font-size:13px}
+.wh.go{background:var(--or);color:#fff;transform:translateY(-6px);box-shadow:0 14px 30px -10px rgba(255,77,18,.6)}
+.wh.go::after{content:"GO";position:absolute;right:14px;top:12px;font-weight:900;letter-spacing:.1em;font-size:12px}
+/* sim */
+.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.simbox{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:center}
+.thermo{width:100%;max-width:150px;margin:auto}
+.simr input[type=range]{width:100%;accent-color:var(--or)}
+.deg{font-size:clamp(48px,8vw,84px);font-weight:900;line-height:1;letter-spacing:-.04em}
+.stg{display:inline-block;font-weight:900;border-radius:99px;padding:3px 16px;color:#fff;background:var(--ink);transition:background .3s}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin-top:12px;font-size:14px}
+.kv b{color:#4a4b47}
+.stepper{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 12px}
+.dot{width:40px;height:40px;border-radius:50%;border:2px solid var(--ink);background:transparent;font-weight:900;color:var(--ink);transition:.25s}
+.dot.on{background:var(--or);border-color:var(--or);color:#fff;transform:scale(1.15)}
+.dot.past{background:var(--ink);color:#fff}
+.stp{background:var(--ink);color:#fff;border-radius:20px;padding:16px 20px;min-height:110px}
+.stp b{color:var(--yel);font-size:19px}
+.stp p{color:#ddd;margin:6px 0 0}
+.nb{display:flex;gap:8px;margin-top:10px}
+.nb button,.btn{border:0;background:var(--ink);color:#fff;border-radius:99px;padding:8px 20px;font-weight:800}
+.btn.or{background:var(--or)}
+.nb button:hover,.btn:hover{background:var(--or)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mini{background:#e9e8e5;border-radius:20px;padding:16px 18px}
+.mini h4{margin:0 0 8px;font-size:15px;color:var(--ink)}
+.cnt{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cnt div{background:var(--ink);color:#fff;border-radius:16px;padding:12px;text-align:center}
+.cnt b{display:block;font-size:30px;color:var(--or);font-weight:900;line-height:1.1}
+.cnt span{font-size:12px;color:#ccc}
+.donutw{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.donutw svg{width:150px;height:150px;flex:none}
+.donutw circle{transition:stroke-dasharray 1.1s ease}
+.dl{display:grid;gap:3px;font-size:13px;flex:1;min-width:140px}
+.dl i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px}
+.dl button{border:0;background:transparent;text-align:left;padding:2px 0;color:inherit}
+.dl button:hover{text-decoration:underline}
+.vchip{display:inline-block;border-radius:99px;padding:1px 10px;font-weight:900;font-size:12px;margin-top:6px;color:#fff;background:var(--ok)}
+.vchip.late{background:var(--or)}
+.life{height:14px;background:#bdbcb8;border-radius:99px;overflow:hidden;margin:8px 0 2px}
+.life i{display:block;height:100%;background:var(--ok);width:0;transition:width 1.2s}
+/* calendar */
+.calw{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:26px;align-items:center}
+.ring{width:100%;max-width:430px;margin:auto}
+.ring path{cursor:pointer;transition:.25s;stroke:var(--bg);stroke-width:3}
+.ring path:hover{filter:brightness(1.25)}
+.ring text{pointer-events:none;font-weight:800;font-size:15px;fill:#fff}
+.ring .sel{stroke:#fff;stroke-width:4}
+.mp{background:var(--paper);color:var(--ink);border-radius:26px;padding:22px 26px;min-height:240px}
+.mp h3{margin:0 0 4px;font-size:34px;font-weight:900;letter-spacing:-.03em}
+.mp .ss{display:inline-block;font-size:12px;font-weight:900;border-radius:99px;padding:2px 12px;background:var(--ink);color:#fff;margin-bottom:8px}
+.mp li{margin:6px 0}
+.sleg{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--mut);margin-top:12px}
+.sleg b{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:6px;vertical-align:-1px}
+.tline{position:relative;margin:10px 0 0 10px;padding-left:28px;border-left:3px solid var(--ink)}
+.ti{position:relative;margin:0 0 18px;padding:12px 16px;background:#e9e8e5;border-radius:16px}
+.ti::before{content:"";position:absolute;left:-39px;top:18px;width:18px;height:18px;border-radius:50%;background:var(--or);border:3px solid var(--paper)}
+.ti b{font-size:16px}
+.ti small{display:block;color:#55564f}
+/* quiz */
+.qw{max-width:760px;margin:auto}
+.qbar{height:8px;background:var(--bg3);border-radius:99px;overflow:hidden}
+.qbar i{display:block;height:100%;width:0;background:var(--or);transition:width .4s}
+.qh{display:flex;justify-content:space-between;color:var(--mut);font-weight:700;font-size:14px;margin:10px 2px}
+.qq{font-size:clamp(20px,3vw,28px);font-weight:900;letter-spacing:-.02em;line-height:1.35;margin:14px 0 18px}
+.qo{display:flex;gap:14px;align-items:center;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--bg2);border-radius:20px;padding:14px 18px;margin:9px 0;font-weight:600;transition:.2s}
+.qo i{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;background:var(--bg3);font-style:normal;font-weight:900;font-size:13px}
+.qo:hover:not(:disabled){border-color:var(--txt);transform:translateX(6px)}
+.qo.right{background:var(--ok);border-color:var(--ok);color:#fff}
+.qo.right i{background:#fff;color:var(--ok)}
+.qo.wrong{background:#8c1f0a;border-color:var(--or);animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.qo:disabled{cursor:default}
+.qx{margin-top:12px;background:var(--paper);color:var(--ink);border-radius:20px;padding:14px 18px;display:none}
+.qx.show{display:block;animation:pop .3s}
+.res{text-align:center}
+.res svg{width:190px;height:190px}
+.res h3{font-size:30px;margin:10px 0 4px;font-weight:900}
+.wl{background:var(--paper);color:var(--ink);border-radius:20px;padding:12px 18px;margin:10px 0;text-align:left}
+.wl b{color:var(--or)}
+/* law */
+.lawtop{display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.tw{border-radius:16px}
+/* footer */
+.foot{margin-top:46px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--mut);border-top:1.5px solid var(--line);padding-top:18px}
+.foot p{margin:0;max-width:820px}
+.goup{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;border:0;background:var(--or);color:#fff;font-weight:900;font-size:18px;opacity:0;pointer-events:none;transition:.3s;z-index:60}
+.goup.show{opacity:1;pointer-events:auto}
+@media (max-width:820px){
+ .paper .cols,.db .cols,.two,.calw,.simbox{grid-template-columns:1fr}
+ .who{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}
+ .bar{grid-template-columns:100px 1fr 56px}
+ .scenes .scene:nth-child(3){display:none}.stamp{display:none}
+ .marq{margin-inline:-18px}.pill{display:none}
+ .simbox .thermo{max-width:90px}
+ .tw,.paper details .body,.paper>div[style]{overflow-x:auto}
+ #s10 table,#s9 table,#s3 table{min-width:760px}
+ .paper th{position:static}
+ .subs{columns:1}
+}
+.off .marq div,.off .stamp{animation-play-state:paused}
+@media print{body{background:#fff;color:#000}.top,.goup,.marq,.stamp,.scenes,.hero .scribble{display:none}.shell{background:#fff;color:#000;margin:0;border-radius:0}.frame{border-color:#999}.js .rv{opacity:1;transform:none}.paper details>*{display:block}.tile{break-inside:avoid}}
+</style><style>
+.intent{position:relative;z-index:2;max-width:1100px;margin:22px auto 8px;padding:0 4px}
+.intent .why{font-size:clamp(20px,3.4vw,34px);font-weight:900;line-height:1.35;margin:0 0 6px}
+.intent .why em{font-style:normal;color:var(--yel)}
+.intent .lbl{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--or);margin-bottom:8px}
+.istep{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch;margin-top:14px}
+.istep>div.c{background:var(--bg3);border:1px solid var(--line);border-radius:20px;padding:14px 16px}
+.istep .n{font-size:12px;font-weight:800;color:var(--or);letter-spacing:.1em}
+.istep h4{margin:2px 0 6px;font-size:17px}
+.istep p{margin:0;font-size:14px;color:var(--mut);line-height:1.55}
+.istep .ar{align-self:center;font-size:26px;color:var(--or);font-weight:900}
+.istep .c.mid{border-color:var(--or);background:#3b3a36}
+.intent .go{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.intent .go a{display:inline-block;padding:9px 18px;border-radius:99px;font-weight:800;font-size:14px;text-decoration:none;border:2px solid var(--or);color:var(--txt)}
+.intent .go a.p{background:var(--or);color:#fff}
+@media(max-width:760px){.istep{grid-template-columns:1fr}.istep .ar{transform:rotate(90deg);justify-self:center}}
+</style>
+</head>
+<body>
+<div class="shell" id="top">
+<header class="top">
+ <div class="row">
+  <a class="logo" href="#top"><svg viewBox="0 0 40 40" fill="none"><path d="M20 3 6 8v10c0 9 6 16 14 19 8-3 14-10 14-19V8L20 3Z" stroke="#fff" stroke-width="3" stroke-linejoin="round"/><path d="M13 20l5 5 9-10" stroke="#ff4d12" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>OO건설 안전팀</a>
+  <nav class="menu" id="menu">
+   <a href="#about">소개</a><a href="#s0">사용법</a><a href="#s1">3층 구조</a><a href="#s2">01~10 의무</a><a href="#s3">교육</a><a href="#s4">점검</a><a href="#s5">계획서·인증</a><a href="#s6">캘린더</a><a href="#s7">퀴즈</a><a href="#s8">찾기·넣기</a><a href="#s9">확인 필요</a><a href="#s10">법령 대조</a>
+  </nav>
+  <a class="pill" href="#s7">퀴즈 풀기 ↗</a>
+ </div>
+ <div class="prog"><i id="prog"></i></div>
+</header>
+
+<section class="hero" id="home">
+ <span class="eyebrow">SAFETY MANAGER ACADEMY · 내부 교육용</span>
+ <h1><span class="hash">#</span>서류로 배우는<br>안전관리자<br><em>실무</em> 교육</h1>
+ <svg class="scribble" style="left:2%;top:46%;width:150px" viewBox="0 0 150 80"><path d="M6 60C30 80 70 60 60 40 50 22 20 40 40 62 70 70 110 50 140 22M140 22l-22 2M140 22l-4 20"/></svg>
+ <svg class="scribble" style="right:3%;top:16%;width:140px" viewBox="0 0 140 90"><path d="M20 12C60 -4 130 10 126 50 124 70 100 80 74 70M74 70l20-4M74 70l4-20"/></svg>
+ <svg class="stamp" viewBox="0 0 120 120"><circle cx="60" cy="60" r="58" fill="#ff4d12"/><defs><path id="cp" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs><text font-size="11" font-weight="800" fill="#fff" letter-spacing="2.5"><textPath href="#cp">OO · TEAM · WE · ARE · SAFE ·</textPath></text><path d="M40 70c10 10 28 4 22-8-5-9-18-1-8 10 12 4 24-6 26-18M80 44l-1 10-9-2" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+
+ <div class="intent">
+ <span class="lbl">만든 의도</span>
+ <p class="why">서류를 정리하는 일을, <em>서류로 배우는 일</em>로 바꾸다.</p>
+ <div class="istep">
+  <div class="c"><span class="n">① 문제</span><h4>법령과 따로 쌓인 서류</h4><p>수천 개의 안전서류가 법령 체계와 무관하게 쌓여 있어, 무엇이 왜 필요한지 배우기 어려웠습니다.</p></div>
+  <span class="ar">→</span>
+  <div class="c mid"><span class="n">② 의도</span><h4>서류를 법령 순서로 다시 묶는다</h4><p>폴더를 법령 순서로 재구성하고, 그 서류를 근거로 안전관리자가 실무를 배우게 합니다.</p></div>
+  <span class="ar">→</span>
+  <div class="c"><span class="n">③ 결과</span><h4>눌러 보며 익히는 교육 자료</h4><p>10개 의무 카드 · 32개 법령 대조 · 14개 문항 퀴즈로 서류와 법령을 함께 익힙니다.</p></div>
+ </div>
+ <div class="go"><a class="p" href="#s1">자료 보러 가기 ↓</a><a href="#about">만든 과정 보기</a></div>
+</div>
+
+<div class="herorow">
+  <p>폴더 01~15를 따라 걷는 서류 실무.<br><b>10개 의무 · 32개 법령 대조 · 14개 문항</b>을 눌러 보며 익힙니다.</p>
+  <a class="join" href="#s1">학습 시작 <span>↓</span></a>
+ </div>
+
+ <div class="scenes">
+  <div class="scene"><svg viewBox="0 0 230 330"><rect width="230" height="330" fill="#d4d4d1"/><rect x="18" y="18" width="62" height="30" rx="6" fill="#ffc933"/><rect x="26" y="26" width="46" height="4" rx="2" fill="#fff" opacity=".7"/><rect x="26" y="34" width="30" height="4" rx="2" fill="#fff" opacity=".7"/><circle cx="168" cy="52" r="26" fill="#fff"/><path d="M168 36v32M152 52h32" stroke="#ff4d12" stroke-width="7" stroke-linecap="round"/><path d="M115 96 60 116v46c0 38 24 66 55 78 31-12 55-40 55-78v-46L115 96Z" fill="#3b4a54"/><path d="M90 160l18 18 34-36" stroke="#ffc933" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"><animate attributeName="stroke-dasharray" values="0 120;120 0" dur="1.4s" repeatCount="indefinite"/></path><rect x="22" y="262" width="86" height="46" rx="10" fill="#fff"/><rect x="32" y="274" width="50" height="6" rx="3" fill="#bbb"/><rect x="32" y="288" width="34" height="6" rx="3" fill="#ddd"/><rect x="122" y="250" width="86" height="58" rx="10" fill="#ff4d12"/><rect x="132" y="264" width="52" height="6" rx="3" fill="#fff"/><rect x="132" y="278" width="36" height="6" rx="3" fill="#ffd3c4"/></svg></div>
+  <div class="scene"><svg viewBox="0 0 230 370"><rect width="230" height="370" fill="#d4d4d1"/><circle cx="62" cy="62" r="40" fill="#ffc933"/><circle cx="62" cy="62" r="30" fill="#fff"/><path d="M62 62V42M62 62l16 8" stroke="#3b4a54" stroke-width="5" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 62 62" to="360 62 62" dur="12s" repeatCount="indefinite"/></path><rect x="44" y="118" width="142" height="212" rx="16" fill="#3b4a54"/><rect x="82" y="106" width="66" height="26" rx="10" fill="#ffc933"/><g fill="#fff"><rect x="96" y="160" width="76" height="9" rx="4"/><rect x="96" y="200" width="60" height="9" rx="4"/><rect x="96" y="240" width="70" height="9" rx="4"/><rect x="96" y="280" width="50" height="9" rx="4"/></g><g stroke="#ff7a45" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M62 162l7 7 12-14"><animate attributeName="stroke-dasharray" values="0 40;40 0;40 0;0 40" keyTimes="0;.2;.9;1" dur="4s" repeatCount="indefinite"/></path><path d="M62 202l7 7 12-14"><animate attributeName="stroke-dasharray" values="0 40;0 40;40 0;40 0;0 40" keyTimes="0;.2;.4;.9;1" dur="4s" repeatCount="indefinite"/></path><path d="M62 242l7 7 12-14"><animate attributeName="stroke-dasharray" values="0 40;0 40;40 0;40 0;0 40" keyTimes="0;.4;.6;.9;1" dur="4s" repeatCount="indefinite"/></path><path d="M62 282l7 7 12-14"><animate attributeName="stroke-dasharray" values="0 40;0 40;40 0;40 0;0 40" keyTimes="0;.6;.8;.9;1" dur="4s" repeatCount="indefinite"/></path></g><path d="M170 340c6-24 26-30 40-30" stroke="#ff4d12" stroke-width="6" fill="none" stroke-linecap="round"/></svg></div>
+  <div class="scene"><svg viewBox="0 0 230 330"><rect width="230" height="330" fill="#d4d4d1"/><circle cx="170" cy="62" r="30" fill="#ffc933"><animate attributeName="r" values="30;34;30" dur="3s" repeatCount="indefinite"/></circle><g stroke="#ffc933" stroke-width="5" stroke-linecap="round"><path d="M170 12v14M170 98v14M120 62h14M206 62h14M135 27l10 10M205 97l-10-10M205 27l-10 10M135 97l10-10"/></g><rect x="62" y="60" width="38" height="190" rx="19" fill="#3b4a54"/><circle cx="81" cy="262" r="36" fill="#3b4a54"/><rect x="73" y="76" width="16" height="170" rx="8" fill="#fff"/><rect x="73" y="140" width="16" height="106" rx="8" fill="#ff4d12"><animate attributeName="y" values="190;80;190" dur="5s" repeatCount="indefinite"/><animate attributeName="height" values="56;166;56" dur="5s" repeatCount="indefinite"/></rect><circle cx="81" cy="262" r="24" fill="#ff4d12"/><g stroke="#3b4a54" stroke-width="5" stroke-linecap="round"><path d="M130 160h30M130 190h22M130 220h36"/></g><g stroke="#8ec5ff" stroke-width="5" stroke-linecap="round" fill="none"><path d="M170 270v36M154 278l32 20M186 278l-32 20"/></g></svg></div>
+ </div>
+
+ <div class="stats">
+  <div class="stat"><b data-count="10">0</b><span>의무 카드</span></div>
+  <div class="stat"><b data-count="32">0</b><span>법령 대조 항목</span></div>
+  <div class="stat"><b id="qcount" data-count="14">0</b><span>자가진단 문항</span></div>
+  <div class="stat"><b data-count="15">0</b><span>업무 폴더</span></div>
+ </div>
+ <div class="marq"><div id="mq"></div></div>
+</section>
+
+<section class="sec" id="about"><div class="frame">
+ <div class="sh rv"><h2><small>HOW IT WAS MADE</small>만든 과정</h2><p>건설사 안전관리자가 서류 폴더를 정리하며 만든 <b>실무 학습 자료</b>입니다. 이 페이지는 포트폴리오용 설명입니다.</p></div>
+ <div class="paper rv"><div class="cnt" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))"><div><b data-count="15">0</b><span>정리한 폴더 (01~15)</span></div><div><b data-count="10">0</b><span>의무 카드</span></div><div><b data-count="32">0</b><span>법령 대조 항목</span></div><div><b data-count="14">0</b><span>퀴즈 문항</span></div></div></div>
+ <div class="two rv" style="margin-top:16px">
+  <div class="paper"><h3 style="margin-top:0">배경과 목표</h3><p>수천 개의 안전서류를 법령 순서로 다시 정리하고, 그 서류를 근거로 안전관리자가 알아야 할 법령과 실무를 학습 자료로 풀어냈습니다. 서류를 찾는 도구이면서 서류로 공부하는 교재가 되도록 했습니다.</p></div>
+  <div class="paper"><h3 style="margin-top:0">내가 한 일</h3><ul><li>중대재해처벌법 시행령 제4조·제5조 기준으로 서류 분류 체계 설계</li><li>법령 원문과 사내 절차서를 대조해 불일치·보완 항목 도출</li><li>폴더와 문서 본문을 직접 열어 사실 확인, 미확인은 "확인 필요"로 표기</li><li>카드·시뮬레이터·퀴즈 등 인터랙티브 화면 설계와 구현</li></ul></div>
+ </div>
+ <div class="two rv" style="margin-top:16px">
+  <div class="paper"><h3 style="margin-top:0">차별점</h3><ul><li><b>검증 과정을 드러냄:</b> 일치·보완·확인 필요로 판정을 구분</li><li><b>서류와 학습을 연결:</b> 모든 할 일에 실제 폴더 번호를 배지로 표시</li><li><b>단일 HTML:</b> 설치 없이 열어 보고 모바일에서도 동작</li></ul></div>
+  <div class="paper"><h3 style="margin-top:0">기술과 형식</h3><ul><li>HTML · CSS · JavaScript 단일 파일, 외부 라이브러리 없음</li><li>반응형 레이아웃, 키보드·스크린리더 고려</li><li>제작 기간 <span class="tag">추후 기재</span> · 역할 <span class="tag">추후 기재</span> · 활용 성과 <span class="tag">추후 기재</span></li></ul></div>
+ </div>
+ <div class="paper rv" style="margin-top:16px"><div class="box info"><b>마스킹 안내.</b> 회사명, 거래처, 현장명, 내부 수치는 가명이나 예시값으로 바꾸었습니다. 점검 횟수와 평가 날짜는 예시이며 실제 값이 아닙니다. 법령 인용은 공개된 원문 기준입니다.</div></div>
+</div></section>
+
+<section class="sec" id="s0"><div class="frame">
+ <div class="sh rv"><h2><small>HOW TO USE</small>이 자료 사용법</h2><p>폴더 정리는 "서류 공부"를 겸한 작업이었습니다. 그 결과를 안전관리자 눈높이로 풀었습니다.</p></div>
+ <div class="two rv">
+  <div class="paper"><h3 style="margin-top:0">배우고 나면</h3><ul><li>법이 요구하는 것이 무엇인지 설명할 수 있다</li><li>우리 회사가 어떤 서류로 증명하는지 안다</li><li>내가 매달·반기마다 챙길 것을 안다</li><li>감독·원청이 요구할 때 바로 꺼낸다</li></ul></div>
+  <div class="paper"><h3 style="margin-top:0">읽는 순서</h3><ol><li>처음: 3층 구조 → 01~10 의무 타일</li><li>실무 투입 전: 교육·점검·계획서 + 캘린더</li><li>마무리: 퀴즈로 점검</li><li>모르는 것은 확인 필요 표에 적어 두기</li></ol></div>
+ </div>
+ <div class="paper rv" style="margin-top:16px"><div class="box warn"><b>읽기 전 주의.</b> 이 자료의 수치(기한·시간·점수)는 <b>회사 절차서(서명본 최신)</b>에 적힌 기준입니다. 주요 항목은 2026-11-11에 국가법령정보센터 원문과 대조했고, 결과는 <a href="#s10">10장</a>에 있습니다. 일치하지 않거나 보완이 필요한 곳이 있으니 외부 제출·감독 대응 전에 10장을 먼저 보세요. 개인정보(성명·연락처·인적사항)는 일부러 담지 않았습니다.</div></div>
+</div></section>
+
+<section class="sec" id="s1"><div class="frame">
+ <div class="sh rv"><h2><small>01 · STRUCTURE</small>서류의 3층 구조</h2><p>폴더의 모든 서류는 규칙 → 서식 → 증거 중 하나입니다. 층을 눌러 보고, 아래 폴더 지도에서 위치를 찾아보세요.</p></div>
+ <div class="two">
+  <div class="layers rv" id="layers"></div>
+  <div class="paper lp rv" id="lp"></div>
+ </div>
+ <div class="rv" style="margin-top:26px"><b style="font-size:18px">폴더 지도</b> <span style="color:var(--mut);font-size:13px">눌러서 내용 확인</span>
+  <div class="fgrid" id="fgrid"></div>
+  <div class="legend"><span><b style="background:var(--or)"></b>중대재해처벌법 순서(01~10)</span><span><b style="background:var(--yel)"></b>매일·매월 쌓이는 기록(11~15)</span><span><b style="background:var(--mut)"></b>보관·참고</span></div>
+  <div class="paper" id="fp" style="margin-top:12px"></div>
+  <div class="paper" style="margin-top:12px"><b>폴더 맨 위에 있는 파일</b><ul class="subs" id="topfiles"></ul><p style="font-size:13px;color:#4a4b47;margin:8px 0 0">옛 번호(XX-S-n)는 엑셀 대장 2개의 [번호 안내] 시트에서, 현장은 [현장별 찾아보기], 주제는 [주제별 찾아보기] 시트에서 찾습니다.</p></div>
+ </div>
+</div></section>
+
+<section class="sec" id="s2"><div class="frame">
+ <div class="sh rv"><h2><small>02 · NINE DUTIES</small>01~10 의무 타일</h2><p>타일을 누르면 무엇을 요구하는지, 우리 서류, 할 일, 흔한 실수, 법령 원문 근거가 열립니다.</p></div>
+ <div class="chips rv" id="fchips"></div>
+ <input class="search rv" id="q" placeholder="검색 (예: 반기, 선임, 훈련, 평가표)" style="margin-bottom:18px">
+ <div class="tiles" id="tiles"></div>
+</div></section>
+
+<dialog id="dlg"><div class="dh"><h3 id="dt"></h3><button id="dp" aria-label="이전">‹</button><button id="dn" aria-label="다음">›</button><button id="dc" aria-label="닫기">✕</button></div><div class="db" id="dbody"></div></dialog>
+
+<section class="sec" id="s3"><div class="frame">
+ <div class="sh rv"><h2><small>03 · TRAINING</small>교육 (폴더 11)</h2><p>서류량이 가장 많은 영역입니다. 시간·대상·증빙 세 가지만 외우면 됩니다. 막대를 눌러 보세요.</p></div>
+ <div class="paper rv"><div class="bars" id="bars"></div><div class="edu-d" id="edud"></div></div>
+ <details class="paper more rv" style="padding:0;background:#e9e8e5"><summary style="padding:16px 22px">전체 교육 표와 실무 함정 보기</summary><div style="padding:0 22px 20px">
+<table>
+<tr><th>교육</th><th>대상</th><th>시간 (회사 규정)</th><th>증빙</th></tr>
+<tr><td>11-4 근로자 정기안전보건교육</td><td>사무직 / 그 밖의 근로자</td><td>매 반기 6시간 / 12시간 이상</td><td>교육일지·서명지, 현장별 시행결과 보고서</td></tr>
+<tr><td>11-5 관리감독자 교육</td><td>지정된 관리감독자</td><td>연 16시간 (반기 8시간) 이상</td><td>관리감독자 교육일지·참석자명단·서명지 (11-5에 개인별 이수증은 없음)</td></tr>
+<tr><td>11-2 신규채용자 교육</td><td>신규 채용자</td><td>8시간 이상 (일용 1시간)</td><td>교육이수 및 안전 서약서</td></tr>
+<tr><td>작업내용 변경 시</td><td>작업이 바뀐 근로자</td><td>2시간 이상 (일용 1시간)</td><td>교육일지</td></tr>
+<tr><td>11-6 특별교육</td><td>유해·위험작업 투입자</td><td>16시간 이상 (일용 2시간, 단기·간헐 2시간 / 최초 4시간 + 잔여 3개월 내 분할 가능)</td><td>특별교육 일지·참석자명단·서명지, 사진 (갑지 5건, 서명지·일지 각 약 150건)</td></tr>
+<tr><td>11-7 유해화학물질 MSDS교육</td><td>물질안전보건자료 대상물질 취급자</td><td>실시한 시간만큼 정기교육 시간으로 인정</td><td>교육 시간·내용 기록</td></tr>
+<tr><td>11-3 건설업 기초안전보건교육 이수증</td><td>건설 일용근로자</td><td>이수증 확인</td><td>이수증 사본</td></tr>
+<tr><td>관리책임자 직무교육</td><td>안전보건관리책임자</td><td>신규 6시간, 이후 2년마다 6시간</td><td>이수일·이수증 (본사 취합 3년 보존). 책임자 이수증은 05-3 개인 폴더, 대표이사(사업주) 교육이수증은 11-1에 있음</td></tr>
+<tr><td>안전관리자 직무교육</td><td>선임된 안전관리자</td><td>선임 90일 이내 신규 34시간, 이후 2년마다 24시간</td><td>이수증 (본사 취합 3년 보존). 안전관리자별 06-2 폴더 안에 신규·보수교육 이수증이 있음</td></tr>
+</table>
+<h3>법정의무교육 (안전 외: 11-8 직장 내 성희롱 예방교육 · 11-9 장애인 인식개선교육 · 11-10 개인정보보호교육 · 11-11 퇴직연금교육)</h3>
+<p>직장 내 성희롱 예방, 장애인 인식개선, 개인정보보호, 퇴직연금 교육. 증빙은 폴더마다 조금 다릅니다. 11-8·11-9는 본사·현장 개인별 수료증(각 약 110개)과 연간 교육 명단·서명지, 11-10(수료증 약 126개)·11-11(약 110개)은 개인별 이수증과 서명지가 중심이며 연간 교육 명단 파일은 11-9에만 있습니다.</p>
+<h3>연간 흐름</h3>
+<ul>
+<li><b>본사</b>: 매년 12월 중 다음 해 교육계획 수립 → 대표이사 승인 → 실시·기록 (11-1 연간 교육 계획표 및 교육결과 취합-본사)</li>
+<li><b>현장</b>: 매년 1월 또는 개설 후 1개월 이내 교육계획 수립 → 현장소장 승인 → 실시</li>
+</ul>
+<div class="box warn"><b>실무 함정.</b> ① 서명지만 있고 교육일지(내용·시간)가 없는 경우 ② 교육 "시간"이 규정에 못 미치는 경우 ③ 신규 투입자가 교육 전에 작업에 투입된 경우. 세 가지를 월 1회 폴더에서 표본 점검하세요.</div>
+</div></details>
+</div></section>
+
+<section class="sec" id="s4"><div class="frame">
+ <div class="sh rv"><h2><small>04 · INSPECTION</small>점검·일지 (폴더 12)</h2><p>누가, 어떤 조건에서 현장에 나가야 하는가. 상황을 고르면 나가야 할 사람이 켜집니다. (비상대응 매뉴얼 제16조)</p></div>
+ <div class="paper rv"><div class="scen" id="scen"></div><div class="who" id="who"></div><p id="whon" style="font-size:13px;color:#4a4b47;margin-top:12px"></p></div>
+ <details class="paper more rv" style="padding:0;background:#e9e8e5"><summary style="padding:16px 22px">표와 일상 기록 보기</summary><div style="padding:0 22px 20px">
+<table>
+<tr><th>점검 주체</th><th>나가야 하는 경우</th></tr>
+<tr><td>대표이사</td><td>① 중대재해 발생 ② 같은 현장에서 같은 건의 사고가 1개월 이내 3건 이상 ③ 거래처(원도급사) 계약·공문에 따른 점검·교육</td></tr>
+<tr><td>임원</td><td>① 중대재해 발생 ② 재해자 진단이 4주 이상</td></tr>
+<tr><td>안전팀</td><td>① 중대재해 발생 ② 재해자 진단이 2주 이상</td></tr>
+</table>
+<p>점검·교육 결과는 매뉴얼의 서식 11~13으로 기록·관리합니다. 원도급사별 주기 예: 한 원도급사는 3개월 1회(시스템 등록), 다른 원도급사는 3대 사고(추락·맞음·부딪힘) 발생 시 및 매월 첫째 주 등록 등 <b>거래처마다 요구가 다릅니다.</b> 계약서 특약과 공문을 확인해 표로 관리하세요.</p>
+<h3>12-5 폴더 구성</h3><p>23·24·25·26년 폴더와 "양식"(현장 안전점검 양식, 각층별 안전점검 양식)이 있습니다. 26년 폴더는 대표이사 현장점검 및 교육(572개), 임원현장점검 및 교육(168개), 안전팀 점검 및 교육(774개), 현장 안전점검(1개)으로 나뉩니다.</p><h3>일상 기록</h3>
+<ul>
+<li><b>12-1 안전보건관리책임자 순회점검 일지</b>: 현장소장 평가표에 "2일 1회 순회점검일지 기록"이 평가 항목으로 들어 있습니다.</li>
+<li><b>12-2 안전관리자 업무 일지</b>: 안전관리자 선임 현장의 일일 순회점검일지. 선임 현장만 해당.</li>
+<li><b>12-3 혹서기 온열질환 점검, 12-4 화기작업 점검</b>: 계절·작업별 점검.</li>
+</ul>
+</div></details>
+</div></section>
+
+<section class="sec" id="s5"><div class="frame">
+ <div class="sh rv"><h2><small>05 · PLANS &amp; PROOF</small>보건·계획서·인증 (폴더 13~15)</h2><p>13은 개인정보 때문에 형식만, 14는 계절·작업별 계획서, 15는 대외에 증명하는 서류입니다.</p></div>
+ <div class="chips rv" id="tabs"><button class="chip on" data-t="t14">14 계획서</button><button class="chip" data-t="t15">15 인증·증명</button><button class="chip" data-t="t13">13 보건</button></div>
+
+ <div id="t14" class="tp">
+  <div class="two rv">
+   <div class="paper"><h3 style="margin-top:0">온도 시뮬레이터</h3>
+    <div class="tabs"><button class="chip on" data-m="heat">혹서기 XX-SP-001</button><button class="chip" data-m="cold">혹한기 XX-SP-008</button></div>
+    <div class="simbox"><svg class="thermo" viewBox="0 0 60 260"><rect x="18" y="10" width="24" height="200" rx="12" fill="#bdbcb8"/><rect id="tf" x="22" y="110" width="16" height="100" rx="8" fill="#ff4d12" style="transition:all .35s"/><circle cx="30" cy="224" r="26" fill="#ff4d12" id="tb" style="transition:fill .35s"/><g id="tk" font-size="9" fill="#444" font-weight="700"></g></svg>
+    <div class="simr"><div class="deg" id="deg">33℃</div><input type="range" id="rng" aria-label="온도"><div style="margin-top:8px"><span class="stg" id="stg"></span></div><div class="kv" id="skv"></div></div></div>
+   </div>
+   <div class="paper"><h3 style="margin-top:0">장비 사용 8단계 (XX-SP-03)</h3><div class="stepper" id="stepper"></div><div class="stp" id="stp"></div><div class="nb"><button id="sp">‹ 이전</button><button id="sn">다음 ›</button></div></div>
+  </div>
+  <div class="two rv" style="margin-top:16px">
+   <div class="paper"><h3 style="margin-top:0">재해 추이 <small style="font-weight:600;color:#55564f">보고서 기준·내부용</small></h3><div class="bars" id="trend"></div><h4 style="margin-top:14px">3년 누적 유형 (비율 %)</h4><div class="bars" id="types"></div></div>
+   <div class="paper"><h3 style="margin-top:0">2026 연간 점검 목표 (수치는 예시)</h3><div class="cnt"><div><b data-count="4">0</b><span>대표이사 현장점검 이상</span></div><div><b data-count="6">0</b><span>임원 점검(건축·설비 각 6)</span></div><div><b data-count="12">0</b><span>안전팀 점검·교육 이상</span></div></div><div class="box warn" style="margin-top:14px">연간표의 횟수는 12-5 계층별 점검 기록으로 증명합니다. 분기마다 월 계획표와 실적을 맞춰 보세요.</div></div>
+  </div>
+  <div class="paper rv" style="margin-top:16px"><h3 style="margin-top:0">14 상세 카드</h3>
+
+<details><summary><span class="num">14-1</span>본사 안전관리 계획보고서 <span class="tag">연 1회</span></summary><div class="body">
+<p>폴더에는 26년 안전관리 계획보고서(hwp)와 갑지 서명본(pdf), 2026년 월간안전활동계획 및 일일안전활동(xlsx), 24년 안전보건관리 계획서가 있습니다. 매년 12월에 다음 해 보고서를 작성합니다(2026년분은 2025-12-15 작성). 대표이사·임원 결재, 갑지 서명본이 있습니다.</p>
+<div class="cols"><div><h4>보고서 목차 (구조)</h4><ul>
+<li>Ⅰ 일반현황: 사업장 개요, 최근 3년 재해 현황, 재해 세부 내용</li>
+<li>Ⅱ 안전보건 방침 및 목표</li>
+<li>Ⅲ 조직: 본사·현장 조직도, 교육계획·이수증 관리, 관리책임자·관리감독자 지정서 관리, 자격증·선임/해임 관리</li>
+<li>Ⅳ 세부 추진계획 (아래 표)</li>
+<li>Ⅴ 기타: 본사 안전 매뉴얼 개정 중점 사항</li></ul></div>
+<div><h4>2026 연간 추진 목표 (월 계획표 기준)</h4><ul>
+<li>대표이사 현장 점검 <b>4회 이상</b></li>
+<li>임원 점검 설비·건축사업부 각 6회 이상</li>
+<li>안전팀 점검·교육 <b>12회 이상</b></li>
+<li>사업주 안전교육(안전보건공단) 상·하반기 각 2시간 <span class="tag">거래처 평가 가산점</span></li>
+<li>본사 근로자 정기교육 6시간 × 2 = 연 12시간</li>
+<li>소방공사 현장 비상 시나리오 훈련 연 2회</li>
+<li>안전보건관계자 평가 반기마다</li>
+<li>20억 미만 현장 집중관리(안전교육)</li></ul></div></div>
+<div class="box info"><b>재해 추이 읽기 (보고서 기준, 내부용).</b> 최근 3년 재해는 감소 추세(첫해를 100으로 둔 지수 100 → 80 → 43). 3년 누적 유형은 넘어짐이 가장 많고(약 34%), 질병(약 22%), 떨어짐(약 16%), 맞음(약 14%), 끼임(약 13%) 순입니다. 교육·TBM·위험성평가의 중점 주제를 고를 때 이 표를 근거로 삼으면 설득력이 있습니다.</div>
+<div class="box warn"><b>실무 포인트.</b> 연간표의 점검 횟수(예시 4/6/12회)는 12-5 계층별 점검 기록으로 달성 여부를 증명합니다. 월 계획표를 분기마다 실적과 맞춰 보세요.</div>
+</div></details>
+
+<details><summary><span class="num">14-2</span>현장 안전관리계획서</summary><div class="body">
+<p>현재 현장 1곳의 "안전조직도·안전환경 계획서" 스캔 PDF 1건만 있습니다(본문 미정독). 현장 개설 때 만드는 조직도(02번)와 연결되는 서류이므로, 폴더에 현장별 서류가 더 쌓여야 하는 칸입니다.</p>
+</div></details>
+
+<details><summary><span class="num">14-3</span>장비작업가이드라인 XX-SP-03 <span class="tag">작성중</span></summary><div class="body">
+<p><b>왜 필요한가.</b> 산안법 제38조, 산업안전보건기준에 관한 규칙 제38조(사전조사·작업계획서), 제39조(작업지휘자), 제40조(신호). 대상은 차량계 하역운반기계, 차량계 건설기계, 중량물 취급 작업입니다. 문서에 적힌 벌칙: 중대재해 발생 시 1억원 이하(법인 10억원 이하), 미발생 시 5천만원 이하.</p>
+<h4>장비 사용 8단계</h4>
+<div class="flow"><div><b>1</b>사용 2일 전 작업계획서 작성·제출</div><div><b>2·3</b>서류 검토 → 장비 사용 승인</div><div><b>4</b>투입 전원 특별교육 2시간 이상</div><div><b>5·6</b>작업구획 설정, 신호수(유도원) 배치</div><div><b>7·8</b>일일점검 → 작업 진행</div></div>
+<div class="cols"><div><h4>작업계획서 작성 항목</h4><ul><li>작업개요, 건설기계 제원·운전자</li><li>줄걸이·양중능력 계산 (정격하중, 샤클·줄걸이 용량)</li><li>아웃트리거 받침철판 규격 (지내력 기준)</li><li>위험요인·안전대책 (추락·낙하·전도·협착·붕괴)</li><li>교육: 작업지휘자, 신호수, 서명은 당사자가</li><li>작업계획도(평면·단면)</li></ul></div>
+<div><h4>장비 관련 서류 9종</h4><ol><li>등록·검사증(검사기한, 소유관계, 불법개조 여부)</li><li>보험 서류</li><li>운전원 면허증</li><li>작업계획서</li><li>건설기계 안전점검표</li><li>장비 제원표 (양중작업 필수)</li><li>작업지휘자 지정서</li><li>신호수/유도자 지정서</li><li>특별교육 확인 서류</li></ol></div></div>
+<p>부록 XX-SP-03-01~08: 작업계획서, 지휘자·유도자 지정서, 특별교육 서명지, 일일점검표, 안전수칙, 사고사례, 위험요인. 일일점검 결과는 ○ 정상 / △ 미흡(조건부 허용) / X 불량·사용중지 / ― 해당없음으로 표기합니다. 장비별 작업계획서(고소작업대·고소작업차·굴착기·덤프트럭·이동식크레인·지게차) 양식은 "장비작업계획서" 하위 폴더에 있고, 본 문서는 파일명이 XX-SP-3_장비작업가이드라인(서명본 pdf)입니다. "원도급사 B 장비사용가이드" 폴더에는 건설장비 안전관리 가이드(2025)와 원도급사 B 전산 시스템용 건설장비 작업계획서 상세 가이드가 있고, "그외" 폴더에는 굴삭기 인양능력표와 현장 사용본이 있습니다.</p>
+<div class="box warn"><b>수급인 평가(09)와 연결.</b> 협력사 장비는 제작 15년 미만, 방호장치, 안전검사, 보험 증빙을 확인합니다. 이 9종 서류가 그 증빙 체크리스트입니다.</div>
+</div></details>
+
+<details><summary><span class="num">14-4</span>화기작업 절차서 <span class="tag">작성중</span></summary><div class="body">
+<p>2026-02-02 제정 예정으로 표기된 초안(.hwp)입니다. 파일명은 XX-SP-4_화기작업 안전관리 절차서이고, 같은 폴더에 참고용 화기작업 안전절차서 파일도 있습니다. 앞부분(개요·법령)은 화기작업 내용이고, <b>뒷부분 구성과 문서번호는 초안 단계라 정리가 필요</b>합니다. 아래는 초안에 인용된 법령 요지입니다.</p>
+<ul>
+<li><b>산안법 제241조(화재위험작업)</b>: 작업 준비·절차 수립, 위험물 사용·보관 현황 파악, 인근 가연물 방호와 소화기구 비치, 불티 비산방지(방화포 등), 환기, 작업자 화재예방·피난교육. 작업 시작 전 확인 후 착수하고, 작업내용·일시·점검조치를 작업장소에 서면 게시.</li>
+<li><b>규칙 제241조의2(화재감시자)</b>: 작업반경 11m 이내에 가연물이 있는 장소 등에서 용접·용단 시 화재감시자를 배치하고 확성기·조명·대피용 마스크를 지급.</li>
+<li>규칙 제232조(폭발·화재 예방, 환기·가스검지), 제245조(화기 사용 장소 뒤처리)</li>
+<li>초안 기재: 용접방화포는 성능인증품 사용(시행일 2026-03-02)</li>
+</ul>
+<div class="box ok"><b>법령 원문 대조: 일치.</b> 제241조(방화포는 성능인증품 사용, 규칙 시행 2026-03-02 현행 본문 확인), 제241조의2(작업반경 11m, 화재감시자 업무·대피장비 지급) 모두 초안 인용과 같습니다.</div>
+<div class="box warn"><b>할 일.</b> 화기작업 절차서는 완성 전에도 현장에서는 작업허가서와 화재감시자 배치 기록이 필요합니다. 12-4 화기작업 점검 폴더의 "화기 작업허가서(작업장소 도면첨부 필).pptx"와 현장 B(소방) 기록을 임시 근거로 쓰고, 초안을 정리해 번호를 새로 부여해야 합니다.</div>
+</div></details>
+
+<details><summary><span class="num">14-5</span>유해화학물질 절차서 XX-SP-02 <span class="tag">2025-01-24 제정</span></summary><div class="body">
+<h4>6단계 절차</h4>
+<div class="flow"><div><b>① 반입</b>화학물질 종류 파악 후 MSDS 수집</div><div><b>② 교육</b>MSDS로 교육. 강사: 책임자·안전관리자·안전담당자·관리감독자</div><div><b>③ 관리대장</b>반입 시 작성 → 현장 게시</div><div><b>④ 보관</b>위험물저장소 분리 → 관리자 명부 → 소화기 → 시건 → 화기엄금</div><div><b>⑤ 폐기</b>폐기물관리법 시행령 별표1 참고</div></div>
+<ul>
+<li><b>교육 시기:</b> 최초 반입 시 1회 이상 → 신규 물질 발생 시 → 매년</li>
+<li><b>과태료(문서 기재):</b> MSDS 게시·비치 위반 500만원 이하, MSDS 교육 위반 300만원 이하</li>
+<li><b>관리대장 칸:</b> 제품명, 반입일자, CAS번호, 용도(작업공종), 보관장소, 사용 시 안전대책(MSDS 교육, 화기주의, 화기감시자 배치)</li>
+<li><b>교육일지 서식</b>은 MSDS 16개 항목(유해성·응급조치·폭발화재·누출·취급·보호구·독성·폐기 등)을 체크하도록 되어 있습니다.</li>
+</ul>
+<div class="box warn"><b>이 절차서의 핵심 위험요인: 페트(PT)병.</b> 무색·무취 약품(신나 등)을 생수병·음료병에 소분하면 물로 오인합니다. ① 소분 보관 금지, 당일 사용분만 반입 ② 소분 시 경고표지와 물질명 부착 ③ 외부 PT병 반입 시 폐기 ④ 공용 식수통은 관리자 지정·매일 세척. 사고사례: 방동제 섞인 물로 라면을 끓여 먹은 집단중독(경고표지 미부착), 접착제를 점안제로 오인.</div>
+<div class="box info">MSDS 교육 시간은 해당 만큼 정기교육으로 인정됩니다(관리규정 제27조). 11장 교육표와 함께 보세요.</div>
+</div></details>
+
+<details><summary><span class="num">14-6</span>유해위험기계기구 (건축·설비 관리계획서)</summary><div class="body">
+<p>현장별로 작성하는 표입니다. 열: <b>품명 · 수량 · 위험요인 · 안전대책(사용 기준)</b>. 건축 양식은 약 26개 품목입니다.</p>
+<table>
+<tr><th>분류</th><th>품목 예</th><th>공통 위험요인 → 대책 패턴</th></tr>
+<tr><td>전기</td><td>릴선, 작업선, 투광등, 배풍기, 아크용접기</td><td>누전차단기 미설치·피복 불량(감전) → 인체용 누전차단기, 접지 확인, 피복이 손상되지 않게 상부 거치</td></tr>
+<tr><td>회전·절단</td><td>각도절단기, 둥근톱, 고속절단기, 핸드그라인더, 탁상연마기</td><td>보호덮개 미설치, 비산, 자재 미고정 → 안전커버, 보안경·보안면, 클램프·스핀들 고정</td></tr>
+<tr><td>드릴·타카</td><td>전동·피스·해머드릴, 타카총</td><td>면장갑 말림, 비산, 천장 앙카 근골격계 → 코팅장갑, 보안경, 스트레칭·15분 이상 휴식</td></tr>
+<tr><td>양중</td><td>체인블록, 레버블록, 전동윈치</td><td>후크 해지장치, 체인·와이어 손상 → 사용 전 점검, 비상정지장치 확인</td></tr>
+<tr><td>고소</td><td>말비계, 이동식 사다리·틀비계, 천정 작업발판</td><td>떨어짐·전도 → 안전대, 아웃트리거, 스토퍼 고정, 승강계단, 난간 임의 해체 금지</td></tr>
+</table>
+<div class="box info"><b>05번과의 연결.</b> 관리감독자 평가표의 공도구 항목(핸드그라인더·홈가공기 안전커버, 말비계·이동식비계·사다리, 타카총 안전장치)이 바로 이 표의 점검 결과입니다. 이 계획서가 평가의 기준표 역할을 합니다. 공도구 종류별 점검 체크리스트(PPT)도 같은 폴더에 있습니다.</div>
+</div></details>
+
+<details><summary><span class="num">14-7</span>혹서기 안전관리계획서 XX-SP-001 <span class="tag">2025-05-12 제정 · 26년 개정본</span></summary><div class="body">
+<p><b>법적 배경(문서 기재).</b> 산안법 제39조 제7호: 폭염·한파 장시간 작업 건강장해 보건조치(2025-06-01 신설). 폭염작업은 체감온도 31℃ 이상 장소의 장시간 작업. 휴게시설 미설치 1500만원 이하, 설치·관리기준 위반 1000만원 이하 과태료.</p>
+<h4>온도별 휴식 기준 (일 최고 체감온도)</h4>
+<table>
+<tr><th>단계</th><th>기준</th><th>휴식 (당사)</th><th>추가 조치</th></tr>
+<tr><td>관심</td><td>31℃ 이상 2일 이상</td><td>매시간 10분 이상</td><td>물·그늘 준비, 실내 냉방·환기 점검, 실내 단독작업 금지</td></tr>
+<tr><td>주의</td><td>33℃ 이상 2일 이상</td><td>매시간 15분 이상</td><td>14~17시 옥외작업 단축·시간대 조정</td></tr>
+<tr><td>경고</td><td>35℃ 이상 2일 이상</td><td>매시간 20분 이상</td><td>14~17시 가급적 옥외작업 중지</td></tr>
+<tr><td>위험</td><td>38℃ 이상 1일 이상</td><td>매시간 20분 이상</td><td>14~17시 긴급조치 외 옥외작업 중지</td></tr>
+</table>
+<div class="cols"><div><h4>위험요인 → 대책</h4><ul>
+<li>용접: 실내에서만, 작업 40분·휴식 20분</li>
+<li>옥외 슬리브 작업: 14~16시 회피 (예: 시작을 5시 30분으로)</li>
+<li>온도계·정수기·선풍기·휴게실 설치</li>
+<li>혹서기에는 위험작업이 아니어도 <b>2인 1조</b></li></ul></div>
+<div><h4>휴게실 기준</h4><ul>
+<li>대형 3m×6m, 높이 2.1m 이상 / 간이형</li>
+<li>탁자·의자, 물통·종이컵·소금, 구급약품, 응급처치 요령·연락처 게시</li>
+<li>18~28℃ 냉난방, 조명 100~200럭스</li>
+<li>왕복 이동시간이 휴식시간의 20%를 넘지 않는 위치, 위험물저장소·흡연장소와 분리</li></ul></div></div>
+<div class="box warn"><b>제출·실행 포인트.</b> ① 원도급 현장은 매년 <b>6월에 지방 고용노동관서에 온열질환 점검표 제출</b> ② 수급인 현장은 원도급사 기준 우선 ③ TBM은 그늘에서 하고 건강상태 확인 ④ 응급: 열사병 의심 시 119 → 시원한 곳 이동·옷 느슨히·몸 식히기, <b>의식 없는 환자에게 물 먹이기 금지</b>.</div>
+<div class="box info"><b>법령 원문 대조.</b> 체감온도 31℃ 이상 폭염작업 정의는 산업안전보건기준에 관한 규칙 제559조 제4항, 33℃ 이상 폭염작업 시 매 2시간 이내 20분 이상 휴식은 제560조 제3항입니다(회사 표의 매시간 15분은 법정보다 엄격). <b>계획서에 없는 의무:</b> 제562조 제2항 제3호에 따라 폭염작업 장소의 체감온도와 조치사항을 <b>일자별로 기록해 해당 연도 12월 31일까지 보관</b>해야 하고, 온·습도계 상시 비치, 작업 전 증상·응급조치 안내(제1·2호), 열사병 의심 시 지체 없이 119 신고(제3항)도 필요합니다. 계획서가 인용한 제566조 제1·2호는 2025-07-17 삭제되었습니다.</div>
+<p>같은 폴더에 노동부 온열질환예방지침 폴더(2025년 1개·2026년 7개)가 있습니다. 계획서 파일은 XX-SP-1(서명본 최신, 26년 개정 pdf)이며, XX-SP-7 이름의 사본(hwp·pdf)도 함께 있어 문서번호 확인이 필요합니다.</p>
+</div></details>
+
+<details><summary><span class="num">14-8</span>혹한기 안전관리계획서 XX-SP-008 <span class="tag">2026-11-02 제정 · 26쪽</span></summary><div class="body">
+<p><b>지금(11월) 가장 바로 쓰는 문서입니다.</b> 파일은 XX-SP-8_혹한기 안전관리계획서(hwp·pdf)와 "251114 겨울철 한파 대비 한랭질환 예방수칙.pdf"입니다. 예방기간은 매년 11월 말~3월 초(약 4개월)이며, 그해 기후를 고려해 노사협의체(또는 산업안전보건위원회) 의결로 조정할 수 있습니다.</p>
+<table>
+<tr><th>단계</th><th>기준</th><th>핵심 조치</th></tr>
+<tr><td>일상적 관리</td><td>0℃ 이하</td><td>주·일간 작업·휴식 계획, <b>민감군</b>(고혈압·당뇨·갑상선 저하·뇌심혈관질환·고령자) 확인, 예방교육, 비상연락망, 휴게공간</td></tr>
+<tr><td>한파 관심</td><td>영하 6℃ 이하</td><td>기상정보 제공, 추운 시간대 휴게 배치, 따뜻한 물</td></tr>
+<tr><td>한파주의보</td><td>영하 12℃ 이하</td><td>위 + 젖은 옷 갈아입을 따뜻한 장소, 둘씩 짝 관찰, <b>경고증상 호소자는 스스로 작업 중지 (불이익 금지)</b></td></tr>
+<tr><td>한파경보</td><td>영하 15℃ 이하</td><td>위 + 민감군·중작업자 관리, 휴게시간 추가, 핫팩 제공</td></tr>
+</table>
+<ul>
+<li>특보 기준: 주의보 — 아침 최저기온이 전날보다 10℃ 이상 하강(3℃ 이하)하고 평년보다 3℃ 낮을 때, 또는 영하 12℃ 이하 2일 이상. 경보 — 15℃ 이상 하강 또는 영하 15℃ 이하 2일 이상 예상.</li>
+<li>TBM 때 당일 한파특보와 예방조치를 전파, 단독작업 금지(2인 1조 이상)</li>
+<li><b>콘크리트 양생 갈탄</b>은 질식 위험: 열풍기 사용 권장, 갈탄을 쓰면 산소·유해가스 농도 측정·환기·보호구</li>
+<li>빙판길: 미끄럼방지 안전화, 작업 전 제설·모래</li>
+<li>원도급 현장은 매년 <b>12월에 지방 고용노동관서 자율점검표 작성 후 게시</b>, 수급인 현장은 원도급사 기준 우선</li>
+<li>화재·폭발 예방수칙, 대설 대비 사업장 가이드(21쪽)도 포함</li></ul>
+<div class="box warn">배포 전에 문서 안의 번호·제목 표기가 일관되는지 점검하면 좋습니다.</div>
+</div></details>
+
+</div>
+ </div>
+
+ <div id="t15" class="tp" hidden>
+  <div class="two rv">
+   <div class="paper"><h3 style="margin-top:0">안전인증서 44개 품목 (15-3)</h3><div class="donutw"><svg viewBox="0 0 120 120" id="dn1"></svg><div class="dl" id="dl1"></div></div></div>
+   <div class="paper"><h3 style="margin-top:0">유효기간 점검</h3><div id="val"></div></div>
+  </div>
+  <div class="paper rv" style="margin-top:16px"><h3 style="margin-top:0">15 상세 카드</h3>
+
+<details><summary><span class="num">15-1</span>안전경영시스템 인증서 <span class="tag">ISO 45001 · 14001 · 9001</span></summary><div class="body">
+<p>안전(45001), 환경(14001), 품질(9001) 3종을 함께 운영합니다. 파일명 기준으로 2025-08-06이던 만기가 <b>2028-08-05</b>로 갱신된 인증서가 들어 있습니다(2026 연간표에는 "ISO 3년마다 갱신"). 인증서는 만기일이 파일명에 있으므로, 새 인증서가 오면 이전 것은 99 보관으로 옮기세요.</p>
+</div></details>
+
+<details><summary><span class="num">15-2</span>고용,산재가입증명원 · 공제증권</summary><div class="body">
+<ul>
+<li>사업자등록증, 사업개시 사업장 현황 조회</li>
+<li>고용·산재 가입증명원 (연도별 24·25년 폴더)</li>
+<li>근로자 재해 공제증권(2026년분은 파일명상 2026-01-14 ~ 2027-01-14)</li>
+<li>현장별 4대보험 가입증명서(계약직·상용직) <span class="tag">개인정보</span></li></ul>
+<div class="box info">원도급사가 현장 착공 때 요구하는 단골 서류입니다. 현장명과 기간이 맞는지 확인해서 내보내세요. 공제증권은 연 1회 갱신하므로 만기를 캘린더에 올려 두세요.</div>
+</div></details>
+
+<details><summary><span class="num">15-3</span>안전용품 안전인증서 <span class="tag">44개 품목 목록</span></summary><div class="body">
+<p>「안전인증서 LIST」는 품목·품명·제조사·형식모델·용량/등급·인증번호·인증날짜·인증마크(KCs)를 한 줄로 정리한 표이고, 품목별 인증서 사본이 하위 폴더에 있습니다.</p>
+<table>
+<tr><th>분류</th><th>건수</th><th>분류</th><th>건수</th></tr>
+<tr><td>안전모</td><td>5</td><td>방진마스크</td><td>5</td></tr>
+<tr><td>안전대</td><td>10</td><td>안전장갑(유기화합물용)</td><td>1</td></tr>
+<tr><td>안전화</td><td>12</td><td>전기용품(배풍기)</td><td>1</td></tr>
+<tr><td>보안경 / 보안면</td><td>3 / 3</td><td>복합가스측정기</td><td>4</td></tr>
+</table>
+<ul><li>안전모 폐기기준 자료가 따로 있습니다(교체 기준 교육에 활용).</li><li><b>엑셀 목록과 폴더 대조 결과(2026-11-11).</b> 목록 44건의 분류별 개수와 모델은 하위 폴더의 인증서 사본과 모두 맞았습니다. 다만 세 가지가 어긋납니다. ① 안전화 폴더의 <b>AW-65</b>(Zhejiang Haina Shoes, 인증번호 18-AV4CR-0359, 2018-11-30)는 인증서가 있는데 2026 목록에는 없습니다. ② 보안면 목록 3건 중 오토스테크 F-63AS(플라스틱)의 사본이 보안면 폴더가 아니라 <b>보안경 폴더</b>에 있습니다. ③ 폴더 안에는 구 목록(OO건설(주) 안전용품인증서 List.xlsx, 2024-04)과 '안전용품' 폴더(사본 18개, 하위 폴더와 중복)가 함께 남아 있어 정리가 필요합니다. 인증날짜가 2009~2012년인 모델(보안면 MSO 56A, 보안경 B-622A 등)은 현재도 유효한 인증인지 구입 시 확인하세요.</li></ul>
+<div class="box info"><b>활용.</b> 관리책임자 업무 중 "안전장치·보호구 구입 시 적격품 여부 확인"의 증빙입니다. 인증날짜가 오래된 모델도 있으므로, 구입할 때마다 현재 인증 상태와 제조일을 확인하고 목록을 갱신하세요.</div>
+</div></details>
+
+<details><summary><span class="num">15-4</span>산업재해율 확인서 <span class="tag">원도급사·수급인 평가 연계</span></summary><div class="body">
+<p>두 종류가 있습니다.</p>
+<table>
+<tr><th>서류</th><th>발급처</th><th>내용</th></tr>
+<tr><td>전문건설업체 사고사망만인율 확인서</td><td>한국산업안전보건공단</td><td>연도별 사고사망만인율·사망자 수·국내공사 실적액, 전문건설업 평균과 비교, 3년·2년 가중평균</td></tr>
+<tr><td>사업장 산업재해율 조회 결과(최근 3년)</td><td>근로복지공단(total.comwel.or.kr)</td><td>사고사망만인율, 재해율(전체·사고·질병)을 동종동규모 평균과 비교</td></tr>
+</table>
+<ul><li><b>사고사망만인율</b> = 사고사망자 ÷ 산재보험 적용 근로자 수 × 10,000</li>
+<li>발급 시점별로 폴더에 쌓음(2026-01, 04, 06 발급분). 수치가 해마다 바뀌므로 최신 발급본을 기준으로 제출합니다.</li></ul>
+<div class="box warn"><b>확인 필요.</b> 근로복지공단 조회 결과에는 "기업의 안전보건 수준 평가 등의 목적으로 활용할 수 없습니다"라는 안내가 인쇄되어 있습니다. 수급인 평가 절차(XX-S-9 서식 3)는 같은 계열의 확인서를 협력사에 요구하므로, 원도급사 제출·평가 용도로 쓸 때는 원도급사가 어떤 서류를 인정하는지 먼저 확인하세요.</div>
+</div></details>
+
+<details><summary><span class="num">15-5</span>SH 및 ESG보고서 <span class="tag">거래처 평가 이력</span></summary><div class="body">
+<p>원도급사가 협력사 평가를 요구하면 신용평가사 보고서로 대응합니다(수급인 평가 절차 제12조). 이력표는 [시행연도 · 지원 거래처 · 평가업체 · 구분(ESG/SH) · 등급 · 유효기간]으로 관리합니다.</p>
+<ul><li>폴더 구성: 23~26년 폴더, "원도급사 A(협력업체 안전역량 검증 및 평가 제출자료)"(82개), "ESG 서류"(15개), "신용평가사 첨부 서류"(47개)</li><li>평가 이력: 거래처 대상 ESG·SH 평가 (등급을 함께 기록)</li>
+<li>2026년 월 계획에 ESG 절차서 작성, SH 보고서(신용평가사) 준비가 올라 있습니다.</li>
+<li>평가 진행을 위한 대표 개인정보 동의서가 같은 폴더에 있습니다 <span class="tag">개인정보</span></li></ul>
+<div class="box warn"><b>유효기간 점검.</b> 이력표의 유효기간 칸은 엑셀 날짜값으로 들어 있고, 변환하면 현재 기준 이미 지난 날짜가 나옵니다(날짜는 마스킹). 2026-11-11 기준 이미 지났을 수 있으므로 갱신 여부를 확인하세요.</div>
+</div></details>
+
+<details><summary><span class="num">15-6</span>상훈</summary><div class="body">
+<p>원도급사 표창 이력표(원도급사·부서·연도·내용·현장·상세)입니다. 예: 상반기 안전활동 우수협력사, 필수 안전수칙 우수협력사, TBM 활동·안전수칙 준수 표창, 베스트 파트너, 준공우수상 등. 새 수상 때 이력표를 갱신하고 증빙(표창장 사진)을 같이 보관하세요. 거래처 평가에서 가점 근거로 쓰입니다. 99-1에 이전 사본이 있습니다.</p>
+</div></details>
+
+<details><summary><span class="num">15-7</span>ISO 심사자료 <span class="tag">약 620개 · 연도별</span></summary><div class="body">
+<p>인증심사 폴더는 <b>2019년, 2020년, 2021년, 2025년(폴더명 표기는 연도마다 통일되어 있지 않음)</b>분이 있고, 2022~2024년 폴더는 없습니다. 별도로 <b>ISO45001(안전경영) 폴더(536개)</b>에 절차서·양식·실적·안전 교육·위험성평가표와 외부 참고자료(심사내용 457개)가 섞여 있습니다. 심사마다 비슷한 세트가 반복됩니다.</p>
+<div class="flow"><div><b>매뉴얼</b>안전경영(XX-M-0002)·품질·환경 매뉴얼</div><div><b>내부감사</b>"내부감사 실적" 파일(연도별 hwp)에 감사계획서·일정표·결과보고서가 함께 있음</div><div><b>경영검토</b>연말 보고. 내부심사 결과, 고객 피드백, 프로세스 성과, 산업재해 영향, 후속조치 등</div><div><b>준수평가</b>준수평가체크리스트(2019·2020년도 폴더), ISO 준수평가표(루트)</div></div>
+<ul>
+<li>"2025년 인증심사\내부감사 실적 (2024년도).hwp"의 2024년 감사계획서는 안전관리팀 심사 항목으로 조직·경영검토, 방침관리·사업계획 운영, 교육훈련, 자격 인정, 내부심사, 측정·감시를 점검합니다.</li>
+<li>내부 심사원 자료는 2019·2020·2021년 폴더의 "적격심사(심사원 자료).pdf"에 있습니다(이번에 본문은 열어보지 않았습니다).</li>
+<li>내부감사 계획서 양식(XX-QP-8030)에 보존년한 3년으로 적혀 있습니다.</li></ul>
+<div class="box warn"><b>배울 점.</b> 경영검토 지적사항 중 ISO 45001 항목은 "안전팀: 안전보건경영 추진계획 이행상태 및 실적관리 미흡"이었습니다. 계획(14-1)을 세웠으면 실적(12-5, 11)이 같은 달력에 맞아야 한다는 뜻입니다. 이 한 줄이 이 폴더 전체의 교훈입니다.</div>
+</div></details>
+</div>
+ </div>
+
+ <div id="t13" class="tp" hidden><div class="paper rv"><h3 style="margin-top:0">13 보건관리 (요약)</h3>
+<ul>
+<li><b>13-1 유해화학물질 MSDS 및 부착물</b>(약 574개): 화학물질 취급 현장의 MSDS 비치·경고표지 증빙 (상세는 14-5 카드)</li>
+<li><b>13-2 건강검진 결과</b> <span class="tag">개인정보</span>: 정해진 폴더에만 보관, 교육자료에는 형식만 사용</li>
+<li><b>13-3 작업환경측정 결과</b>: 책임자 평가표의 "작업환경측정 참여 여부" 항목과 연결</li>
+</ul>
+
+</div></div>
+</div></section>
+
+<section class="sec" id="s6"><div class="frame">
+ <div class="sh rv"><h2><small>06 · CALENDAR</small>연간 업무 캘린더</h2><p>달을 눌러 그 달에 챙길 일을 봅니다. 주황은 혹서기, 하늘색은 혹한기 예방기간입니다.</p></div>
+ <div class="calw rv"><svg class="ring" viewBox="0 0 400 400" id="ring"></svg><div class="mp" id="mp"></div></div>
+ <div class="sleg"><span><b style="background:#ff4d12"></b>혹서기(6~8월)</span><span><b style="background:#5e87ad"></b>혹한기(11~3월)</span><span><b style="background:#51534e"></b>그 밖</span><span>달력은 절차서 문구로 만든 초안입니다</span></div>
+ <div class="paper rv" style="margin-top:26px"><h3 style="margin-top:0">현장 개시 후 (착공·계약일 기준)</h3><div class="tline" id="tline"></div><div class="box warn">달력은 절차서 문구에서 만든 초안입니다. 실제 월 배치(특히 혹서기·혹한기 시행 시기)는 해당 계획서와 팀 일정에 맞게 고쳐 쓰세요.</div></div>
+</div></section>
+
+<section class="sec" id="s7"><div class="frame">
+ <div class="sh rv"><h2><small>07 · SELF CHECK</small>자가진단 퀴즈</h2><p>한 문제씩 풀고 해설을 확인합니다. 문제 순서는 매번 섞입니다.</p></div>
+ <div class="qw rv" id="quiz"></div>
+</div></section>
+
+<section class="sec" id="s8"><div class="frame">
+ <div class="sh rv"><h2><small>08 · FILING</small>서류 찾기·넣기 요령</h2><p>찾을 때와 넣을 때의 규칙입니다.</p></div>
+ <div class="paper rv">
+
+<div class="cols">
+<div><h3>찾을 때</h3><ol><li>서류 종류로 번호 폴더 선택</li><li>안전서류_새폴더_안내표_번호판.pdf 확인</li><li>옛 번호(XX-S-n)는 폴더 맨 위 엑셀 대장 2개(표준문서 이력대장_NEW, 표준안전보건문서관리대장_NEW)의 [번호 안내] 시트</li><li>현장명은 [현장별 찾아보기], 주제는 [주제별 찾아보기]</li></ol></div>
+<div><h3>넣을 때</h3><ol><li>종류에 맞는 번호 폴더에 (정기교육 → 11-4)</li><li>기존 폴더의 방식(현장명 → 연도·월·날짜)을 따름</li><li>현장명은 기존 폴더와 똑같이 (띄어쓰기 포함)</li><li>폴더 이름·번호는 바꾸지 않음, 새 폴더는 안전팀에 요청</li><li>서류는 지우지 않고 99 보관으로 이동</li><li>날짜는 같은 폴더 방식, 처음이면 2026-07-31 형식</li></ol></div>
+</div>
+<div class="box info">보존 기간은 절차서 대부분 <b>"본사 취합 후 3년"</b>입니다(안전관리비는 원도급 현장 기록 1년 이상). 폴더가 아닌 기한을 기준으로 지우지 말고, 99 보관으로 옮기세요.</div>
+</div>
+</div></section>
+
+<section class="sec" id="s9"><div class="frame">
+ <div class="sh rv"><h2><small>09 · OPEN ITEMS</small>확인 필요 사항</h2><p>이 자료를 만들며 확인하지 못했거나 서로 어긋나 보이는 부분입니다. 팀장님과 확인 후 고쳐 쓰는 것을 권합니다.</p></div>
+ <div class="paper rv"><div class="tw">
+<table>
+<tr><th>#</th><th>내용</th><th>왜 확인이 필요한가</th></tr>
+<tr><td>1</td><td>법령 조문 번호와 내용</td><td><b>해결.</b> 2026-11-11 국가법령정보센터 원문과 대조했습니다(10장). 그래도 확인하지 못한 항목만 10장 하단에 따로 적었습니다(법 제39조 제7호 시행일, 과태료 부과 금액 등).</td></tr>
+<tr><td>2</td><td>정기교육 시간: 회사 규정은 "반기 6시간/12시간"</td><td><b>해결.</b> 시행규칙 별표 4 원문이 매 반기 6시간(사무직·판매업무)·12시간(그 밖)입니다.</td></tr>
+<tr><td>3</td><td>관리규정 제23조의 채용 시 교육(1주일 이하 1시간 등)과 제25조(8시간, 일용 1시간)</td><td><b>해결.</b> 제23조가 별표 4와 같고(1주 이하 1시간 / 1주 초과 1개월 이하 4시간 / 그 밖 8시간), 제25조는 4시간 구간이 빠진 요약입니다. 제25조 보완 권장.</td></tr>
+<tr><td>4</td><td>수급인 평가표 2종의 신규/기존 매칭</td><td>원문 PDF에서 표 순서가 뒤섞여 추출되었습니다. 의미상(계약 전 역량 평가 / 정기 실적 평가)으로 구분했습니다.</td></tr>
+<tr><td>5</td><td>위험성평가 절차 후반부(감소대책 수립·기록 등)</td><td>스캔본이라 1~3단계 이후는 읽지 못했습니다.</td></tr>
+<tr><td>6</td><td>안전보건 방침·목표(01) 서식과 관리규정 전문</td><td>방침·목표는 절차서 본문만 읽었고, 서식·연도별 방침 서명본은 열어보지 않았습니다.</td></tr>
+<tr><td>7</td><td>안전관리자 배치 표의 금액 기준</td><td><b>일부 해결.</b> 법정 기준은 확인했으나, 회사 표가 50억·100억 이상을 "전담"으로 적은 근거(원청 요구인지)는 확인이 필요합니다(10장).</td></tr>
+<tr><td>8</td><td>화기작업 절차서(14-4)는 초안 단계로 구성과 문서번호 정리가 남아 있음</td><td>작성중 문서입니다. 정리 후 번호를 새로 부여해야 합니다.</td></tr><tr><td>9</td><td>계획서 일부 쪽의 문서 표기와, 작업중지 기준 문구("옥외 작업금지"와 "가급적 중지")가 함께 적힌 부분</td><td>원문 표기 오류인지 의도인지 확인이 필요합니다.</td></tr><tr><td>10</td><td>15-4 산업재해율 조회 결과의 "평가 목적 활용 불가" 안내와 수급인 평가(XX-S-9 서식 3) 사용</td><td>제출처가 인정하는 서류인지 확인이 필요합니다.</td></tr><tr><td>11</td><td>15-5 이력표 유효기간(엑셀 날짜값 변환)</td><td>이미 지난 날짜로 변환됩니다(날짜는 마스킹). 실제 갱신 상태는 확인하지 못했습니다.</td></tr><tr><td>12</td><td>14-2 현장 안전관리계획서, 14-3의 장비별 사고사례·위험요인(.hwpx), 일일점검표(.docx), 15-1 인증서(스캔본), 15-7의 연도별 심사자료 전체</td><td>구조와 대표 파일만 확인했습니다. 전수 정독은 하지 않았습니다.</td></tr><tr><td>13</td><td>10-4 중대재해 처벌법 반기 1회 이행보고 폴더에 일부 연도 자료만 보관되어 있음</td><td>폴더 전체를 열어 찾아봤지만 나머지 연도의 반기 이행보고 파일은 확인되지 않았습니다. 작성은 했는데 파일만 없는지, 작성 전인지는 폴더만으로 알 수 없어 담당자 확인이 필요합니다.</td></tr><tr><td>14</td><td>일부 계획서·절차서는 파일명 번호와 본문 문서번호가 서로 다르게 표기됨</td><td>문서번호 대장과 대조해 정리가 필요합니다.</td></tr><tr><td>15</td><td>12-1~12-4 점검 일지와 15-7 인증심사 자료는 일부 연도·일부 현장분만 보관되어 있음</td><td>전체 폴더를 검색해 다른 위치에 따로 보관된 일지가 있는지 찾았습니다. 나머지 연도분이 현장에 있는지는 담당자 확인이 필요합니다.</td></tr></table>
+</div></div>
+</div></section>
+
+<section class="sec" id="s10"><div class="frame">
+ <div class="sh rv"><h2><small>10 · LAW CHECK</small>법령 대조 결과</h2><p>국가법령정보센터 현행 원문과 회사 절차서를 비교했습니다(2026-11-11). 도넛이나 칩을 눌러 판정별로 걸러 보세요.</p></div>
+ <div class="paper rv"><div class="lawtop"><div class="donutw"><svg viewBox="0 0 120 120" id="dn2"></svg><div class="dl" id="dl2"></div></div><div style="flex:1;min-width:240px"><div class="chips" id="lchips"></div><input class="search" id="lq" placeholder="법령 대조표 검색 (예: 제37조, 휴게시설)"></div></div>
+ <div class="tw" id="lawtw">
+<div class="box info"><b>확인한 법령(시행일).</b> 중대재해 처벌 등에 관한 법률, 같은 법 시행령(2025-10-01), 산업안전보건법(2026-10-27 공포·일부 개정, 작업중지 등 주요 개정분은 2027-04-28 시행), 같은 법 시행령(2026-08-01)과 시행규칙(2026-08-01), 산업안전보건기준에 관한 규칙(2026-03-02). 이 표는 법률 자문이 아닙니다. 제출·소송·감독 대응에는 시행일 기준 원문을 다시 확인하세요.</div>
+<table>
+<tr><th>#</th><th>항목</th><th>회사 문서</th><th>법령 원문</th><th>판정</th></tr>
+<tr><td>1</td><td>9대 의무와 반기 점검</td><td>XX-S-1~10</td><td>시행령 제4조 제1~9호, 제5조. 반기 1회 이상 점검은 제3·5(평가)·7·8·9호와 제5조 제2항 제1·3호</td><td><b>일치</b></td></tr>
+<tr><td>2</td><td>전담조직(제4조 제2호)</td><td>본사 안전팀 운영</td><td>법정 인력 3명 이상 + 상시근로자 500명 이상 또는 시공능력 상위 200위 이내인 경우에만 의무</td><td><b>확인 필요</b> 당사 해당 여부</td></tr>
+<tr><td>3</td><td>수급인 평가 근거 표기</td><td>XX-S-9 "시행령 제4조 9항"</td><td>제4조 <b>제9호</b>. 평가기준·절차, 관리비용 기준, 공사기간 기준 3가지 요구(XX-S-9 제5·6·8조가 대응)</td><td><b>보완</b> 표기 정정</td></tr>
+<tr><td>4</td><td>안전관리자 선임 보고</td><td>착공일부터 14일 이내</td><td>시행령 제16조 제6항 14일 이내 ✓</td><td><b>일치</b></td></tr>
+<tr><td>5</td><td>안전관리자 해임 보고</td><td>제7조: 퇴사·준공 시 서식 3 제출(기한 없음)</td><td>제16조 제7항: 해임·위탁해지한 날부터 14일 이내 제출(2025-04-29 신설)</td><td><b>보완</b> 기한 명시</td></tr>
+<tr><td>6</td><td>안전관리자 배치 금액</td><td>원도급(소방) 50억, 하도급 100억 이상 "유자격자 전담"</td><td>별표 3: 50억(관계수급인 100억) 이상 120억 미만 1명 이상 선임, 120억 이상(토목 150억) 전담</td><td><b>확인 필요</b> 전담 근거(원청 요구?)</td></tr>
+<tr><td>7</td><td>안전관리자 직무교육</td><td>선임 90일 이내 34시간, 2년마다 24시간</td><td>시행규칙 제29조: 선임 후 3개월 이내 신규, 이후 2년 기준 전후 6개월 보수. 별표 4: 34시간/24시간 ✓</td><td><b>일치</b> (3개월이 정확)</td></tr>
+<tr><td>8</td><td>안전보건관리책임자</td><td>신규 6시간, 2년마다 6시간, 20억 이상 선임</td><td>별표 4: 6시간/6시간 ✓, 시행령 별표 2: 건설업 공사금액 20억원 이상 ✓</td><td><b>일치</b></td></tr>
+<tr><td>9</td><td>근로자 정기교육</td><td>사무직 반기 6시간, 그 밖 반기 12시간</td><td>별표 4: 사무직·판매업무 매 반기 6시간, 그 밖 매 반기 12시간 ✓</td><td><b>일치</b></td></tr>
+<tr><td>10</td><td>관리감독자 교육</td><td>연 16시간</td><td>별표 4(관리감독자): 정기교육 연간 16시간, 채용 8, 변경 2, 특별 16 ✓</td><td><b>일치</b></td></tr>
+<tr><td>11</td><td>채용 시·변경 시 교육</td><td>규정 제25조: 8시간(일용 1시간), 변경 2시간(일용 1시간)</td><td>채용: 일용·1주 이하 1시간 / 1주 초과 1개월 이하 4시간 / 그 밖 8시간. 변경: 일용·1주 이하 1시간 / 그 밖 2시간</td><td><b>보완</b> 제25조에 4시간 구간 추가(제23조는 일치)</td></tr>
+<tr><td>12</td><td>특별교육</td><td>16시간(일용 2시간, 단기·간헐 2시간, 최초 4시간+12시간 분할)</td><td>별표 4와 일치. 일용·1주 이하 기간제 2시간은 별표 5 제1호 라목(39호 제외) 작업에 한정, 39호는 8시간. 특별교육 실시 시 채용·변경 교육을 한 것으로 봄(규칙 제26조)</td><td><b>일치</b></td></tr>
+<tr><td>13</td><td>건설업 기초안전보건교육</td><td>11-3 이수증</td><td>별표 4: 건설 일용근로자 4시간 이상</td><td><b>일치</b></td></tr>
+<tr><td>14</td><td>정기교육 면제</td><td>(규정 없음)</td><td>규칙 제27조: 전년도 무재해 사업장은 다음 해에 한해 정기교육 50% 범위에서 면제 가능</td><td>참고 (회사는 전 시간 실시)</td></tr>
+<tr><td>15</td><td>협의체·노사협의체</td><td>월 1회 / 120억 이상 2개월 1회</td><td>시행규칙 제79조 매월 1회 ✓, 시행령 제63조 120억(토목 150억) ✓, 제65조 정기회의 2개월마다 ✓</td><td><b>일치</b></td></tr>
+<tr><td>16</td><td>산재조사표 제출</td><td>매뉴얼 제19조: 발생일로부터 30일 이내</td><td>시행규칙 제73조: 발생일부터 1개월 이내(사망 또는 3일 이상 휴업)</td><td><b>보완</b> 표현 정정</td></tr>
+<tr><td>17</td><td>중대사고 범위</td><td>매뉴얼 제7조: 사망 / 3개월 이상 부상 2명 / 동시 10명 / 동일 원인 1년 내 질병 3명</td><td>산안법 시행규칙 제3조(보고 대상 중대재해): 사망 1명 / 3개월 이상 요양 부상자 동시 2명 / 부상·질병자 동시 10명. 중처법 제2조 제2호(중대산업재해)는 별개: 사망 1명 / 동일 사고 6개월 이상 치료 부상 2명 / 동일 유해요인 직업성 질병 1년 내 3명</td><td><b>일치</b> (산안법 기준). <b>보완</b> 중처법 기준은 병기 권장.</td></tr>
+<tr><td>18</td><td>근로자 작업중지 (매뉴얼 제21조)</td><td>급박한 위험 시 중지·대피, 지체 없이 보고</td><td>산안법 제52조가 2026-10-27 공포(시행 2027-04-28)로 개정: 관리감독자등은 조치를 완료할 때까지 근로자가 그 작업을 하도록 해서는 안 되고, 불리한 처우도 금지</td><td><b>보완</b> 개정 반영 필요</td></tr>
+<tr><td>19</td><td>폭염 법령 근거와 기록</td><td>계획서: 규칙 제566조 제1·2호 인용, 일자별 기록 없음</td><td>제566조 제1·2호는 2025-07-17 삭제. 현행: 제559조 제4항(31℃ 정의), 제560조 제2·3항(33℃ 이상 매 2시간 이내 20분 이상 휴식), 제562조 제2·3항(온·습도계, 사전 안내, <b>일자별 체감온도·조치 기록을 해당 연도 12월 31일까지 보관</b>, 열사병 의심 시 119)</td><td><b>보완</b> 조문 정정 + 기록 서식 추가</td></tr>
+<tr><td>20</td><td>혹서기 휴식 표</td><td>33℃ 이상: 매시간 15분</td><td>법정 최저: 33℃ 이상 매 2시간 이내 20분 이상(작업 성질상 곤란 시 개인용 냉방·보냉장구로 대체 가능)</td><td><b>일치</b> 회사 기준이 더 엄격</td></tr>
+<tr><td>21</td><td>한랭 조치 인용</td><td>제563조, 제572조</td><td>제563조(운동·영양지도, 더운물, 젖은 옷 교체) ✓, 제572조(방한모·방한화·방한장갑·방한복, 개인 전용 지급) ✓</td><td><b>일치</b></td></tr>
+<tr><td>22</td><td>화기작업 인용</td><td>제241조, 제241조의2 (11m)</td><td>현행 본문과 동일, 방화포 성능인증품 사용 포함</td><td><b>일치</b></td></tr>
+<tr><td>23</td><td>장비 작업계획서·지휘자·신호</td><td>XX-SP-03: 규칙 제38~40조</td><td>제38조 제1항(2호 하역운반기계, 3호 건설기계, 11호 중량물 등), 제39조(작업지휘자: 38조 1항 2·6·8·10·11호), 제40조(신호) ✓. 차량계 건설기계(3호)는 작업지휘자 지정 의무 열거에 없음</td><td><b>일치</b> (지휘자 일괄 지정은 법정 초과 운영)</td></tr>
+<tr><td>24</td><td>"사업주 안전교육 상·하반기 2시간"</td><td>2026 연간표 (공단 교육, 거래처 가점)</td><td>중처법 제8조·시행령 제6조 교육은 <b>중대산업재해가 발생한 법인의 경영책임자</b>가 대상이고 총 20시간 범위, 불이행 시 5천만원 이하 과태료</td><td>구분 안내 (법정 교육 아님)</td></tr>
+</table>
+
+<h3>추가 확인 결과 (2026-11-11)</h3>
+<table>
+<tr><th>#</th><th>항목</th><th>회사 문서·가정</th><th>법령 원문</th><th>판정</th></tr>
+<tr><td>25</td><td>위험성평가 시기</td><td>최초 1개월, 정기 1년, 수시, 상시 월 1회 (XX-S-3)</td><td>고시 제15조(시행 2025-01-02): 최초 1개월까지 착수, 정기 1년마다 재검토, 수시(재해 시 작업 재개 전), 상시평가는 <b>월 1회 발굴 + 매주 논의·점검 + 매 작업일 공유</b>를 모두 해야 수시·정기평가로 인정. 시행규칙 제37조(2026-05-29 전문개정): 최초평가 작업 시작 전, 정기 다음 연도부터 매년 1회, 수시 관련 작업 시작 전, 기록 3년 보존</td><td><b>보완</b> 규칙이 더 엄격. 상시평가는 월 1회만으로 부족</td></tr>
+<tr><td>26</td><td>위험성평가 근로자 참여·공유</td><td>(회사 문서에 명시 없음)</td><td>규칙 제37조의2: 근로자는 사업장 순회 점검 방식으로 참여(설문·면담 병행 가능). 제37조의3: 실시 전 일정, 실시 후 유해·위험요인·위험성 결정 결과·개선대책 공유. 제37조의4: 실시 시기·담당자, 참여 근로자·근로자대표 기록</td><td><b>보완</b> 서식에 참여자·공유 기록 반영 권장</td></tr>
+<tr><td>27</td><td>중대재해 보고</td><td>매뉴얼 제7조 범위, 지체 없이 보고</td><td>법 제54조 제2항 지체 없이 보고, 규칙 제67조 전화·팩스 등으로 발생 개요·피해 상황·조치 및 전망 보고. 법 제175조 제2항: 미보고·거짓보고 3천만원 이하 과태료. 별도 시각 기준(예: 24시간)은 조문에 없음</td><td><b>일치</b></td></tr>
+<tr><td>28</td><td>안전보건관리규정</td><td>안전보건관리규정(XX-SS-5) 운영</td><td>시행규칙 제25조·별표 2: 건설업은 상시근로자 100명 이상이면 작성 의무(당사 약 250~300명 기준 해당), 작성·변경 사유 발생일부터 30일 이내, 법 제26조: 작성·변경 시 산업안전보건위원회 심의·의결(위원회가 없으면 근로자대표 동의), 법 제34조: 게시·비치. 미작성은 500만원 이하 과태료(법 제175조 제5항)</td><td><b>일치</b> (변경 시 심의·의결 절차 기록 확인 필요)</td></tr>
+<tr><td>29</td><td>휴게시설 대상</td><td>(휴게시설 점검 항목)</td><td>시행령 제96조의2: 상시근로자 20명 이상(관계수급인 포함) 사업장, 건설업은 관계수급인 포함 총공사금액 20억원 이상. 미설치 1천500만원 이하, 기준 미준수 1천만원 이하 과태료(법 제175조)</td><td>참고 (원도급 현장 기준)</td></tr>
+<tr><td>30</td><td>휴게시설 기준</td><td>휴게시설 카드: 대형 3m×6m(18㎡), 높이 2.1m 이상 / 간이형</td><td>시행규칙 별표 21의2: 최소 바닥면적 6㎡(가로·세로 치수 규정 없음), 천장 높이 2.1m 이상, 온도 18~28℃ 냉난방, 습도 50~55%, 조명 100~200럭스, 환기, 의자 등 비품, 식수, 외부 표지, 청소·관리 담당자 지정, 목적 외 사용 금지, 화재·유해물질·분진·소음 장소와 이격. 작업장소가 일정하지 않거나 전기가 없는 등 실내 설치가 곤란해 그늘막 등 간이 휴게시설을 둔 경우 온도·습도·조명·환기 기준은 적용 제외</td><td><b>일치</b> 회사 기준(18㎡)이 법정 최소 6㎡보다 넉넉함. 법령엔 가로·세로 치수 규정이 없고, 간이형은 위 비고 요건에서만 인정</td></tr>
+<tr><td>31</td><td>도급인 합동 점검</td><td>월 1회 협의체</td><td>시행규칙 제82조 제2항: 건설업 도급인의 정기 안전·보건점검은 2개월에 1회 이상. 협의체 월 1회(제79조)와 별개</td><td>참고 (원도급 해당 시)</td></tr>
+<tr><td>32</td><td>과태료 요약</td><td>(해당 없음)</td><td>법 제175조: 특별교육 위반(제29조 제3항)·중대재해 미보고 3천만원 이하 / 안전보건관리자 선임·정기교육·채용·변경교육 미실시·관리규정 미작성·게시 미이행 500만원 이하 / 이사회 보고 위반(제14조 제1항, 대상 회사 한정) 1천만원 이하. 구체 금액은 시행령 별표 35 기준(이번에 열어보지 않음)</td><td>참고</td></tr>
+</table>
+<h3>그래도 확인하지 못한 것</h3>
+<ul>
+<li>법 제39조 제7호(폭염·한파)의 <b>시행일</b>: 조문 존재와 개정일(2024-10-22)만 확인했고 시행일은 부칙을 열어보지 않았습니다. 기준규칙 제560조 등 세부 조치는 현행 본문을 확인했습니다.</li>
+<li>과태료 <b>실제 부과 금액</b>(시행령 별표 35 위반횟수별 금액)과 시행규칙 제37조 개정(2026-05-29)의 개별 시행일 부칙.</li>
+<li>안전보건관리규정 별표 3(세부 내용)과 회사 XX-SS-5 목차의 항목별 대조.</li>
+<li>XX-S-8이 인용한 "중대산업재해" 대응 절차가 중처법 해설서와 같은지는 법령이 아니라 고용노동부 해설 기준이어서 대조하지 않았습니다.</li>
+</ul>
+<div class="box warn"><b>다음 개정 때 고칠 문서 요약.</b> ① XX-S-6 해임 14일 명시 ② XX-S-8 산재조사표 "1개월", 중대사고 정의 구분, 제21조 작업중지 개정 반영 ③ XX-S-9 "제4조 제9호" ④ 관리규정 제25조 채용 시 교육 4시간 구간 ⑤ 혹서기 계획서 조문 인용 정정과 일자별 체감온도 기록 서식 신설 (12-3 폴더) ⑥ 위험성평가 상시평가 요건(매주·매일 포함)과 근로자 참여·공유 기록 반영.</div>
+</div></div>
+</div></section>
+
+<div class="foot"><p>법령 원문 대조: 2026-11-11 국가법령정보센터. 작성 근거: 폴더 내 XX-S-1~10 절차서(서명본 최신), 안전보건관리규정(XX-SS-5), 비상대응 구호조치 매뉴얼, XX-SP-1·2·3·8 계획서·가이드, 화기작업 절차서 초안, 2026 계획보고서·연간표, 15번 증명·평가 자료. 개인정보는 수록하지 않았습니다. 내부 교육용 · 법적 효력 없음.</p><span>OO SAFETY · 2026</span></div>
+<button class="goup" id="goup" aria-label="맨 위로">↑</button>
+</div>
+<script>
+document.documentElement.classList.add('js');
+const CARDS=[
+{n:"01",t:"방침·목표",code:"XX-S-1",dir:"01-1 · 01-2 · 01-3",
+ ask:"사업주·경영책임자가 매년 안전보건 방침과 목표를 정하고 전 근로자가 알게 해야 한다.",
+ docs:["절차서 XX-S-1 (서식: 방침·목표, 세부추진계획, 분기 보고)","연도별 방침·목표 서명본 (24·25·26년)","안전보건관리규정 XX-SS-5 (01-3)","목표 달성률 계산, KPI 보고서 (01-2)"],
+ todo:["1/10까지 전년도 추진계획 마감","1/11부터 방침·목표 설정 (사업주 의지 반영, 측정 가능하게)","대표이사 서명 후 20일 내 인트라넷·SNS 게시, 현장 공유","분기별 목표 추진 보고서 취합","전파교육 실시 기록 남기기"],
+ note:"하도급 현장은 원수급 방침·목표를 먼저 달성하도록 협조합니다. 당사가 원수급이면 현장 소장의 방침·목표도 따로 둡니다.",
+ mistake:"서명만 하고 게시·전파 증빙이 없음 / 목표가 측정 불가능한 문구"},
+{n:"02",t:"조직·역할",code:"XX-S-2",dir:"02-1 · 02-2",
+ ask:"안전보건 업무를 누가, 어떤 권한으로 하는지 정하고 기록해야 한다.",
+ docs:["절차서 XX-S-2, 본사·현장 안전보건조직도","서식 1 본사 역할과 책임 / 서식 2 현장 역할과 책임","안전관리팀 업무분장표"],
+ todo:["조직도·업무분장 변경 시 개정(결재라인 포함)","현장 개설 때마다 현장 조직도 작성","현장별 소장(안전보건관리책임자), 관리감독자, 안전관리자 확인","근로자 대표 1명 지정"],
+ note:"대표이사는 승인, 임원은 협조·검토, 안전팀은 작성·요청, 현장소장은 안전보건관리책임자(법 제15조), 관리감독자(시행령 제15조), 안전관리자(시행령 제18조)의 업무를 수행합니다.",
+ mistake:"인사 이동 후에도 조직도·업무분장이 예전 그대로"},
+{n:"03",t:"위험성평가",code:"XX-S-3",dir:"03-1 · 03-2 (약 766개)",
+ ask:"유해·위험요인을 찾아 위험성을 정하고 줄이는 절차를 마련하고 점검해야 한다.",
+ docs:["위험성평가 실시규정 XX-S-3, 기록표(별첨1), 최초 평가 DB(건축·설비 공종)","현장별 취합 자료 (03-2)"],
+ todo:["최초평가: 현장 개설(계약) 후 1개월 이내","정기평가: 최초평가 후 매 1년","수시평가: 작업 개시(재개) 전, 중대산업재해 발생 시, 작업 변경·정비·보수 시","상시평가: 월 1회 (상시평가를 하면 정기·수시 생략 가능)","결과를 게시하고 교육·TBM에 반영, 근로자 참여 보장"],
+ note:"평가 대상은 외부 제공 기계·설비, 취급 유해물질, 일상·비일상 작업, 비상조치 작업, 아차사고, 재해 원인 요인입니다. 절차는 사전준비 → 유해·위험요인 파악 → 위험성 결정 순으로 진행(이후 단계는 9장 참고).",
+ mistake:"현장별 복사·붙여넣기 / 재해 발생 후 재발방지대책이 평가에 반영되지 않음"},
+{n:"04",t:"안전보건예산",code:"XX-S-4",dir:"04-1 · 04-2 · 04-3",
+ ask:"재해 예방에 필요한 예산을 편성하고 집행해야 한다.",
+ docs:["절차서 XX-S-4, 본사 예산 편성·집행내역(별첨2)","현장 산업안전보건관리비 사용내역서(별첨1, 04-2 약 316개)","연도별 본사 예산 편성(24~26년)"],
+ todo:["본사: 사용계획 수립(안전팀) → 검토(사업주) → 사용 → 분기별 사용 승인(사업주)","현장: 사용계획 수립 → 소장·안전팀 검토 → 사용 → 내역 관리","초과 시 추가 계상 계획 수립·검토·승인","안전팀이 기록물을 월 1회 검토, 수정이 필요하면 현장에 요청"],
+ note:"하도급 현장은 원수급 기준과 절차를 우선 적용하되, 사용 기록은 우리가 적법하게 유지합니다. 보호구 지급대장·세금계산서 등이 '기록'에 포함됩니다.",
+ mistake:"관리비 항목과 증빙(세금계산서·지급대장)이 맞지 않음"},
+{n:"05",t:"책임자 평가·지정",code:"XX-S-5",dir:"05-1 · 05-2 · 05-3 (약 208개)",
+ ask:"안전보건관리책임자와 관리감독자가 업무를 충실히 하는지 평가하고 관리해야 한다.",
+ docs:["절차서 XX-S-5, 서식 1 선임 보고서 / 2 지정서 / 3 관리감독자 지정서","서식 4 책임자 평가표, 서식 5 관리감독자 평가표","전체 현장 결과표(별첨1)"],
+ todo:["착공(계약) 3개월 후 첫 평가, 이후 반기 1회 (20점 만점: 상·하반기 각 10점)","2인 1조로 서류를 직접 확인하고 수기로 기입 (임원 없으면 안전팀 1인, 임원에게 공유)","최종 결과 12월 중 대표이사 보고","지정서는 현장 게시 (책임자: 대표이사 결재본 / 관리감독자: 소장 승인)","책임자 교육 신규 6시간·이후 2년마다 6시간, 관리감독자 연 16시간 확인"],
+ note:"예외: 공사금액이 낮고 1개월 미만인 비상주 가설공사, 안전보건관계자가 한 명도 없는 현장. 평가 항목 예: 목표·방침 수립, 책임자 교육, 근로자 교육, 작업환경측정, 재해 발생·재발방지, 보호구 지급 대장, 위험성평가, 비상훈련, 건강검진, 순회점검일지, 본사 공문 관리.",
+ mistake:"평가표는 있는데 근거 서류 확인 기록이 없음 / 지정서가 현장에 게시되지 않음"},
+{n:"06",t:"안전관리자 배치",code:"XX-S-6",dir:"06-1 ~ 06-4 (약 189개)",
+ ask:"공사금액에 따라 자격 있는 안전관리자를 배치하고 신고해야 한다.",
+ docs:["절차서 XX-S-6, 서식 1 선임 등 보고서(건설업) / 2 선임확인서 발급 신청서 / 3 해임 보고서 / 4 자격증 현황","현장 안전보건관계자 선임현황(별첨1)"],
+ todo:["배치 기준(회사 표): 원도급(소방) 50억원 이상, 하도급(설비·건축) 100억원 이상은 유자격자 전담","착공(계약)일부터 14일 이내 관할 고용노동부에 선임 보고","제출서류: 선임계, 선임확인서 신청서, 신분증, 재직증명서(경영지원), 경력증명서(건설기술인협회, 신입 제외)","선임확인서는 원도급사에 제출","선임 90일 이내 신규교육 34시간, 이후 2년마다 24시간","퇴사·준공 시 해임 보고서 제출 (해임한 날부터 14일 이내, 현행 시행령)"],
+ note:"현장개요에 사업개시번호를 기입합니다(없으면 비워 제출하고 담당 감독관에게 추후 알림). 자격증이 여러 개면 한 개만 기재합니다. 일부 원청은 별도의 '안전감시자' 제도를 운영하므로 원청별 기준을 확인하세요.",
+ mistake:"14일 기한 도과 / 해임 보고 누락 / 선임확인서 미제출"},
+{n:"07",t:"종사자 의견청취",code:"XX-S-7",dir:"07-1 ~ 07-3 (약 178개)",
+ ask:"종사자 의견을 듣고 반영하는 절차가 있어야 한다.",
+ docs:["절차서 XX-S-7, 서식 1 안전·보건 제안서","의견수집 처리대장, 의견결과 보고서","노사협의체·월 협의체 회의 양식(별첨)"],
+ todo:["6개 경로 운영: 위험성평가·TBM, 의견 수집함, 온라인 소통, 개인상담, 안전보건 협의체(월 1회 이상), 노사협의체(회사 절차서 기준 2개월 1회 이상, 공사금액 120억원 이상 설치대상)","접수 → 안전보건관리담당자 정리 → 총괄 보고 → 조치 → 대장 기록","처리 후 제안자에게 피드백하고 게시판·회의·교육시간에 공개","반기별 종합해 대표이사 보고","우수 제안 포상 운영"],
+ note:"협의체 예외: 공사기간 30일 이내, 연 작업일이 60일을 넘지 않는 간헐 작업. 현장 기록은 본사가 취합해 3년 보존합니다.",
+ mistake:"접수는 했는데 처리 결과와 제안자 확인(서명)이 없음"},
+{n:"08",t:"비상대응·재해관리",code:"XX-S-8",dir:"08-1 ~ 08-7 (약 726개)",
+ ask:"중대산업재해 발생 시 대응 매뉴얼을 갖추고 훈련하며 재발을 막아야 한다.",
+ docs:["비상대응 구호조치 매뉴얼 XX-S-8","시나리오 훈련 결과(08-2), 재해보고서(08-3), 근재 기록(08-4)","재발방지계획 결과(08-5), 사고사례 전파(08-6), 무재해 확인 서명(08-7)"],
+ todo:["원수급 현장: 반기 1회 이상 비상대응훈련 (화재, 질식, 기타: 감전·추락·낙하·절단·끼임·온열질환)","4개 팀 임무 숙지: 통보연락, 초기대응, 피난유도, 응급구조","사고 발생 시 사고보고서 작성, 산업재해조사표 발생일로부터 1개월 이내 지청 제출(회사 매뉴얼은 30일로 표기)","재발방지계획서 작성 → 위험성평가 반영 → 전 근로자 공유","사고사례 전파, 일일 무사고 확인","거래처·본사 보고 후 서류를 본사에 공유"],
+ note:"중대사고 범위(매뉴얼): 사망 / 3개월 이상 부상자 동시 2명 이상 / 부상자·직업성질병자 동시 10명 이상 또는 동일 원인 1년 이내 질병자 3명 이상 등, 그리고 화재·폭발·붕괴, 환경사고. 시나리오 6종(화재·질식·끼임/절단·추락·낙하·온열)의 공통 초기 행동: 작업 중지 → 상황 전파 → 119 신고 → 2차 재해 방지 → 구급대 유도.",
+ mistake:"하수급 현장은 원수급사 훈련·보고 기준이 우선인데 우리 기록(근거)을 남기지 않음"},
+{n:"09",t:"도급·수급인 평가",code:"XX-S-9, 9-1",dir:"09-1 · 09-2 (4개)",
+ ask:"도급·용역·위탁 시 수급인의 산재예방 능력을 평가하는 기준과 절차를 두고 점검해야 한다.",
+ docs:["적격 수급인 안전보건평가 절차 XX-S-9","건설장비 임대용역 안전보건관리 및 평가 절차 XX-S-9-1","Sample 위험성평가·작업계획서·산업재해율 확인서(부록)"],
+ todo:["신규업체: 계약 체결 전 계약주관부서(설비·건축) 또는 현장대리인이 평가","기존업체: 6개월 주기로 사업부서가 평가","각 부서장 주관 → 현장대리인 최종 확정 → 안전팀 제출 → 대표이사 보고","100점 만점. 점수가 현저히 낮은 신규업체, 2회 연속 50점 이하인 기존업체는 참여 배제 가능","평가표 3년 보관, 원도급사 요청 평가서류(외부 신용평가 등)는 대표 보고"],
+ note:"수급인 의무: 위험성평가, 작업계획서·작업지휘자, TBM, 방호시설·보호구, 2인 1조, 장비는 제작 15년 미만·방호장치·안전검사·보험 가입. 평가표는 두 종류(경험·위험성평가 능력 등 100점 / 교육참여·지시 이행·작업중지 등 실적 100점)로 구성됩니다.",
+ mistake:"계약 전 평가를 생략하고 착수 / 장비 안전검사·보험 증빙 미확인"},
+{n:"10",t:"법령 이행점검",code:"XX-S-10, 10-1",dir:"10-1 ~ 10-5 (약 44개)",
+ ask:"안전보건 관계 법령에 따른 의무 이행을 반기 1회 이상 점검·보고해야 한다.",
+ docs:["절차서 XX-S-10, 서식 1 이행점검표","서식 2 중대재해처벌법 반기 이행보고 (XX-S-10-1)","서식 3·4 연간 교육계획표(본사·현장)","안전보건 과태료 LIST (10-5)"],
+ todo:["착공 3개월 경과 후부터 매년 반기 1회 점검 (책임자 미투입 비상주 현장 제외, 투입 시 실시)","점검 일정을 대표이사 승인 후 전 사업장에 공유","원도급/하도급 구분 체크, 해당 없음은 '해당없음' 기재, 적합/부적합을 수기로 기입","부적합은 현장 책임자에게 공유해 이행","전체 취합자료 매년 7월·12월 대표이사 보고","교육계획 수립(본사 12월, 현장 1월 또는 개설 후 1개월 내)"],
+ note:"점검 항목은 조직도·비상연락망, 책임자·관리감독자·안전관리자 선임, 안전보건관리규정, 안전·보건 조치, 작업중지, 중대재해 발생 시 조치, 협의체 운영 등 법조항별 표입니다. 점검기준 추가는 법령·신규 개정에 한해 대표 보고 후 서식에 반영합니다.",
+ mistake:"부적합을 적고도 시정 확인 기록이 없음 / 7월·12월 보고 누락"}
+];
+
+const LAW={"01": "중대재해처벌법 시행령 제4조 제1호: 안전·보건 목표와 경영방침을 설정할 것.", "02": "시행령 제4조 제2호: 안전·보건 총괄 전담조직은 안전관리자 등 법정 인력이 총 3명 이상이고 ① 상시근로자 500명 이상 또는 ② 시공능력 순위 상위 200위 이내 건설사업자인 경우에만 의무. 당사의 해당 여부는 별도 확인(보고서 기준 근로자 약 250~300명). 책임자·관리감독자·안전관리자 업무: 산안법 제15·16조, 시행령 제15·18조.", "03": "시행령 제4조 제3호: 유해·위험요인 확인·개선 절차를 마련하고 이행을 <b>반기 1회 이상 점검</b>. 다만 산안법 제36조 위험성평가 절차를 마련하고 실시 결과를 보고받으면 점검한 것으로 봅니다. 위험성평가 시기는 시행규칙 제37조(2026-05-29 전문개정)가 최초평가 <b>작업 시작 전까지</b>, 정기평가 <b>다음 연도부터 매년 1회 이상</b>, 수시평가 <b>관련 작업 시작 전까지</b>로 정하고, 기록은 <b>3년 보존</b>(제37조의4)합니다. 고시(시행 2025-01-02)는 최초평가를 사업 성립일부터 1개월까지 착수로 두고 있어 두 기준이 다릅니다. 더 엄격한 규칙 기준에 맞추는 편이 안전합니다.", "04": "시행령 제4조 제4호: 안전·보건 인력·시설·장비 구비, 유해·위험요인 개선 등에 필요한 예산을 편성하고 용도에 맞게 집행.", "05": "시행령 제4조 제5호: 책임자·관리감독자·총괄책임자에게 권한과 예산을 주고, 평가 기준을 마련해 <b>반기 1회 이상 평가·관리</b>. 건설업 안전보건관리책임자는 공사금액 20억원 이상(산안법 시행령 별표 2). 직무교육: 선임 후 3개월 이내 신규, 이후 2년 기준 전후 6개월 사이 보수(시행규칙 제29조).", "06": "시행령 제4조 제6호: 정해진 수 이상 배치, 겸직 시 고용노동부 고시 기준으로 업무수행시간 보장. 산안법 시행령 제16조: 선임·위탁일부터 <b>14일 이내</b> 증명서류 제출(⑥), 해임·위탁해지도 <b>14일 이내</b> 제출(⑦, 2025-04-29 신설). 별표 3: 건설업 공사금액 50억원 이상(관계수급인 100억원 이상) 120억원 미만 1명 이상, 120억원 이상 전담(토목 150억원).", "07": "시행령 제4조 제7호: 종사자 의견 청취 절차를 마련하고 <b>반기 1회 이상 점검</b>. 산안법상 위원회·협의체에서 논의한 경우 의견을 들은 것으로 봅니다. 시행규칙 제79조: 도급 협의체 매월 1회 이상 회의·기록. 산안법 시행령 제63·65조: 공사금액 120억원(토목 150억원) 이상 노사협의체, 정기회의 2개월마다.", "08": "시행령 제4조 제8호: 작업 중지·대피·위험요인 제거, 구호조치, 추가 피해방지 매뉴얼을 마련하고 <b>반기 1회 이상 점검</b>. 중처법 제2조 제2호 중대산업재해: 사망 1명 이상 / 동일 사고로 6개월 이상 치료 부상자 2명 이상 / 동일 유해요인 직업성 질병자 1년 내 3명 이상. 산안법 보고 대상인 중대재해(시행규칙 제3조)는 별개로 사망 1명 / 3개월 이상 요양 부상자 동시 2명 / 부상·질병자 동시 10명이며 회사 매뉴얼 제7조가 이 기준입니다. 보고는 산안법 제54조 제2항에 따라 지체 없이(전화·팩스 가능, 시행규칙 제67조), 미보고·거짓보고는 3천만원 이하 과태료(법 제175조 제2항). 시행규칙 제73조: 산재조사표는 발생일부터 1개월 이내(사망 또는 3일 이상 휴업).", "09": "시행령 제4조 제9호: 도급·용역·위탁 시 ① 산재예방 조치 능력·기술 평가기준·절차 ② 안전·보건 관리비용 기준 ③ 건설업은 공사기간 기준을 마련하고 <b>반기 1회 이상 점검</b>. (회사 절차서의 \"제4조 9항\"은 \"제4조 제9호\"가 정확한 표기)", "10": "시행령 제5조 제2항: 안전·보건 관계 법령 의무이행을 <b>반기 1회 이상 점검</b>(제1호), 법정 유해·위험작업 교육 실시 여부를 반기 1회 이상 점검(제3호), 미이행 사항은 인력 배치·예산 편성·교육 지시 등 조치(제2·4호)."};
+
+const QS=[
+["현장 착공 후 안전관리자 선임 보고는 며칠 이내에 하나요?",["7일","14일","30일","90일"],1,"착공(계약)일부터 14일 이내 관할 고용노동부에 제출합니다(XX-S-6). 90일은 선임 후 신규교육 기한입니다."],
+["안전관리자 신규교육은 선임 후 언제까지 몇 시간?",["30일 내 16시간","60일 내 24시간","90일 내 34시간","1년 내 34시간"],2,"선임 90일 이내 34시간, 이후 2년마다 24시간 보수교육입니다."],
+["관리감독자 정기교육 기준은?",["연 6시간","연 16시간(반기 8시간)","연 34시간","분기 12시간"],1,"회사 절차서·규정 기준 연 16시간 이상입니다."],
+["최초 위험성평가는 현장 개설 후 언제까지?",["1주일","1개월","3개월","1년"],1,"회사 절차서는 현장 개설(계약) 후 1개월 이내입니다. 시행규칙 제37조는 작업 시작 전까지로 더 엄격하니 10장을 보세요. 3개월은 첫 수행평가·이행점검 시점입니다."],
+["법령 이행점검 결과를 대표이사에게 보고하는 시기는?",["매월","분기","매년 7월·12월","연 1회 12월"],2,"반기 점검 결과를 7월과 12월에 보고합니다(XX-S-10)."],
+["비상대응훈련은 원수급 현장에서 얼마나 자주?",["월 1회","분기 1회","반기 1회 이상","연 1회"],2,"반기 1회 이상(화재·질식·기타)입니다."],
+["대표이사가 직접 현장 점검·교육에 나서야 하는 경우가 아닌 것은?",["중대재해 발생","같은 사고가 1개월 내 3건 이상","재해자 진단 2주 이상","거래처 계약·공문 요구"],2,"진단 2주 이상은 안전팀, 4주 이상은 임원의 점검 기준입니다."],
+["수급인 평가에서 참여 배제를 검토할 수 있는 기준은?",["1회 60점 이하","2회 연속 50점 이하인 기존업체","평가 거부 시에만","점수와 무관"],1,"점수가 현저히 낮은 신규업체와 2회 연속 50점 이하인 기존업체를 배제할 수 있습니다."],
+["종사자 의견 처리 후 해야 할 일로 맞는 것은?",["본사에만 보고","대장에 기록하고 제안자에게 피드백·공유","반기 보고만","별도 조치 없음"],1,"처리 → 기록 → 제안자 피드백·공개 → 반기 종합 대표 보고 순입니다."],
+["혹서기 계획서에서 33℃ 이상이 2일 이상 지속될 때 휴식 기준은?",["매시간 10분","매시간 15분","매시간 20분","휴식 불필요"],1,"주의 단계(33℃ 이상 2일)는 매시간 15분 이상 휴식이며, 14~17시 옥외작업을 단축·조정합니다(XX-SP-001)."],
+["장비작업 가이드라인에서 장비 사용 작업계획서는 언제까지 제출하나요?",["당일 아침","사용 2일 전","사용 1주일 전","작업 후"],1,"장비 사용 2일 전 작업계획서를 작성·제출하고 검토·승인 후 투입 전원 특별교육 2시간 이상을 실시합니다(XX-SP-03)."],
+["화학물질 소분·보관에서 금지되는 것은?",["경고표지 부착","당일 사용분만 반입","생수병·음료 페트병에 담아 보관","위험물저장소 시건"],2,"무색·무취 약품은 물로 오인하기 쉬워 PT병 소분·보관을 금지합니다(XX-SP-02)."],
+["혹한기 계획서의 한파주의보 단계(영하 12℃ 이하) 조치로 맞는 것은?",["작업 전면 금지","경고증상 호소자가 스스로 작업을 중지하고 쉴 수 있게 하고 불이익을 주지 않는다","보호구만 지급","원도급사 지시를 기다린다"],1,"기상정보 제공, 적절한 휴게 배정, 따뜻한 물·장소, 둘씩 짝 관찰, 자율 작업중지 보장(불이익 금지)입니다(XX-SP-008)."],
+["추락 사고 발생 시 초기 대응으로 가장 적절한 것은?",["재해자를 바로 안전한 곳으로 옮긴다","재해자를 이동시키지 않고 주변을 통제하며 119 신고","작업을 계속하고 사후 보고","관리자 도착까지 대기"],1,"2차 손상 방지를 위해 재해자를 이동하지 않고 주변을 통제하며 신고합니다(XX-S-8)."]
+];
+
+const CAL=[[1, "방침·목표 확정(1/10 계획 마감, 1/11 설정, 1/15 이후 서명하고 20일 내 게시) · 전년도 관계자 수행평가 결과 대표 보고 · 현장 교육계획 수립"], [2, "전년도 결과 정리 · 정기교육 운영 · 월 협의체"], [3, "분기 목표 보고 · 월 협의체 · 비상훈련 일정 수립"], [4, "점검 · 위험성평가 수시 · 월 협의체"], [5, "혹서기 계획 준비 · 월 협의체"], [6, "혹서기 계획 시행 · 원도급 현장 온열질환 점검표 지방노동관서 제출 · 상반기 훈련 완료 여부 확인"], [7, "법령 이행점검 결과 대표 보고 · 상반기 평가 · 의견 반기 종합"], [8, "ISO·인증 만기 확인 · 월 협의체"], [9, "분기 보고 · 월 협의체"], [10, "혹한기 계획 준비(휴게실 난방·핫팩·갈탄 대체 점검) · 월 협의체"], [11, "혹한기 예방기간 시작(11월 말~3월 초) · 내부감사·ISO 심사 · 하반기 훈련 완료 확인"], [12, "법령 이행점검 보고 · 원도급 현장 한파 자율점검표 작성·게시 · 다음 해 교육계획·안전관리 계획보고서 · ISO 경영검토"]];
+const TL=[["착공 후 14일 이내", "안전관리자 선임 보고 제출(해당 현장)", "XX-S-6"], ["선임 후 90일 이내", "안전관리자 신규교육 34시간 이수", "XX-S-6"], ["착공 후 1개월 이내", "최초 위험성평가 · 현장 교육계획 수립", "XX-S-3, XX-S-10"], ["착공 3개월 후", "첫 수행평가(책임자·관리감독자) · 첫 법령 이행점검 대상", "XX-S-5, XX-S-10"], ["이후 반기마다", "수행평가 · 이행점검 · 비상대응훈련 · 수급인 재평가", "XX-S-5, 10, 8, 9"], ["매월", "안전보건 협의체 · 안전관리비 검토 · 상시 위험성평가", "XX-S-7, 4, 3"], ["준공·퇴사 시", "안전관리자 해임 보고", "XX-S-6"]];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* reveal + counters */
+function count(el){const to=+el.dataset.count;if(reduce){el.textContent=to;return}const t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1100);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)}
+$('#qcount').dataset.count=QS.length;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('[data-count]').forEach(count);if(e.target.dataset.count)count(e.target);e.target.querySelectorAll('[data-w]').forEach(b=>b.style.width=b.dataset.w+'%');io.unobserve(e.target)}}),{threshold:.12});
+function watch(){$$('.rv,.stat').forEach(e=>io.observe(e))}
+
+/* marquee */
+const MQ=['반기 1회 점검','월 1회 협의체','착공 14일 이내 선임 보고','90일 이내 34시간','사용 2일 전 작업계획서','33℃ 이상 휴식','산재조사표 1개월','7월·12월 대표 보고','2회 연속 50점 이하 배제','PT병 소분 금지'];
+$('#mq').innerHTML=(MQ.map(x=>`<span>${x}</span>`).join('<span>✦</span>')+'<span>✦</span>').repeat(2);
+
+/* nav */
+const secs=$$('main,section.sec');
+const links=$$('#menu a');
+const menu=$('#menu');
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));const a=$('#menu a.on');if(a)menu.scrollLeft=a.offsetLeft-menu.clientWidth/2+a.clientWidth/2}}),{rootMargin:'-35% 0px -55% 0px'});
+$$('section.sec').forEach(s=>so.observe(s));
+let tick=false;const pg=$('#prog'),gu=$('#goup');
+addEventListener('scroll',()=>{if(tick)return;tick=true;requestAnimationFrame(()=>{const h=document.documentElement;pg.style.width=(100*h.scrollTop/Math.max(1,h.scrollHeight-h.clientHeight))+'%';gu.classList.toggle('show',h.scrollTop>700);tick=false})},{passive:true});
+gu.onclick=()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'});
+/* pause hero animations when offscreen */
+const hero=$('#home');new IntersectionObserver(es=>es.forEach(e=>{hero.classList.toggle('off',!e.isIntersecting);$$('.scene svg').forEach(s=>e.isIntersecting?s.unpauseAnimations():s.pauseAnimations())})).observe(hero);
+
+/* 1. layers + folders */
+const LAYERS=[
+ {n:1,t:'절차서 (규칙)',s:'"우리는 이렇게 한다"',d:'각 번호 폴더의 1번(예 03-1). 문서번호 XX-S-n. 서명본 최신이 기준입니다.',e:'위험성평가 실시규정 XX-S-3',w:'규정한 주기·방법이 법령과 맞는가'},
+ {n:2,t:'서식 (도구)',s:'절차서 부록의 빈 양식',d:'선임계, 평가표, 일지, 서명지처럼 현장이 채우는 양식입니다.',e:'안전관리자 선임 보고서, 관리감독자 평가표',w:'양식이 최신 개정본인가'},
+ {n:3,t:'기록 (증거)',s:'현장이 작성해 쌓이는 서류',d:'연도·월·현장 하위 폴더에 쌓입니다. 감독 때 보여주는 것은 이것입니다.',e:'교육일지·서명지(11장 교육, 05-3), 순회점검일지(12-1)',w:'절차서의 주기(반기 1회, 월 1회)를 기록이 따라가는가'}];
+const lay=$('#layers'),lp=$('#lp');
+LAYERS.forEach((l,i)=>{const b=document.createElement('button');b.className='layer';b.innerHTML=`<span class="n">${l.n}</span><div><b>${l.t}</b><br><span>${l.s}</span></div>`;b.onclick=()=>selL(i);lay.appendChild(b)});
+function selL(i){const l=LAYERS[i];$$('.layer').forEach((b,j)=>b.classList.toggle('on',i===j));lp.innerHTML=`<h3 style="margin-top:0">${l.t}</h3><p>${l.d}</p><h4>예시</h4><p>${l.e}</p><h4>감독관이 보는 것</h4><p>${l.w}</p>`}
+selL(2);
+lp.insertAdjacentHTML('afterend','');
+const FOLD=[
+['01','방침·목표','XX-S-1 · 시행령 제4조 제1호',1,['01-1 안전보건방침 및 목표 절차','01-2 안전보건 목표 및 세부추진계획','01-3 안전보건관리규정']],
+['02','조직·역할','XX-S-2 · 제4조 제2호',1,['02-1 안전보건조직 절차','02-2 안전보건관계자역할과책임']],
+['03','위험성평가','XX-S-3 · 제4조 제3호',1,['03-1 위험성평가 절차 실시규정','03-2 현장 위험성평가 취합자료 (약 756개)']],
+['04','안전보건예산','XX-S-4 · 제4조 제4호',1,['04-1 안전보건예산 편성 및 집행절차','04-2 현장 산업안전보건관리비 (약 316개)','04-3 본사 안전보건예산 편성 및 집행']],
+['05','책임자 평가·지정','XX-S-5 · 제4조 제5호',1,['05-1 안전보건관계자 업무 수행평가 절차','05-2 안전보건관계자 업무 수행평가표','05-3 안전보건관계자 선임계 및 지정서 (약 181개)']],
+['06','안전관리자 배치','XX-S-6 · 제4조 제6호',1,['06-1 안전관리자배치 절차','06-2 안전관리자 선임계 및 지정서','06-3 안전관리자 해임보고서','06-4 안전관리자 이력서 및 자격증사본 (개인정보)']],
+['07','종사자 의견청취','XX-S-7 · 제4조 제7호',1,['07-1 종사자 의견 수립 절차','07-2 노사 협의체 회의','07-3 월 협의체 회의']],
+['08','비상대응·재해관리','XX-S-8 · 제4조 제8호',1,['08-1 비상대응 구호조치 매뉴얼','08-2 비상대응 시나리오 훈련 결과','08-3 재해보고서 기록 및 관리 (약 557개)','08-4 근재 기록 및 관리 (개인정보)','08-5 재발방지계획 결과','08-6 사고사례 전파','08-7 무재해 서명 결과지']],
+['09','도급·수급인 평가','XX-S-9 · 제4조 제9호',1,['09-1 적격 수급인 안전보건평가 절차','09-2 건설장비 임대용역 안전보건관리 및 평가절차']],
+['10','법령 이행점검','XX-S-10 · 시행령 제5조',1,['10-1 산업안전보건법규이행점검','10-2 안전보건관련 법규 이행점검 반기 1회','10-3 안전보건관련 법령 이행점검-양식','10-4 중대재해 처벌법 반기 1회 이행보고','10-5 안전보건과태료LIST']],
+['11','교육','약 2,265개 서류',2,['11-1 연간 교육 계획표 및 교육결과 취합-본사','11-2 신규채용자 교육','11-3 건설업 기초안전보건교육 이수증','11-4 근로자 정기안전보건교육','11-5 관리감독자 교육','11-6 특별교육','11-7 유해화학물질 MSDS교육','11-8 직장 내 성희롱 예방교육','11-9 장애인 인식개선교육','11-10 개인정보보호교육','11-11 퇴직연금교육']],
+['12','점검·일지','12-5 계층별 점검 약 2,870개',2,['12-1 안전보건관리책임자 순회점검 일지 (24년 폴더)','12-2 안전관리자 업무 일지 (24년·26년도 폴더)','12-3 혹서기 온열질환 점검 (24년 폴더)','12-4 화기작업 점검 (현장 B(소방))','12-5 계층별 점검(대표이사·임원·안전팀) (23~26년·양식, 약 2,872개)']],
+['13','보건관리','개인정보 서류는 정해진 폴더에만',2,['13-1 유해화학물질 MSDS 및 부착물','13-2 건강검진 결과 (개인정보)','13-3 작업환경측정 결과']],
+['14','절차서·계획서','계절·작업별 계획서',2,['14-1 본사 안전관리 계획보고서','14-2 현장 안전관리계획서','14-3 장비작업가이드라인(작성중)','14-4 화기작업 절차서(작성중)','14-5 유해화학물질 절차서','14-6 유해위험기계기구','14-7 혹서기 안전관리계획서','14-8 혹한기 안전관리계획서']],
+['15','인증·증명·대외평가','대외에 증명하는 서류',2,['15-1 안전경영시스템 인증서','15-2 고용,산재가입증명원','15-3 안전용품 안전인증서','15-4 산업재해율 확인서','15-5 SH 및 ESG보고서','15-6 상훈','15-7 ISO 심사자료']],
+['99','보관','지우지 않고 모아 둔 이전 자료',3,['99-1 상훈 (이전 사본, 15-6에 포함됨)','99-2 옛날 폴더 관리대장','99-3 안전보건세부추진계획 (이전 사본, 01-2·12-5와 거의 동일)','99-4 중복 사본(같은 파일 확인됨)']],
+['부록','부록 지원자료','참고 자료',3,['A1-1 거래처 안전보건 교육 및 기준','A1-2 거래처 안전서류 양식','A1-3 거래처 현장투입시 안전서류 지원 (약 4,475개)','A1-4 원도급[소방공사] 현장투입시 안전서류 지원 (약 173개)','A1-5 파트너사 구축 시스템 계열 자료','A1-6 현장별 원도급사 안전보건 기준','A1-7 고령관리자 거래처 기준','A1-8 원도급사 상벌점 기준','A1-9 거래처 안전보건능력평가(제출 자료)','A2-1 법규 등록부','A2-2 KOSHA 가이드','A2-3 고용노동부 질의회신','A2-4 10대 안전수칙','A2-5 교육자료 (약 560개)','A3-1 OO건설 관리부 양식','A3-2 OO건설 안전팀 양식','A4-1 근로자 연명부 (개인정보)','A4-2 근로계약서 (개인정보)','A4-3 출력일보 (약 1,113개)','A4-4 공문','A4-5 소송건 (개인정보)']]];
+const fg=$('#fgrid'),fp=$('#fp');
+FOLD.forEach((f,i)=>{const b=document.createElement('button');b.className='fold t'+f[3];b.innerHTML=`<i>${f[0]}</i><span>${f[1]}</span>`;b.onclick=()=>{$$('.fold').forEach(x=>x.classList.remove('on'));b.classList.add('on');fp.innerHTML=`<b style="font-size:18px">${f[0]} ${f[1]}</b> <span class="tag">${f[2]}</span><ul class="subs">${f[4].map(s=>`<li><b>${s.split(' ')[0]}</b> ${s.slice(s.indexOf(' ')+1)}</li>`).join('')}</ul>`+(f[3]===1?`<button class="btn or" style="margin-top:8px" data-open="${f[0]}">${f[0]} 카드 열기 ↗</button>`:'')};fg.appendChild(b)});
+fp.innerHTML='<p style="margin:0;color:#4a4b47">폴더를 눌러 보세요. 실제 하위 폴더 이름이 나오고, 01~10은 카드 바로가기가 있습니다.</p>';
+$('#topfiles').innerHTML=['00 읽어보세요(폴더 사용법).txt','안전서류_새폴더_안내표_번호판.pdf','OO건설(주)_표준문서 이력대장_NEW.xlsx','OO건설(주)_표준안전보건문서관리대장_NEW.xlsx','OO건설_안전보건_서류_폴더_지도.html','내용기반_폴더오분류_점검목록.xlsx'].map(x=>`<li>${x}</li>`).join('');
+/* 할 일: 리뉴얼 폴더 번호 연결 ({폴더} 표기는 배지로 바뀜) */
+const TODO={
+'01':['1/10까지 전년도 추진계획 마감 {01-2}','1/11부터 방침·목표 설정 (사업주 의지 반영, 측정 가능하게) — 서식 1·2 {01-1}','1월 15일 이후 대표이사 친필 서명, 20일까지 인트라넷·SNS 게시와 현장 공유 — 서명본은 연도 폴더 {01-1}','방침·목표의 적합성과 실천 여부를 반기 1회 이상 점검해 대표이사에게 보고(제7조), 분기 보고는 서식 3 {01-1}, 달성률·KPI {01-2}, 기록은 본사 취합 3년 보존','전파교육 실시 기록 남기기 — 방침및목표 전파교육 양식 {01-1}'],
+'02':['조직도·업무분장 변경 시 개정(결재라인 포함) — 본사 조직도 별첨1 {02-1}, 업무분장표 {02-2}','현장 개설 때마다 현장 조직도 작성 — 별첨2·현장조직도 폴더 {02-1}','현장별 소장(안전보건관리책임자), 관리감독자, 안전관리자 확인 — 지정서 {05-3} {06-2}','근로자 대표 1명 지정'],
+'03':['최초평가: 현장 개설(계약) 후 1개월 이내 (시행규칙은 작업 시작 전 — 10장) — 평가 DB·기록표 {03-1}','정기평가: 최초평가 후 매 1년','수시평가: 작업 개시(재개) 전, 중대산업재해 발생 시, 작업 변경·정비·보수 시','상시평가: 월 1회 (상시평가를 하면 정기·수시 생략 가능, 단 고시상 매주·매일 요건도 필요 — 10장)','현장별 평가 결과는 현장 폴더에 보관 {03-2}, 교육결과·회의결과 서식 {03-1}','결과를 게시하고 교육·TBM에 반영, 근로자 참여 보장'],
+'04':['본사: 사용계획 수립(안전팀) → 검토(사업주) → 사용 → 분기별 사용 승인(사업주) — 편성·집행내역 별첨2 {04-1}, 연도별 서명본 {04-3}','현장: 사용계획 수립 → 소장·안전팀 검토 → 사용 → 내역 관리 — 사용계획서·사용내역 {04-2}, 양식 별첨1 {04-1}','초과 시 추가 계상 계획 수립·검토·승인','안전팀이 기록물을 월 1회 검토, 수정이 필요하면 현장에 요청 (원도급 현장 기록은 본사 보관 1년 이상, 절차서 제6조)'],
+'05':['착공(계약) 3개월 후 첫 평가, 이후 반기 1회 (평가표는 10점 만점, 상·하반기로 나눠 반영) — 평가표 서식 4·5 {05-1}, 연도별 평가표 {05-2}','2인 1조로 서류를 직접 확인하고 수기로 기입 (임원 없으면 안전팀 1인, 임원에게 공유)','최종 결과는 다음 해 1월 중 대표이사 보고, 평가 후 사고가 난 현장은 감점 — 전체현장결과표 별첨1 {05-2}','지정서는 현장 게시 (책임자: 대표이사 결재본 / 관리감독자: 소장 승인) — 서식 2·3 {05-1}, 보관 {05-3}','책임자 교육 신규 6시간·이후 2년마다 6시간, 관리감독자 연 16시간 확인 — 교육일지·서명지 {05-3}, 교육 기록 {11-5}'],
+'06':['배치 기준(회사 표): 원도급(소방) 50억원 이상, 하도급(설비·건축) 100억원 이상은 유자격자 전담 — 선임현황 별첨1 {06-1}','착공(계약)일부터 14일 이내 관할 고용노동부에 선임 보고 — 서식 1(건설업) {06-1}, 선임계·지정서 보관 {06-2}','제출서류: 선임계, 선임확인서 신청서(서식 2 {06-1}), 신분증, 재직증명서(경영지원), 경력증명서(건설기술인협회, 신입 제외) — 이력서·자격증사본 {06-4}','선임확인서는 원도급사에 제출','선임 90일 이내 신규교육 34시간, 이후 2년마다 24시간, 신청은 안전보건공단 직무교육센터 (이수증은 안전관리자별 폴더 {06-2} 안, 이수일은 절차서 부록의 서식 4 자격증 현황 표에 기록)','퇴사·준공 시 해임 보고서 제출 (해임한 날부터 14일 이내, 현행 시행령) — 서식 3 {06-1}, 제출본 {06-3}'],
+'07':['6개 경로 운영: 위험성평가·TBM, 의견 수집함, 온라인 소통, 개인상담, 안전보건 협의체(월 1회 이상) {07-3}, 노사협의체(회사 절차서 기준 2개월 1회 이상, 공사금액 120억원 이상 설치대상) {07-2}','접수 → 안전보건관리담당자 정리 → 총괄 보고 → 조치 → 대장 기록 — 제안서 서식 1, 의견수집 처리 대장 서식 2 {07-1}','처리 후 제안자에게 피드백하고 게시판·회의·교육시간에 공개','반기별 종합해 대표이사 보고 — 서식 3 종사자 의견 결과 보고서 {07-1}, 현장 기록은 본사 취합 3년 보존','우수 제안 포상 운영'],
+'08':['원수급 현장: 반기 1회 이상 비상대응훈련 (화재, 질식, 기타: 감전·추락·낙하·절단·끼임·온열질환) — 결과 {08-2}','4개 팀 임무 숙지: 통보연락, 초기대응, 피난유도, 응급구조 — 매뉴얼·비상연락망 {08-1}','사고 발생 시 사고보고서 작성(서식 1 {08-1}), 산업재해조사표 발생일로부터 1개월 이내 지청 제출(회사 매뉴얼은 30일로 표기) — 조사표·기록관리대장 {08-3}, 재해자별 기록 {08-4}','재발방지계획서 작성 → 위험성평가 반영 → 전 근로자 공유 — {08-5}','사고사례 전파 {08-6}, 일일 무사고 확인 {08-7}','거래처·본사 보고 후 서류를 본사에 공유 (사고·훈련 기록은 현장 준공 후 3년 본사 보관, 제18조)'],
+'09':['신규업체: 계약 체결 전 계약주관부서(설비·건축) 또는 현장대리인이 평가 — 평가 절차·표 {09-1}','기존업체: 6개월 주기로 사업부서가 평가','각 부서장 주관 → 현장대리인 최종 확정 → 안전팀 제출 → 대표이사 보고','100점 만점. 점수가 현저히 낮은 신규업체, 2회 연속 50점 이하인 기존업체는 참여 배제 가능','평가표 3년 보관, 원도급사 요청 평가서류(외부 신용평가 등)는 대표 보고 — 건설장비 임대용역은 {09-2} (임대회사 평점 60점 이상만 투입, 현장 평가자료는 본사 제출)'],
+'10':['착공 3개월 경과 후부터 매년 반기 1회 점검 (책임자 미투입 비상주 현장 제외, 투입 시 실시) — 현장 이행점검표 별첨1 {10-2}','점검 일정을 대표이사 승인 후 전 사업장에 공유','원도급/하도급 구분 체크, 해당 없음은 \'해당없음\' 기재, 적합/부적합을 수기로 기입','부적합은 현장 책임자에게 공유해 이행','전체 취합자료 매년 7월·12월 대표이사 보고 — 결과보고 별첨2 {10-2}, 중대재해처벌법 반기 이행보고 서식 {10-1} {10-3}, 제출본 보관 {10-4} (24년분만 있고 25·26년분은 폴더에 없음)','교육계획 수립(본사 12월, 현장 1월 또는 개설 후 1개월 내) — 연간 교육 계획표 {10-1} {10-2}, 교육결과 취합 {11-1}','과태료가 발생하면 지출결의서·List 기록 {10-5}']};
+const NOTE={
+'01':'하도급 현장은 원수급 방침·목표를 먼저 달성하도록 협조합니다. 당사가 원수급이면 현장 소장의 방침·목표도 따로 둡니다. 연도별 서명본은 {01-1}, 달성률·KPI는 {01-2}, 안전보건관리규정은 {01-3}에 둡니다.',
+'02':'대표이사는 승인, 임원은 협조·검토, 안전팀은 작성·요청, 현장소장은 안전보건관리책임자(법 제15조), 관리감독자(시행령 제15조), 안전관리자(시행령 제18조)의 업무를 수행합니다. 역할과 책임 서식 1·2는 {02-1}, 업무분장표는 {02-2}에서 찾습니다.',
+'03':'평가 대상은 외부 제공 기계·설비, 취급 유해물질, 일상·비일상 작업, 비상조치 작업, 아차사고, 재해 원인 요인입니다. 절차는 사전준비 → 유해·위험요인 파악 → 위험성 결정 순으로 진행(이후 단계는 9장 참고). 공종별 최초 평가 DB는 {03-1}, 현장별 취합 자료는 {03-2}입니다. 기록은 본사 안전관리팀이 3년 이상 보관합니다(절차서 제17조).',
+'04':'하도급 현장은 원수급 기준과 절차를 우선 적용하되, 사용 기록은 우리가 적법하게 유지합니다. 보호구 지급대장·세금계산서 등이 \'기록\'에 포함되며 현장 폴더 {04-2}에 둡니다. 본사 예산 서명본은 {04-3}입니다.',
+'05':'예외: 공사금액이 낮고 1개월 미만인 비상주 가설공사, 안전보건관계자가 한 명도 없는 현장. 평가 항목 예: 목표·방침 수립, 책임자 교육, 근로자 교육, 작업환경측정, 재해 발생·재발방지, 보호구 지급 대장, 위험성평가, 비상훈련, 건강검진, 순회점검일지, 본사 공문 관리. 항목별 근거는 해당 장의 폴더(01·11·12·14 등)에서 확인합니다. 평가표 {05-1}·{05-2}, 지정서 {05-3}.',
+'06':'현장개요에 사업개시번호를 기입합니다(없으면 비워 제출하고 담당 감독관에게 추후 알림). 자격증이 여러 개면 한 개만 기재합니다. 원청별 안전감시자 제도는 다릅니다(절차서 표 1: 원도급사 C은 25개 고위험 단위작업에 무자격 안전감시자를 운영, 원도급사 A·원도급사 B은 운영하지 않음, 원도급사 D은 운영 현장 없음). 선임 서류는 {06-2}, 해임은 {06-3}, 개인 이력·자격증은 개인정보라 {06-4}에 별도 보관합니다.',
+'07':'협의체 예외: 공사기간 30일 이내, 연 작업일이 60일을 넘지 않는 간헐 작업. 현장 기록은 본사가 취합해 3년 보존합니다. 제안서·처리대장 {07-1}, 노사협의체 {07-2}, 안전보건 협의체 {07-3}.',
+'08':'중대사고 범위(매뉴얼): 사망 / 3개월 이상 부상자 동시 2명 이상 / 부상자·직업성질병자 동시 10명 이상 또는 동일 원인 1년 이내 질병자 3명 이상 등, 그리고 화재·폭발·붕괴, 환경사고. 시나리오 6종(화재·질식·끼임/절단·추락·낙하·온열)의 공통 초기 행동: 작업 중지 → 상황 전파 → 119 신고 → 2차 재해 방지 → 구급대 유도. 훈련 결과는 {08-2}에 남깁니다.',
+'09':'수급인 의무: 위험성평가, 작업계획서·작업지휘자, TBM, 방호시설·보호구, 2인 1조, 장비는 제작 15년 미만·방호장치·안전검사·보험 가입. 평가표는 두 종류(경험·위험성평가 능력 등 100점 / 교육참여·지시 이행·작업중지 등 실적 100점)로 구성됩니다. 절차 {09-1}, 장비 임대용역 {09-2}, Sample(위험성평가·작업계획서·산업재해율 확인서)은 부록 지원자료 폴더.',
+'10':'점검 항목은 조직도·비상연락망, 책임자·관리감독자·안전관리자 선임, 안전보건관리규정, 안전·보건 조치, 작업중지, 중대재해 발생 시 조치, 협의체 운영 등 법조항별 표입니다(이행점검표 {10-2}). 점검기준 추가는 법령·신규 개정에 한해 대표 보고 후 서식에 반영합니다. 과태료 LIST는 {10-5}.'};
+const MIST={
+'01':'서명만 하고 게시·전파 증빙이 없음 {01-1} / 목표가 측정 불가능한 문구',
+'02':'인사 이동 후에도 조직도 {02-1}·업무분장표 {02-2}가 예전 그대로',
+'03':'현장별 복사·붙여넣기 {03-2} / 재해 발생 후 재발방지대책이 평가에 반영되지 않음',
+'04':'관리비 항목과 증빙(세금계산서·지급대장)이 맞지 않음 {04-2}',
+'05':'평가표 {05-1}는 있는데 근거 서류 확인 기록이 없음 / 지정서가 현장에 게시되지 않음 {05-3}',
+'06':'14일 기한 도과 / 해임 보고 누락 {06-3} / 선임확인서 미제출 {06-1}',
+'07':'접수는 했는데 처리 결과와 제안자 확인(서명)이 없음 {07-1}',
+'08':'하수급 현장은 원수급사 훈련·보고 기준이 우선인데 우리 기록(근거)을 남기지 않음 {08-2}',
+'09':'계약 전 평가를 생략하고 착수 {09-1} / 장비 안전검사·보험 증빙 미확인 {09-2}',
+'10':'부적합을 적고도 시정 확인 기록이 없음 {10-2} / 7월·12월 보고 누락 {10-2} / 중처법 반기 보고 {10-4}를 연도별로 보관하지 않음'};
+const pf=s=>s.replace(/\{([^}]+)\}/g,'<b class="pf">$1</b>');
+/* 리뉴얼 폴더 기준 서류 위치 */
+const DOCS={
+'01':[['01-1','안전보건방침 및 목표 절차','XX-S-1 서명본 최신 · 서식 1 방침 및 목표 · 서식 2 목표 및 세부추진계획 · 서식 3 분기 보고 · 전파교육 양식 · 24·25·26년 폴더'],['01-2','안전보건 목표 및 세부추진계획','세부안전관리계획 · 안전보건 KPI 보고서 · 추진목표달성율계산 (24·25·26년)'],['01-3','안전보건관리규정','XX-SS-5 안전보건관리규정(hwp·pdf) · 서명란 5page · 별첨']],
+'02':[['02-1','안전보건조직 절차','XX-S-2 서명본 최신 · 갑지 · 별첨1 본사 조직도 · 별첨2 현장 조직도 · 서식 1 본사 역할과 책임 · 현장조직도 폴더'],['02-2','안전보건관계자역할과책임','연도별(24·25·26년) 본사 역할과 책임 · 안전관리팀 업무분장표']],
+'03':[['03-1','위험성평가 절차 실시규정','XX-S-3 서명본 최신 · 별첨1 기록표 · 별첨2 최초 DB(건축공종) · 별첨3 최초 DB(설비공종) · 서식 1 교육결과 · 서식 2 회의결과 · 서식 3 참석자 서명지'],['03-2','현장 위험성평가 취합자료','현장별 하위 폴더 (약 756개)']],
+'04':[['04-1','안전보건예산 편성 및 집행절차','XX-S-4 서명본 최신 · 별첨1 현장 관리비 사용내역서 · 별첨2 본사 예산 편성·집행내역 · 월별 사용내역 현황 · 안전용품검수판'],['04-2','현장 산업안전보건관리비','건축 · 설비 · 당사 원도급 · 사용계획서 · 거래처(원도급사) 안전용품 연간단가 (약 316개)'],['04-3','본사 안전보건예산 편성 및 집행','24·25·26년 본사 예산 편성·집행']],
+'05':[['05-1','안전보건관계자 업무 수행평가 절차','XX-S-5 서명본 최신 · 서식 1 선임 등 보고서 · 서식 2 책임자 지정서 · 서식 3 관리감독자 지정서 · 서식 4 책임자 평가표 · 서식 5 관리감독자 평가표'],['05-2','안전보건관계자 업무 수행평가표','연도별(24·25·26년) 평가표 · 별첨1 전체현장결과표'],['05-3','안전보건관계자 선임계 및 지정서','건축부·설비부 × 안전보건관리책임자·관리감독자 폴더 · 선임현황 · 관리감독자 교육일지·서명지 (약 181개)']],
+'06':[['06-1','안전관리자배치 절차','XX-S-6 서명본 최신 · 별첨1 현장 안전보건관계자 선임현황 · 서식 1 선임 등 보고서(건설업) · 서식 2 선임확인서 발급 신청서 · 서식 3 해임 등 보고서'],['06-2','안전관리자 선임계 및 지정서','안전관리자별 폴더 (약 140개)'],['06-3','안전관리자 해임보고서','퇴사자별 폴더 · 해임 등 보고서 서식(별지 제3호의2) · 선임(해임) 확인서 발급 신청서'],['06-4','안전관리자 이력서 및 자격증사본','안전관리자별 폴더 (개인정보: 정해진 폴더에만 보관)']],
+'07':[['07-1','종사자 의견 수립 절차','XX-S-7 서명본 · 별첨1 노사협의체 회의 · 별첨2 월 협의체 회의 · 서식 1 안전보건 제안서 · 서식 2 종사자 의견수집 처리 대장 · 서식 3 종사자 의견 결과 보고서 · 노사협의체 근로자대표 지정서'],['07-2','노사 협의체 회의','건축 · 설비 · 당사 원도급 (약 91개)'],['07-3','월 협의체 회의','현장별 폴더 (약 77개)']],
+'08':[['08-1','비상대응 구호조치 매뉴얼','XX-S-8 서명본 최신 · 본사 비상대피도·비상연락망 · 서식 1 사고보고서 ~ 서식 10 참석자 서명지 · 서식 11 경영진 안전점검·교육 결과보고서 · 서식 12 본사안전팀 결과보고서 · 서식 13 점검 사진대지 · 서식 14 안전교육 서명지'],['08-2','비상대응 시나리오 훈련 결과','원도급(소방현장)·하도급 연도별 (약 77개)'],['08-3','재해보고서 기록 및 관리','산업재해조사표 · 요양급여신청사실확인서 · 중대재해 발생보고 서식 · 산업재해기록관리대장 · 재해그래프 (약 557개)'],['08-4','근재 기록 및 관리','재해자별 폴더 (개인정보)'],['08-5','재발방지계획 결과','사고 건별 재발방지대책'],['08-6','사고사례 전파','사고사례 전파 양식 · 사례 이미지'],['08-7','무재해 서명 결과지','무재해 확인 서명서 · 일일 무사고 확인서 양식']],
+'09':[['09-1','적격 수급인 안전보건평가 절차','XX-S-9 서명본 최신(pdf) · XX-S-9 원문(hwpx). 평가표 2종은 별도 파일이 아니라 절차서 문서 안에 있습니다'],['09-2','건설장비 임대용역 안전보건관리 및 평가절차','XX-S-9-1 서명본 최신']],
+'10':[['10-1','산업안전보건법규이행점검','XX-S-10 서명본 최신 · 서식 1 이행점검 · 서식 2 중대재해처벌법 반기 1회 이행 보고 · 서식 3·4 연간 교육 계획표(본사용·현장용) · 별첨2 관계자 연간 교육 계획표 · 24·25년 점검 PDF, 26년 이행점검 계획표(26년 9월)'],['10-2','안전보건관련 법규 이행점검 반기 1회','별첨1 현장 이행점검표 · 별첨2 이행점검 결과보고 · 별첨3·4 연간 교육 계획표 · 현장별 결과 양식 6종(정기교육·비상대피훈련·관리비·위험성평가·작업환경측정·회의) · 24·25년 점검 PDF, 26년 현장 A 이행점검'],['10-3','안전보건관련 법령 이행점검-양식','XX-S-10-1 중대재해 처벌법 반기 이행보고 서식'],['10-4','중대재해 처벌법 반기 1회 이행보고','24년 폴더에만 보고 PDF 있음(25년 폴더는 비어 있고 26년 폴더 없음). 25·26년 반기 보고 PDF는 폴더 어디에도 없음 (9장 13번)','확인'],['10-5','안전보건과태료LIST','안전보건관련 과태료 List · 과태료 지출결의서 (23·24년)']]};
+fp.addEventListener('click',e=>{const o=e.target.closest('[data-open]');if(o){openCard(CARDS.findIndex(c=>c.n===o.dataset.open));}});
+
+/* 2. tiles + dialog */
+const FREQ={'01':['연'],'02':['수시'],'03':['월','수시'],'04':['분기'],'05':['반기'],'06':['착공'],'07':['월'],'08':['반기'],'09':['반기'],'10':['반기']};
+const FRL={'01':'연 1회','02':'변경 시','03':'월 1회·수시','04':'분기','05':'반기 1회','06':'착공 14일','07':'월 1회','08':'반기 1회','09':'6개월','10':'반기 1회'};
+const LAWN={'01':'시행령 제4조 제1호','02':'제4조 제2호','03':'제4조 제3호','04':'제4조 제4호','05':'제4조 제5호','06':'제4조 제6호','07':'제4조 제7호','08':'제4조 제8호','09':'제4조 제9호','10':'시행령 제5조'};
+let fsel='전체',qv='';
+const tiles=$('#tiles');
+CARDS.forEach((c,i)=>{const b=document.createElement('button');b.className='tile rv';b.dataset.s=(c.n+c.t+c.code+c.ask+DOCS[c.n].map(d=>d.join(' ')).join()+TODO[c.n].join()+NOTE[c.n]+MIST[c.n]).toLowerCase();b.innerHTML=`<div class="no">${c.n}</div><span class="fr">↗</span><h3>${c.t}</h3><span class="code">${c.code}</span><div class="bd">${FREQ[c.n].map(f=>`<em>${f}</em>`).join('')}<em style="background:#6a6b66">${FRL[c.n]}</em></div><span class="fo">폴더 ${DOCS[c.n].map(d=>d[0]).join(' · ')}</span><span class="law">${LAWN[c.n]}</span>`;b.onclick=()=>openCard(i);tiles.appendChild(b)});
+const FCH=['전체','월','분기','반기','연','착공','수시'];
+$('#fchips').innerHTML=FCH.map(f=>`<button class="chip${f==='전체'?' on':''}">${f==='전체'?'전체':'#'+f}</button>`).join('');
+$('#fchips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;fsel=b.textContent.replace('#','');$$('#fchips .chip').forEach(x=>x.classList.toggle('on',x===b));applyT()};
+$('#q').oninput=e=>{qv=e.target.value.trim().toLowerCase();applyT()};
+function applyT(){$$('.tile').forEach((t,i)=>{const okf=fsel==='전체'||FREQ[CARDS[i].n].includes(fsel);const okq=!qv||t.dataset.s.includes(qv);t.classList.toggle('dim',!(okf&&okq))})}
+const dlg=$('#dlg');let cur=0;
+function openCard(i){if(i<0)return;cur=i;const c=CARDS[i];$('#dt').innerHTML=`${c.n} ${c.t} <span style="font-size:13px;font-weight:600;opacity:.7">${c.code} · 폴더 ${c.dir}</span>`;$('#dbody').innerHTML=`<p><b>무엇을 요구하나</b> · ${c.ask}</p><div class="box ok"><b>법령 원문 (2026-11 확인)</b> · ${LAW[c.n]}</div><div class="cols"><div><h4>우리 서류 (리뉴얼 폴더 기준)</h4><ul class="fl">${DOCS[c.n].map(d=>`<li><span class="fn">${d[0]}</span><b>${d[1]}</b>${d[3]?' <span style="background:#ff4d12;color:#fff;border-radius:99px;padding:1px 9px;font-size:11.5px;font-weight:800">확인</span>':''}<small>${d[2]}</small></li>`).join('')}</ul></div><div><h4>안전관리자가 할 일 <span style="font-weight:600;opacity:.7">(주황 배지 = 서류가 있는 폴더)</span></h4><ul>${TODO[c.n].map(x=>`<li>${pf(x)}</li>`).join('')}</ul></div></div><div class="box info">${pf(NOTE[c.n])}</div><div class="box warn"><b>흔한 실수</b> · ${pf(MIST[c.n])}</div>`;$('#dbody').scrollTop=0;if(!dlg.open)dlg.showModal()}
+$('#dc').onclick=()=>dlg.close();$('#dp').onclick=()=>openCard((cur+CARDS.length-1)%CARDS.length);$('#dn').onclick=()=>openCard((cur+1)%CARDS.length);
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+dlg.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')$('#dp').click();if(e.key==='ArrowRight')$('#dn').click()});
+
+/* 3. training bars */
+const EDU=[
+ {k:'근로자 정기교육 (사무직)',h:6,u:'매 반기',y:12,ev:'교육일지·서명지, 현장별 시행결과 보고서',law:'시행규칙 별표 4 · 폴더 11-4 근로자 정기안전보건교육'},
+ {k:'근로자 정기교육 (그 밖)',h:12,u:'매 반기',y:24,ev:'교육일지·서명지, 현장별 시행결과 보고서',law:'시행규칙 별표 4 · 폴더 11-4 근로자 정기안전보건교육'},
+ {k:'관리감독자 정기교육',h:16,u:'연간',y:16,ev:'관리감독자 교육일지·참석자명단·서명지 (11-5 폴더에 개인별 이수증 없음)',law:'시행규칙 별표 4 · 폴더 11-5 관리감독자 교육'},
+ {k:'채용 시 교육',h:8,u:'신규 채용 시 (일용 1시간)',y:null,ev:'교육이수 및 안전 서약서',law:'별표 4: 1주 이하 1h / 1개월 이하 4h / 그 밖 8h · 폴더 11-2 신규채용자 교육'},
+ {k:'작업내용 변경 시 교육',h:2,u:'작업 변경 시 (일용 1시간)',y:null,ev:'교육일지',law:'시행규칙 별표 4'},
+ {k:'특별교육',h:16,u:'유해·위험작업 투입 시 (일용 2시간)',y:null,ev:'특별교육 갑지·서명지',law:'시행규칙 별표 4·5 · 폴더 11-6 특별교육'},
+ {k:'안전보건관리책임자 직무교육',h:6,u:'신규 6h, 이후 2년마다 6h',y:3,ev:'이수일·이수증 (본사 3년 보존)',law:'별표 4 · 규칙 제29조'},
+ {k:'안전관리자 신규교육',h:34,u:'선임 후 90일 이내 (이후 2년마다 24h)',y:null,ev:'이수증 (본사 3년 보존)',law:'별표 4 · 규칙 제29조(3개월 이내)'}];
+const bars=$('#bars');
+EDU.forEach((e,i)=>{const b=document.createElement('button');b.className='bar';b.innerHTML=`<span class="l">${e.k}</span><span class="tr"><i data-w="${Math.round(e.h/34*100)}"></i></span><span class="v">${e.h}시간</span>`;b.onclick=()=>selE(i);bars.appendChild(b)});
+function selE(i){const e=EDU[i];$$('#bars .bar').forEach((b,j)=>b.classList.toggle('on',i===j));$('#edud').innerHTML=`<div class="big">${e.h}h</div><b>${e.k} · ${e.u}</b><span>${e.y?'연 환산(평균) 약 '+e.y+'시간 · ':''}증빙: ${e.ev}</span><small>근거: ${e.law}</small>`}
+selE(0);
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){$$('#bars [data-w]').forEach(x=>x.style.width=x.dataset.w+'%');o.disconnect()}}),{threshold:.2}).observe(bars);
+
+/* 4. who goes */
+const SC=[
+ ['중대재해가 발생했다',[1,1,1],'세 주체 모두 나가야 합니다.'],
+ ['같은 현장에서 같은 건의 사고가 1개월 이내 3건 이상',[1,0,0],'대표이사 점검 기준입니다.'],
+ ['거래처(원도급사) 계약·공문에 따른 점검·교육 요구',[1,0,0],'대표이사 점검 기준입니다. 거래처마다 요구가 다르니 공문을 확인하세요.'],
+ ['재해자 진단이 4주 이상',[0,1,1],'임원은 4주 이상 기준입니다. 안전팀 기준(2주 이상)도 함께 충족한 것으로 읽었습니다.'],
+ ['재해자 진단이 2주 이상 4주 미만',[0,0,1],'안전팀 점검 기준입니다.']];
+let sci=0;
+$('#scen').innerHTML=SC.map((s,i)=>`<button class="sbtn${i?'':' on'}" data-i="${i}">${s[0]}</button>`).join('');
+const ROLES=['대표이사','임원','안전팀'];
+function showW(i){const s=SC[i];$$('.sbtn').forEach((b,j)=>b.classList.toggle('on',i===j));$('#who').innerHTML=ROLES.map((r,k)=>`<div class="wh${s[1][k]?' go':''}"><b>${r}</b><span class="st">${s[1][k]?'현장 점검·교육 대상':'해당 없음'}</span></div>`).join('');$('#whon').textContent=s[2]+' 점검·교육 결과는 매뉴얼 서식 11~13으로 기록합니다(08-1 폴더: 서식 11 경영진 결과보고서, 12 본사안전팀 결과보고서, 13 점검 사진대지).'}
+$('#scen').onclick=e=>{const b=e.target.closest('.sbtn');if(b)showW(+b.dataset.i)};showW(0);
+
+/* 5. tabs */
+$('#tabs').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;$$('#tabs .chip').forEach(x=>x.classList.toggle('on',x===b));$$('.tp').forEach(p=>p.hidden=p.id!==b.dataset.t);if(b.dataset.t==='t15')draw15();watch()};
+/* thermometer */
+const HEAT=t=>t<31?{s:'기준 미만',c:'#1f8a4c',r:'—',a:'일상 관리: 물·그늘·온도계 비치',l:'폭염작업(체감 31℃ 이상) 기준 미만입니다.'}:t<33?{s:'관심',c:'#d9a400',r:'매시간 10분 이상',a:'물·그늘 준비, 실내 냉방·환기 점검, 실내 단독작업 금지',l:'폭염작업에 해당(기준규칙 제559조 제4항). 법정 휴식 의무는 33℃부터입니다.'}:t<35?{s:'주의',c:'#e8620f',r:'매시간 15분 이상',a:'14~17시 옥외작업 단축·시간대 조정',l:'법정 최저: 매 2시간 이내 20분 이상 휴식(제560조 제3항). 회사 기준이 더 엄격합니다.'}:t<38?{s:'경고',c:'#ff4d12',r:'매시간 20분 이상',a:'14~17시 가급적 옥외작업 중지',l:'법정 최저: 매 2시간 이내 20분 이상. 체감온도·조치사항 일자별 기록(제562조 제2항)'}:{s:'위험',c:'#c4220a',r:'매시간 20분 이상',a:'14~17시 긴급조치 외 옥외작업 중지',l:'열사병 의심 시 지체 없이 119 신고(제562조 제3항). 기록은 해당 연도 12월 31일까지 보관'};
+const COLD=t=>t>0?{s:'기준 밖',c:'#1f8a4c',r:'—',a:'예방기간 중에는 기상정보를 확인하세요',l:'예방기간은 11월 말~3월 초입니다.'}:t>-6?{s:'일상적 관리',c:'#5e87ad',r:'작업·휴식 계획',a:'민감군 확인(고혈압·당뇨·갑상선 저하·뇌심혈관질환·고령자), 예방교육, 비상연락망, 휴게공간',l:'기준규칙 제563조: 더운물, 젖은 옷 교체 등'}:t>-12?{s:'한파 관심',c:'#3f6f9c',r:'추운 시간대 휴게 배치',a:'기상정보 제공, 따뜻한 물',l:'제572조: 방한복·방한화 등 개인 전용 지급'}:t>-15?{s:'한파주의보',c:'#2a4f78',r:'적절한 휴게 배정',a:'젖은 옷 갈아입을 따뜻한 장소, 둘씩 짝 관찰, 경고증상 호소자는 스스로 작업 중지(불이익 금지)',l:'제563조·제572조 병행'}:{s:'한파경보',c:'#1a3350',r:'휴게시간 추가',a:'위 + 민감군·중작업자 관리, 핫팩 제공',l:'단독작업 금지(2인 1조 이상)'};
+let mode='heat';
+const rng=$('#rng');
+function setMode(m){mode=m;$$('.tabs .chip').forEach(b=>b.classList.toggle('on',b.dataset.m===m));if(m==='heat'){rng.min=25;rng.max=40;rng.value=33}else{rng.min=-20;rng.max=5;rng.value=-5}simR();ticks()}
+function ticks(){const a=+rng.min,b=+rng.max;let s='';for(let v=a;v<=b;v+=5){const y=210-((v-a)/(b-a))*200;s+=`<text x="46" y="${y+3}">${v}</text><line x1="42" x2="45" y1="${y}" y2="${y}" stroke="#777"/>`}$('#tk').innerHTML=s}
+function simR(){const t=+rng.value,i=mode==='heat'?HEAT(t):COLD(t);const a=+rng.min,b=+rng.max;const h=Math.max(6,((t-a)/(b-a))*200);$('#tf').setAttribute('y',210-h);$('#tf').setAttribute('height',h);$('#tf').style.fill=$('#tb').style.fill=i.c;$('#deg').textContent=t+'℃';$('#stg').textContent=i.s;$('#stg').style.background=i.c;$('#skv').innerHTML=`<b>휴식</b><span>${i.r}</span><b>조치</b><span>${i.a}</span><b>법령</b><span>${i.l}</span>`;if(mode==='heat'&&t>=31)$('#skv').insertAdjacentHTML('beforeend','<b>조건</b><span>회사 단계는 해당 온도가 2일 이상(위험 38℃는 1일 이상) 지속될 때 적용합니다.</span>')}
+rng.oninput=simR;
+$$('.tabs .chip').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+setMode('heat');
+/* stepper */
+const ST=[['사용 2일 전 작업계획서 작성·제출','작업개요, 장비 제원·운전자, 줄걸이·양중능력 계산, 받침철판 규격, 위험요인·안전대책, 작업계획도'],['서류 검토','장비 서류 9종 확인: 등록·검사증, 보험, 운전원 면허, 작업계획서, 점검표, 제원표, 작업지휘자·신호수 지정서, 특별교육 확인'],['장비 사용 승인','검토·승인 후에만 투입합니다.'],['투입 전원 특별교육 2시간 이상','서명은 당사자가 합니다.'],['작업구획 설정','작업구획을 정하고 작업계획도에 반영합니다.'],['신호수(유도원) 배치','지정서를 보관합니다. 신호는 기준규칙 제40조.'],['일일점검','○ 정상 / △ 미흡(조건부 허용) / X 불량·사용중지 / ― 해당없음'],['작업 진행','작업지휘자의 지휘 아래 진행합니다(기준규칙 제39조).']];
+let si=0;
+$('#stepper').innerHTML=ST.map((s,i)=>`<button class="dot" data-i="${i}">${i+1}</button>`).join('');
+function showS(i){si=(i+ST.length)%ST.length;$$('.dot').forEach((d,j)=>{d.classList.toggle('on',j===si);d.classList.toggle('past',j<si)});$('#stp').innerHTML=`<small style="color:#aaa">STEP ${si+1} / ${ST.length}</small><br><b>${ST[si][0]}</b><p>${ST[si][1]}</p>`}
+$('#stepper').onclick=e=>{const d=e.target.closest('.dot');if(d)showS(+d.dataset.i)};$('#sp').onclick=()=>showS(si-1);$('#sn').onclick=()=>showS(si+1);showS(0);
+/* trend */
+function hb(el,rows,max,color){el.innerHTML=rows.map(r=>`<div class="bar" style="cursor:default"><span class="l">${r[0]}</span><span class="tr"><i data-w="${Math.round(r[1]/max*100)}" ${color?`style="background:${color}"`:''}></i></span><span class="v">${r[1]}</span></div>`).join('')}
+hb($('#trend'),[['3년 전',100],['2년 전',80],['최근',43]],100,'#ff4d12');
+hb($('#types'),[['넘어짐',34],['질병',22],['떨어짐',16],['맞음',14],['끼임',13]],34);
+/* donut */
+function donut(svg,dl,data,onpick){const tot=data.reduce((a,d)=>a+d.v,0),R=44,C=2*Math.PI*R;let off=0,h='<circle cx="60" cy="60" r="44" fill="none" stroke="#bdbcb8" stroke-width="18"/>';data.forEach((d,i)=>{const len=C*d.v/tot;h+=`<circle cx="60" cy="60" r="${R}" fill="none" stroke="${d.c}" stroke-width="18" stroke-dasharray="0 ${C}" data-len="${len}" data-off="${off}" transform="rotate(-90 60 60)" style="cursor:pointer" data-k="${i}"/>`;off+=len});h+=`<text x="60" y="66" text-anchor="middle" font-size="22" font-weight="900" fill="#1d1e1c">${tot}</text>`;svg.innerHTML=h;dl.innerHTML=data.map((d,i)=>`<button data-k="${i}"><i style="background:${d.c}"></i>${d.l} <b>${d.v}</b></button>`).join('');setTimeout(()=>svg.querySelectorAll('circle[data-len]').forEach(c=>{c.style.strokeDasharray=`${c.dataset.len-1} ${C}`;c.style.strokeDashoffset=-c.dataset.off}),60);if(onpick){svg.onclick=dl.onclick=e=>{const k=e.target.closest('[data-k]');if(k)onpick(+k.dataset.k)}}}
+let d15=false;function draw15(){if(d15)return;d15=true;const cs=['#1d1e1c','#ff4d12','#ffc933','#6a6b66','#8ec5ff','#1f8a4c','#a84a22','#444642','#c9b458'];donut($('#dn1'),$('#dl1'),[['안전모',5],['안전대',10],['안전화',12],['보안경',3],['보안면',3],['방진마스크',5],['안전장갑(유기화합물)',1],['전기용품(배풍기)',1],['복합가스측정기',4]].map((x,i)=>({l:x[0],v:x[1],c:cs[i]})));
+ const today=new Date();const dd=(s)=>Math.floor((today-new Date(s))/864e5);
+ const mk=(n,s)=>{const d=dd(s);return `<p style="margin:6px 0"><b>${n}</b> ${s}<br><span class="vchip ${d>0?'late':''}">${d>0?'기한 경과 +'+d+'일 · 갱신 확인':'D'+d}</span></p>`};
+ const a=new Date('2025-08-06'),b=new Date('2028-08-05'),pc=Math.max(0,Math.min(100,(today-a)/(b-a)*100));
+ $('#val').innerHTML=mk('SH 평가 이력표(예시 날짜)','2026-03-01')+mk('ESG 평가 이력표(예시 날짜)','2026-08-01')+`<h4 style="margin-top:12px">ISO 인증서 (파일명 기준 2025-08-06 ~ 2028-08-05)</h4><div class="life"><i data-w="${pc.toFixed(0)}"></i></div><small>${pc.toFixed(0)}% 경과 · 만기까지 ${Math.max(0,-dd('2028-08-05'))}일</small><div class="box warn" style="margin-top:12px">유효기간은 이력표의 엑셀 날짜값을 변환한 것이라 실제 갱신 상태를 확인해야 합니다(9장 11번).</div>`;setTimeout(()=>$$('#val [data-w]').forEach(x=>x.style.width=x.dataset.w+'%'),100)}
+
+/* 6. calendar ring */
+const SEAS=m=>m>=6&&m<=8?['혹서기 예방','#ff4d12']:(m>=11||m<=3)?['혹한기 예방','#5e87ad']:['일반','#51534e'];
+const ring=$('#ring');const cx=200,cy=200,R1=185,R0=108;
+function arc(i){const a0=(i*30-90+1)*Math.PI/180,a1=((i+1)*30-90-1)*Math.PI/180;const p=(r,a)=>[cx+r*Math.cos(a),cy+r*Math.sin(a)];const [x0,y0]=p(R1,a0),[x1,y1]=p(R1,a1),[x2,y2]=p(R0,a1),[x3,y3]=p(R0,a0);return `M${x0} ${y0}A${R1} ${R1} 0 0 1 ${x1} ${y1}L${x2} ${y2}A${R0} ${R0} 0 0 0 ${x3} ${y3}Z`}
+let h='';for(let i=0;i<12;i++){const m=i+1,am=((i+.5)*30-90)*Math.PI/180,tx=cx+147*Math.cos(am),ty=cy+147*Math.sin(am)+5;h+=`<path d="${arc(i)}" fill="${SEAS(m)[1]}" data-m="${m}" tabindex="0" role="button" aria-label="${m}월"/><text x="${tx}" y="${ty}" text-anchor="middle">${m}</text>`}
+h+=`<circle cx="200" cy="200" r="98" fill="#2f302e"/><text id="rc1" x="200" y="196" text-anchor="middle" style="font-size:44px;font-weight:900"></text><text id="rc2" x="200" y="226" text-anchor="middle" style="font-size:13px;font-weight:700;fill:#a9aaa4"></text>`;ring.innerHTML=h;
+const nowM=new Date().getMonth()+1;
+function selM(m){$$('#ring path').forEach(p=>p.classList.toggle('sel',+p.dataset.m===m));const s=SEAS(m),items=CAL[m-1][1].split(' · ');$('#rc1').textContent=m+'월';$('#rc2').textContent=m===nowM?'지금 이 달':s[0];$('#mp').innerHTML=`<span class="ss" style="background:${s[1]}">${s[0]}${m===nowM?' · 지금':''}</span><h3>${m}월</h3><ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul>`}
+ring.addEventListener('click',e=>{const p=e.target.closest('path');if(p)selM(+p.dataset.m)});ring.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const p=e.target.closest('path');if(p){e.preventDefault();selM(+p.dataset.m)}}});selM(nowM);
+$('#tline').innerHTML=TL.map(t=>`<div class="ti rv"><b>${t[0]}</b><div>${t[1]}</div><small>근거: ${t[2]}</small></div>`).join('');
+
+/* 7. quiz */
+let order=[],qi=0,sc=0,wrong=[];
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function startQuiz(ids){order=ids||shuffle(QS.map((_,i)=>i));qi=0;sc=0;wrong=[];showQ()}
+function showQ(){const z=$('#quiz');if(qi>=order.length)return result();const q=QS[order[qi]];z.innerHTML=`<div class="qbar"><i style="width:${qi/order.length*100}%"></i></div><div class="qh"><span>Q ${qi+1} / ${order.length}</span><span>점수 ${sc}</span></div><div class="qq">${q[0]}</div>`+q[1].map((o,j)=>`<button class="qo" data-j="${j}"><i>${'ABCD'[j]}</i>${o}</button>`).join('')+`<div class="qx" id="qx"></div><div class="nb" id="qnb" hidden><button id="qnx">${qi+1===order.length?'결과 보기':'다음 문제 ›'}</button></div>`;
+ z.querySelectorAll('.qo').forEach(b=>b.onclick=()=>{const j=+b.dataset.j;z.querySelectorAll('.qo').forEach(x=>x.disabled=true);if(j===q[2]){b.classList.add('right');sc++}else{b.classList.add('wrong');z.querySelectorAll('.qo')[q[2]].classList.add('right');wrong.push(order[qi])}$('#qx').innerHTML='<b>해설</b> · '+q[3];$('#qx').classList.add('show');$('#qnb').hidden=false;$('#qnx').onclick=()=>{qi++;showQ()};$('#qnx').focus()})}
+function result(){const n=order.length,p=sc/n,C=2*Math.PI*54;const msg=p===1?'완벽합니다!':p>=.8?'아주 좋습니다':p>=.5?'조금만 더 복습하세요':'카드와 캘린더를 다시 훑어보세요';$('#quiz').innerHTML=`<div class="res"><svg viewBox="0 0 130 130"><circle cx="65" cy="65" r="54" fill="none" stroke="#444642" stroke-width="14"/><circle cx="65" cy="65" r="54" fill="none" stroke="#ff4d12" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 ${C}" transform="rotate(-90 65 65)" id="rr" style="transition:stroke-dasharray 1.2s"/><text x="65" y="74" text-anchor="middle" font-size="30" font-weight="900" fill="#fff">${sc}/${n}</text></svg><h3>${msg}</h3></div>`+(wrong.length?`<h4 style="color:var(--mut)">틀린 문제 복습</h4>`+wrong.map(i=>`<div class="wl"><b>${QS[i][0]}</b><br>정답: ${QS[i][1][QS[i][2]]}<br><small>${QS[i][3]}</small></div>`).join(''):'')+`<div class="nb" style="justify-content:center;margin-top:16px"><button class="btn or" id="again">다시 풀기</button>${wrong.length?'<button class="btn" id="again2">틀린 문제만</button>':''}</div>`;setTimeout(()=>$('#rr').style.strokeDasharray=`${C*p} ${C}`,80);$('#again').onclick=()=>startQuiz();const a2=$('#again2');if(a2)a2.onclick=()=>startQuiz(shuffle(wrong))}
+startQuiz();
+
+/* 10. law filter */
+const rows=$$('#s10 tr').filter(r=>r.querySelector('td'));
+const V={};rows.forEach(r=>{const last=r.lastElementChild;const b=last.querySelector('b');let v=b?b.textContent.trim():'참고';if(v.startsWith('확인'))v='확인 필요';else if(v.startsWith('불일치'))v='불일치';else if(v.startsWith('일치'))v='일치';else if(v.startsWith('보완'))v='보완';else v='참고';if(/^참고|^구분 안내/.test(last.textContent.trim()))v='참고';r.dataset.v=v;V[v]=(V[v]||0)+1});
+const VC={'일치':'#1f8a4c','보완':'#ff4d12','확인 필요':'#d9a400','불일치':'#8c1f0a','참고':'#6a6b66'};
+const vs=Object.keys(VC).filter(k=>V[k]);let lv='전체',lqv='';
+donut($('#dn2'),$('#dl2'),vs.map(k=>({l:k,v:V[k],c:VC[k]})),i=>{lv=vs[i];syncL()});
+$('#lchips').innerHTML=['전체',...vs].map(k=>`<button class="chip${k==='전체'?' on':''}">${k}${k==='전체'?'':' '+V[k]}</button>`).join('');
+$('#lchips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;lv=b.textContent.replace(/\s\d+$/,'');syncL()};
+$('#lq').oninput=e=>{lqv=e.target.value.trim().toLowerCase();syncL()};
+function syncL(){$$('#lchips .chip').forEach(b=>b.classList.toggle('on',b.textContent.replace(/\s\d+$/,'')===lv));rows.forEach(r=>{r.style.display=((lv==='전체'||r.dataset.v===lv)&&(!lqv||r.textContent.toLowerCase().includes(lqv)))?'':'none'})}
+
+/* start */
+$$('#s5 details,#s9 table').forEach(()=>{});
+watch();
+if(!('IntersectionObserver' in window)){$$('.rv').forEach(e=>e.classList.add('in'))}
+</script>
+</body>
+</html>

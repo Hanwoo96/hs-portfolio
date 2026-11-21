@@ -1,0 +1,1919 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5인 이상 사업장 준비</title>
+<style>
+:root{
+  --bg:#F5F5F2; --card:#FFFFFF; --ink:#1E2530; --ink-2:#4B5563; --ink-3:#7A8494; --line:#E4E8EE; --soft:#F7F9FA;
+  --brand:#1E2B4A; --brand-2:#2F6FDB; --brand-soft:#EAF0FA; --brand-mid:#6E8FC9; --brand-light:#B7C8E8;
+  --k1:#2B3D63; --k2:#9DB2D8; --k3:#4A6FB0; --k4:#B9524A;
+  --must:#B4232C; --must-bg:#FDECEC; --if:#9A5B00; --if-bg:#FFF4E0; --rec:#1F5FAF; --rec-bg:#E8F0FC; --na:#6B7280; --na-bg:#F0F1F3; --done:#1E7A4C; --done-bg:#E3F4EA;
+  --warn-bg:#FFF4E0; --warn-ink:#9A5B00; --pend-bg:#EEF1FF; --pend-ink:#3F4FB3;
+  --law:#1B2A4A; --gov:#2563C9; --expert:#6B7280; --press:#A3A9B4;
+  --hl:#FFF2A8; --shadow:0 1px 2px rgba(20,30,50,.04),0 4px 14px rgba(20,30,50,.05); --pop:0 12px 32px rgba(20,30,50,.16),0 2px 6px rgba(20,30,50,.08);
+  --side:248px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;font-size:15px;line-height:1.7;word-break:keep-all}
+a{color:var(--rec)}
+/* ---------- sidebar ---------- */
+.side{position:fixed;inset:0 auto 0 0;width:var(--side);background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:40}
+.side .logo{padding:22px 20px 14px;border-bottom:1px solid var(--line)}
+.side .logo img{width:150px;display:block}
+.side .logo small{display:block;color:var(--ink-3);font-size:12px;margin-top:8px}
+.nav{flex:1;overflow-y:auto;padding:10px 10px}
+.nav a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;color:var(--ink-2);text-decoration:none;font-size:14px;margin-bottom:2px}
+.nav a .n{width:9px;height:9px;border-radius:2px;background:#C3CAD3;flex:none}
+.nav .grp{border:1px solid var(--line);border-radius:10px;padding:7px 4px 4px;margin:0 0 8px;background:#fff}
+.nav .grp-t{font-size:11.5px;font-weight:700;color:var(--ink-3);padding:0 8px 4px;display:flex;align-items:center;gap:6px;letter-spacing:.2px}
+.nav .grp a{margin-bottom:1px}
+.nav a.top{margin:2px 0 10px;border:1px solid var(--line)}
+.chip{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:4px;letter-spacing:0;line-height:1.5}
+.chip.safe{background:#E3F1E8;color:#1B4D33}
+.chip.labor{background:#F5ECE0;color:#6E4615}
+.nav a:hover{background:var(--soft)}
+.nav a.active{background:var(--brand);color:#fff}
+.nav a.active .n{background:#fff !important}
+.nav a.top.active{border-color:var(--brand)}
+.nav .sep{font-size:11.5px;color:var(--ink-3);padding:12px 12px 4px;letter-spacing:.3px}
+.side .prog{margin:0 10px 12px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:12.5px;color:var(--ink-2)}
+.bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--brand);border-radius:4px;transition:width .3s}
+/* ---------- main ---------- */
+.main{margin-left:var(--side);min-height:100vh}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(245,245,242,.94);backdrop-filter:blur(6px);display:flex;align-items:center;gap:12px;padding:12px 28px;border-bottom:1px solid var(--line)}
+.topbar h1{font-size:16px;margin:0;flex:1;letter-spacing:-.2px}
+.topbar h1 small{font-weight:400;color:var(--ink-3);font-size:12.5px;margin-left:8px}
+.menu-btn{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
+.toggle{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2);cursor:pointer;user-select:none}
+.toggle input{display:none}
+.switch{width:36px;height:20px;border-radius:10px;background:#C9CED8;position:relative;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .2s}
+.toggle input:checked+.switch{background:var(--brand)}
+.toggle input:checked+.switch::after{transform:translateX(16px)}
+.btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13.5px;font-weight:600;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink-2);cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--soft)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.primary:hover{background:#15203A}
+.content{padding:24px 28px 80px;max-width:1240px}
+.page{display:none}
+.page.active{display:block;animation:fade .18s ease-out}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.page-head{margin:4px 0 18px}
+.page-head .eyebrow{font-size:12.5px;color:var(--ink-3);font-weight:700;letter-spacing:.3px;display:flex;align-items:center;gap:6px}
+.page-head h2{font-size:24px;margin:2px 0 0;letter-spacing:-.4px;display:inline-block;vertical-align:middle}
+/* ---------- grid / cards ---------- */
+.grid{display:grid;gap:18px;margin-bottom:18px}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g21{grid-template-columns:2fr 1fr}
+.g12{grid-template-columns:1fr 2fr}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);min-width:0}
+.card h3{font-size:16px;margin:0 0 4px;letter-spacing:-.2px}
+.card .sub{color:var(--ink-3);font-size:13px;margin:0 0 14px}
+.card h4{font-size:14.5px;margin:18px 0 8px;color:var(--brand)}
+.card p{margin:0 0 10px}
+.card ul,.card ol{margin:0 0 10px;padding-left:20px}
+.card li{margin-bottom:4px}
+/* banner */
+.banner{display:flex;gap:16px;align-items:center;background:linear-gradient(100deg,var(--brand) 0%,#2B3D63 70%,#4A6FB0 100%);color:#fff;border-radius:14px;padding:20px 24px;margin-bottom:18px;box-shadow:var(--shadow)}
+.banner .ic{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;flex:none}
+.banner b{font-size:17px;display:block;letter-spacing:-.2px}
+.banner span{opacity:.88;font-size:14px}
+.banner .pill{margin-left:auto;background:var(--brand-2);color:#fff;font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;white-space:nowrap}
+/* brief */
+.brief{margin-bottom:18px;border-top:4px solid var(--brand)}
+.brief-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.brief-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.brief h4{margin:10px 0 6px;font-size:14px;color:var(--brand)}
+.concl{margin:0;padding-left:20px}
+.concl li{margin-bottom:6px;font-size:15px}
+.why{margin:0;padding-left:18px;font-size:14px}
+.decide td,.decide th{padding:8px 8px}
+.decide td small{color:var(--ink-3)}
+.decide td:last-child{font-weight:700;color:var(--brand);white-space:nowrap}
+.cost{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.cost div{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.cost span{display:block;font-size:12px;color:var(--ink-3)}
+.cost b{display:block;font-size:15px}
+.cost small{display:block;font-size:12px;color:var(--ink-2);line-height:1.5}
+.role{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 7px;border-radius:5px;margin-right:6px;vertical-align:1px}
+.role.ceo{background:var(--brand);color:#fff}
+.role.staff{background:var(--na-bg);color:var(--ink-2)}
+.term{border-bottom:1px dotted var(--ink-3);cursor:help}
+.ceo-list li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.ceo-list li:last-child{border:0}
+.ceo-list .no{flex:none;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.filter{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.filter button{font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--ink-2)}
+.filter button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+body.only-ceo .ck[data-role="staff"]{display:none}
+@media (max-width:900px){.brief-grid{grid-template-columns:1fr}}
+/* kpi */
+.kpi{border-radius:14px;padding:18px 20px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden;min-height:132px}
+.kpi::after{content:"";position:absolute;right:-26px;bottom:-26px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.08)}
+.kpi .l{font-size:13px;opacity:.9}
+.kpi .v{font-size:25px;font-weight:800;letter-spacing:-.5px;margin:6px 0 2px;line-height:1.25}
+.kpi .s{font-size:12.5px;opacity:.88}
+.kpi .cite button{background:rgba(255,255,255,.25)!important;color:#fff!important}
+/* summary / todo boxes */
+.lead-box{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;margin-bottom:18px}
+.one{background:var(--brand-soft);border:1px solid #CFDBEF;border-radius:14px;padding:18px 20px}
+.one .t{font-size:12.5px;font-weight:700;color:var(--brand);margin-bottom:4px}
+.one p{margin:0;font-size:15.5px;font-weight:600;line-height:1.65}
+.todo{background:#fff;border:1px solid var(--line);border-left:4px solid var(--brand-2);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow)}
+.todo .t{font-size:12.5px;font-weight:700;color:var(--brand-2);margin-bottom:6px}
+.todo ul{margin:0;padding-left:18px}
+.todo li{margin-bottom:3px}
+details.more{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:18px}
+details.more>summary{cursor:pointer;list-style:none;padding:15px 20px;font-weight:700;display:flex;align-items:center;gap:8px}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::before{content:"▸";color:var(--brand);transition:transform .15s}
+details.more[open]>summary::before{transform:rotate(90deg)}
+details.more>summary small{font-weight:400;color:var(--ink-3)}
+details.more .body{padding:0 22px 20px}
+/* tables */
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{background:var(--soft);color:var(--ink-2);font-weight:600;font-size:13px;white-space:nowrap}
+tbody tr:nth-child(even) td{background:#FAFBFC}
+tr.dim td{color:var(--ink-3)}
+td.c,th.c{text-align:center}
+/* badges */
+.bd{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap;line-height:1.6}
+.bd.must{background:var(--must-bg);color:var(--must)}
+.bd.if{background:var(--if-bg);color:var(--if);outline:1px dashed #E0B050;outline-offset:-1px}
+.bd.rec{background:var(--rec-bg);color:var(--rec)}
+.bd.na{background:var(--na-bg);color:var(--na)}
+.bd.done{background:var(--done-bg);color:var(--done)}
+.bd.warn{background:var(--warn-bg);color:var(--warn-ink)}
+.bd.pend{background:var(--pend-bg);color:var(--pend-ink)}
+.bd.now{background:var(--must);color:#fff}
+.bd.hire{background:var(--must-bg);color:var(--must)}
+.yes{color:var(--done);font-weight:800}
+.no{color:#B0B6C0}
+/* IF box */
+.ifbox{border:1.5px dashed #E0B050;background:#FFFBF2;border-radius:14px;padding:18px 20px;margin-bottom:18px}
+.ifbox .h{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.ifbox .h b{font-size:16px}
+.note{font-size:13px;color:var(--ink-3)}
+.callout{background:#FFF8EE;border:1px solid #F3D7B4;border-radius:10px;padding:12px 14px;font-size:14px;margin:10px 0}
+.callout.info{background:#F2F7FD;border-color:#D3E3F7}
+/* donut */
+.donut-wrap{display:flex;flex-direction:column;align-items:stretch;gap:14px}
+.donut{position:relative;width:140px;height:140px;flex:none;margin:0 auto}
+.donut svg{width:140px;height:140px;transform:rotate(-90deg)}
+.donut .ct{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.donut .ct b{font-size:30px;letter-spacing:-1px;display:block;line-height:1}
+.donut .ct small{color:var(--ink-3);font-size:12px}
+.phase-list{flex:1;font-size:13.5px}
+.phase-list div{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.phase-list div:last-child{border:0}
+/* todo list (dashboard) */
+.tlist{list-style:none;margin:0;padding:0}
+.tlist li{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-bottom:8px;font-size:14px}
+.tlist li.ok span{text-decoration:line-through;color:var(--ink-3)}
+.tlist input{margin-top:5px;accent-color:var(--brand);width:16px;height:16px;flex:none}
+/* timeline */
+.tl{list-style:none;margin:0;padding:0 0 0 4px}
+.tl li{position:relative;padding:0 0 14px 22px;border-left:2px solid var(--line);margin-left:6px}
+.tl li:last-child{border-left-color:transparent;padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--brand-mid)}
+.tl li.now::before{border-color:var(--brand-2);background:var(--brand-2)}
+.tl li.key::before{border-color:var(--brand)}
+.tl b{display:block;font-size:14px}
+.tl span{font-size:13px;color:var(--ink-2)}
+/* segmented bar */
+.seg{display:flex;height:30px;border-radius:8px;overflow:hidden;gap:2px;margin:6px 0 10px}
+.seg div{display:grid;place-items:center;color:#fff;font-size:12.5px;font-weight:700}
+.seg-leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.seg-leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+/* hbar (funnel) */
+.hbars .row{display:grid;grid-template-columns:72px 1fr 92px;align-items:center;gap:10px;margin-bottom:10px}
+.hbars .lab{font-size:13.5px;color:var(--ink-2)}
+.hbars .track{height:22px;position:relative}
+.hbars .fill{height:100%;border-radius:0 4px 4px 0;min-width:3px;cursor:default}
+.hbars .val{font-size:13.5px;font-weight:700;text-align:right}
+.hbars .val small{display:block;font-weight:400;color:var(--ink-3);font-size:11.5px;line-height:1.2}
+/* vbar (fines) */
+.vchart{display:flex;align-items:flex-end;gap:26px;height:210px;padding:10px 6px 0;border-bottom:1px solid var(--line);position:relative}
+.vchart .grp{flex:1;display:flex;align-items:flex-end;justify-content:center;gap:4px;height:100%}
+.vchart .b{width:28px;border-radius:4px 4px 0 0;position:relative;cursor:default}
+.vchart .b em{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-style:normal;font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap}
+.vlabels{display:flex;gap:26px;padding:6px 6px 0}
+.vlabels div{flex:1;text-align:center;font-size:12.5px;color:var(--ink-2)}
+.gridline{position:absolute;left:0;right:0;border-top:1px dashed #EDF0F3;font-size:10.5px;color:var(--ink-3)}
+.gridline span{position:absolute;left:-2px;top:-9px;background:#fff;padding-right:4px}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--ink-2);margin-bottom:6px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.tip{position:fixed;z-index:80;background:#1E2530;color:#fff;font-size:12.5px;padding:6px 9px;border-radius:6px;pointer-events:none;display:none;max-width:240px;line-height:1.5}
+/* hazard tiles */
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff;text-align:center}
+.tile .em{font-size:26px}
+.tile b{display:block;font-size:14px;margin-top:4px}
+.tile span{font-size:12.5px;color:var(--ink-3)}
+/* steps */
+.steps{display:flex;gap:8px;flex-wrap:wrap;counter-reset:s}
+.steps div{flex:1;min-width:130px;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13.5px;counter-increment:s;position:relative}
+.steps div::before{content:counter(s);display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--brand);color:#fff;font-size:11.5px;font-weight:700;margin-right:6px}
+/* level rows */
+.lv{display:grid;grid-template-columns:70px 1fr 120px;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+.lv>div{padding:10px 12px;border-bottom:1px solid var(--line)}
+.lv>div:nth-last-child(-n+3){border-bottom:0}
+.lv .k{font-weight:800;text-align:center}
+.lv .hi{background:var(--must-bg);color:var(--must)}
+.lv .mid{background:var(--if-bg);color:var(--if)}
+.lv .lo{background:var(--done-bg);color:var(--done)}
+/* threshold */
+.thr{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:10px}
+.thr::before{content:"";position:absolute;top:21px;left:12%;right:12%;height:3px;background:linear-gradient(90deg,var(--brand-2),var(--brand))}
+.thr>div{text-align:center;padding:0 8px;position:relative}
+.thr .dot{width:44px;height:44px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-weight:800;color:#fff;background:var(--brand);position:relative;font-size:14px}
+.thr .dot.now{background:var(--brand-2)}
+.thr b{display:block;font-size:14px}
+.thr span{display:block;font-size:12.5px;color:var(--ink-2);line-height:1.55}
+/* support cards */
+.sup{border:1px solid var(--line);border-radius:14px;background:#fff;padding:18px 20px;box-shadow:var(--shadow);position:relative}
+.sup .rank{position:absolute;top:16px;right:16px;font-size:12px;font-weight:800;color:var(--brand-2)}
+.sup h3{font-size:16px;margin:0 0 6px;padding-right:56px}
+.sup dl{display:grid;grid-template-columns:64px 1fr;gap:4px 10px;margin:10px 0;font-size:13.5px}
+.sup dt{color:var(--ink-3)}
+.sup dd{margin:0}
+/* checklist */
+.phase{margin-bottom:18px}
+.phase-h{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.phase-h b{font-size:16px}
+.phase-h .cnt{margin-left:auto;font-size:13px;color:var(--ink-3)}
+.ck{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:start;padding:11px 12px;border-bottom:1px solid var(--line)}
+.ck:last-child{border-bottom:0}
+.ck input{width:17px;height:17px;margin-top:4px;accent-color:var(--brand)}
+.ck .tx b{font-weight:600}
+.ck .tx small{display:block;color:var(--ink-3);font-size:12.5px}
+.ck.ok .tx b{text-decoration:line-through;color:var(--ink-3)}
+.ck .tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.ck .tags a{font-size:12px;text-decoration:none}
+/* forms */
+.form{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow)}
+.form-h{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.form-h h3{margin:0;font-size:17px;flex:1}
+.form table{font-size:13.5px}
+.form td,.form th{border:1px solid var(--line)}
+.form thead th{white-space:normal}
+.blank{display:inline-block;min-width:120px;border-bottom:1px solid #AEB4BE;height:1.2em}
+.sign{display:flex;gap:0;justify-content:flex-end;margin-top:12px}
+.sign div{border:1px solid var(--line);width:96px;text-align:center;font-size:12.5px}
+.sign div b{display:block;background:var(--soft);font-weight:600;padding:3px;border-bottom:1px solid var(--line)}
+.sign div span{display:block;height:44px}
+
+/* 양식 (Word 세트와 동일) */
+.form-body{overflow-x:auto}
+.form .meta{font-size:12.5px;color:var(--ink-3);margin:0 0 10px}
+.form td,.form th{border:1px solid #CBD2DA}
+.form td.h{background:#F3F5F7;font-weight:700;width:22%}
+.form .ex{color:var(--ink-3);font-size:12.5px}
+.form .box{border:1px solid #E0B050;background:#FFFBF2;border-radius:8px;padding:8px 12px;margin:6px 0 10px}
+.form .tall td{height:30px}
+.form h4{font-size:14.5px;margin:16px 0 8px;color:var(--brand)}
+.form h4.sub{font-size:16px;margin:24px 0 8px;padding-top:14px;border-top:2px dashed var(--line);color:var(--ink)}
+.form table.sgn{width:auto;margin:10px 0 0 auto;border-collapse:collapse}
+.form .sgn td{text-align:center;width:96px;font-size:12.5px;background:#fff}
+.form .sgn td.s{height:46px}
+.form p{margin:0 0 6px}
+@media print{.form-body{overflow:visible}}
+/* 적용 범위 배지 */
+.scope{display:inline-block;vertical-align:middle;margin-left:10px;font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:0}
+.scope.sm{font-size:11.5px;padding:1px 8px;margin-left:6px}
+.scope.new{background:var(--brand);color:#fff}
+.scope.now{background:var(--na-bg);color:var(--ink-2);border:1px solid var(--line)}
+.scope.mix{background:var(--brand-soft);color:var(--brand);border:1px solid #CFDBEF}
+.page-head h2 .scope{font-size:13px}
+/* 무료 지원 카드 링크 */
+.sup.link{cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
+.sup.link:hover,.sup.link:focus-visible{border-color:var(--brand);box-shadow:0 6px 18px rgba(30,43,74,.15);transform:translateY(-1px);outline:none}
+.sup .go{margin-top:6px}
+/* refs */
+.ref-group{margin-bottom:16px}
+.ref-group h4{font-size:14px;margin:0 0 6px;display:flex;gap:8px;align-items:center;color:var(--ink-2)}
+.ref-group ol{list-style:none;margin:0;padding:0}
+.ref-group li{display:grid;grid-template-columns:44px 1fr;gap:6px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.ref-group li.flash{background:var(--hl)}
+.ref-num{font-weight:700;color:var(--ink-3)}
+.ref-body a.src{color:var(--ink);font-weight:600;text-decoration:none}
+.ref-body a.src:hover{text-decoration:underline}
+.ref-sub{color:var(--ink-3);font-size:12.5px}
+.back a{font-size:12.5px;color:var(--rec);text-decoration:none;margin-right:8px}
+.url-print{display:none}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
+/* cites */
+.cite{white-space:nowrap}
+.cite button{font:inherit;font-size:10.5px;font-weight:700;line-height:1;vertical-align:super;margin-left:1px;border:0;border-radius:4px;padding:2px 4px;cursor:pointer;color:#fff;background:var(--c,var(--rec))}
+.cite button:hover,.cite button:focus-visible{box-shadow:0 0 0 3px rgba(37,99,201,.25);outline:none}
+.cite button[data-type=law]{--c:var(--law)}
+.cite button[data-type=gov]{--c:var(--gov)}
+.cite button[data-type=expert]{--c:var(--expert)}
+.cite button[data-type=press]{--c:var(--press);color:#2d323b}
+.cite button[data-type=local]{--c:var(--brand-mid)}
+.cite .flag{font-size:10.5px;vertical-align:super}
+body.hide-cites .cite{display:none}
+.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%,40%{background:var(--hl)}100%{background:transparent}}
+.card-inner .type{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-3);margin-bottom:6px}
+.card-inner .org{font-weight:700;color:var(--ink-2)}
+.card-inner .title{font-weight:700;font-size:15px;line-height:1.5;margin:0 0 6px}
+.card-inner .dates{font-size:12.5px;color:var(--ink-3);margin-bottom:10px}
+.card-inner .quote{font-size:13.5px;color:var(--ink-2);background:var(--soft);border-left:3px solid var(--line);padding:8px 10px;border-radius:4px;margin-bottom:10px;line-height:1.6}
+.card-inner .badges{margin-bottom:10px;display:flex;gap:6px;flex-wrap:wrap}
+.card-inner .actions{display:flex;gap:8px;flex-wrap:wrap}
+.popover{position:absolute;z-index:70;width:360px;max-width:calc(100vw - 32px);background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--pop);padding:16px;display:none}
+.popover.open{display:block}
+.popover .x{position:absolute;top:6px;right:6px;border:0;background:none;font-size:20px;color:var(--ink-3);cursor:pointer;padding:4px 8px;line-height:1}
+.scrim{position:fixed;inset:0;background:rgba(15,20,30,.35);z-index:60;display:none}
+.scrim.open{display:block}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:71;background:#fff;border-radius:16px 16px 0 0;padding:10px 16px 24px;box-shadow:var(--pop);transform:translateY(100%);transition:transform .22s ease-out;max-height:75vh;overflow-y:auto}
+.sheet.open{transform:none}
+.sheet .grab{width:40px;height:4px;border-radius:2px;background:#D3D7DF;margin:2px auto 14px}
+.legend-src{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--ink-2)}
+.legend-src span{display:inline-flex;align-items:center;gap:6px}
+/* responsive */
+@media (max-width:1100px){.g4{grid-template-columns:repeat(2,1fr)}.tiles{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:900px){
+  .side{transform:translateX(-100%);transition:transform .2s;box-shadow:var(--pop)}
+  body.nav-open .side{transform:none}
+  .main{margin-left:0}
+  .menu-btn{display:inline-block}
+  .g3,.g2,.g21,.g12,.lead-box{grid-template-columns:1fr}
+  .content{padding:18px 16px 70px}
+  .topbar{padding:10px 16px}
+  .topbar h1 small{display:none}
+}
+@media (max-width:600px){
+  .g4{grid-template-columns:1fr 1fr}
+  .tiles{grid-template-columns:1fr 1fr}
+  .kpi .v{font-size:20px}
+  .thr{grid-template-columns:1fr 1fr;row-gap:18px}
+  .thr::before{display:none}
+  .banner{flex-wrap:wrap}
+  .banner .pill{margin-left:0}
+  .print-label{display:none}
+  .topbar{gap:8px}
+  .topbar h1{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .vchart{gap:12px}.vlabels{gap:12px}.vchart .b{width:20px}
+}
+/* print */
+@media print{
+  body{background:#fff;font-size:12.5px}
+  .side,.topbar,.popover,.sheet,.scrim,.back,.no-print,.tip{display:none!important}
+  .main{margin:0}
+  .content{padding:0;max-width:none}
+  .page{display:block!important;page-break-before:always}
+  .page:first-of-type{page-break-before:auto}
+  .card,.form,details.more,.sup,.todo{box-shadow:none;break-inside:avoid}
+  details.more>.body{display:block}
+  .cite button{background:none!important;color:#000!important;padding:0}
+  .url-print{display:block;font-size:10.5px;color:#444;word-break:break-all}
+  body.print-one .page,body.print-one .form{display:none!important}
+  body.print-one #forms{display:block!important}
+  body.print-one #forms .page-head,body.print-one #forms>.lead-box{display:none!important}
+  body.print-one .form.printing{display:block!important;border:0}
+  .kpi,.banner{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* ===== 남색 재디자인 (D1.9) ===== */
+.side{background:#1E2B4A;border-right:0}
+.side .logo{border-bottom:1px solid rgba(255,255,255,.08);padding:22px 20px 16px}
+.side .logo .wm{color:#fff;font-weight:800;font-size:17px;letter-spacing:-.4px;line-height:1.35}
+.side .logo small{color:#8FA0BF;margin-top:6px}
+.nav a{color:#C5CFE0}
+.nav a:hover{background:rgba(255,255,255,.06)}
+.nav a.active{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 3px 0 0 #5B8DEF}
+.nav a .ic{width:17px;height:17px;flex:none;opacity:.8}
+.nav a.active .ic{opacity:1}
+.nav .grp{background:transparent;border-color:rgba(255,255,255,.10)}
+.nav .grp-t{color:#8FA0BF}
+.nav a.top{border-color:rgba(255,255,255,.10)}
+.nav a.top.active{border-color:transparent}
+.chip.safe{background:#DCEBE2;color:#1B4D33}
+.chip.labor{background:#F2E6D6;color:#6E4615}
+.page-head .chip.safe,.page-head .chip.labor{background:#EAF0FA;color:#1E2B4A}
+.side .prog{border-color:rgba(255,255,255,.10);color:#C5CFE0}
+.side .prog b{color:#fff}
+.side .prog .bar{background:rgba(255,255,255,.15)}
+.side .prog .bar i{background:#5B8DEF}
+.banner{background:#1E2B4A}
+.banner .pill{background:#2F6FDB}
+.kpi{background:#fff !important;color:var(--ink);border:1px solid var(--line);display:grid;grid-template-columns:1fr auto;column-gap:12px;align-content:start}
+.kpi::after{display:none}
+.kpi .l{color:var(--ink-3);opacity:1;grid-column:1;grid-row:1}
+.kpi .v{color:var(--brand);grid-column:1;grid-row:2}
+.kpi .s{color:var(--ink-2);opacity:1;grid-column:1;grid-row:3}
+.kpi .ki{grid-column:2;grid-row:1 / span 2;width:44px;height:44px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center}
+.kpi .kic{width:22px;height:22px}
+.kpi.risk .ki{background:#FDECEC;color:#B4232C}
+.kpi.risk .v{color:#B4232C}
+.kpi .cite button{background:var(--c,var(--rec)) !important;color:#fff !important}
+.kpi .cite button[data-type=press]{color:#2d323b !important}
+.one{background:#EEF3FB;border-color:#D6E1F3}
+.card,.sup,details.more,.todo,.form{box-shadow:0 1px 2px rgba(20,30,50,.04)}
+.btn.primary{background:#1E2B4A;border-color:#1E2B4A}
+.btn.primary:hover{background:#15203A}
+@media print{.kpi{border:1px solid #ccc}}
+.brief-h .bd.done{background:#EAF0FA;color:#1E2B4A}
+.ex-card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--soft)}
+.ex-card p{margin:0 0 6px;font-size:14px}
+.ex-h{font-weight:700;margin-bottom:8px;color:var(--brand)}
+.ex-r{font-weight:700;margin-top:8px !important}
+.ex-r.ok{color:var(--done)}
+.ex-r.bad{color:var(--must)}
+.prio{list-style:none;margin:0;padding:0;counter-reset:pr}
+.prio li{counter-increment:pr;position:relative;padding:12px 12px 12px 48px;border-bottom:1px solid var(--line)}
+.prio li:last-child{border-bottom:0}
+.prio li::before{content:counter(pr);position:absolute;left:8px;top:12px;width:28px;height:28px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;display:grid;place-items:center}
+.prio li>span:last-child{display:block;color:var(--ink-2);font-size:14px;margin-top:2px}
+.btn.ghost-w{background:transparent;color:#fff;border-color:rgba(255,255,255,.45);margin-left:auto}
+.btn.ghost-w:hover{background:rgba(255,255,255,.1)}
+.banner .btn.ghost-w + .pill{margin-left:8px}
+.filter .flabel{font-size:12.5px;color:var(--ink-3);align-self:center;margin-right:2px}
+.filter .fsep{width:1px;background:var(--line);margin:0 6px}
+
+/* D2.1 */
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 4px}
+.split2>div{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#F7F9FC}
+.split2>div:first-child{border-color:#C9D6EE;background:#EEF3FB}
+.split2 b{display:block;font-size:13.5px;color:var(--brand)}
+.split2 span{font-size:12.5px;color:var(--ink-2)}
+.legend .lg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 18px;font-size:13.5px;color:var(--ink-2)}
+.legend .lg .bd{margin-right:6px}
+@media (max-width:640px){.split2{grid-template-columns:1fr}}
+
+/* D2.2 모바일 */
+.banner span b{display:inline;font-size:inherit;letter-spacing:0}
+@media (max-width:640px){
+  .brief-grid>div{min-width:0}
+  .decide td:last-child{white-space:normal}
+  .form-h{flex-wrap:wrap;gap:6px}
+}
+@media (max-width:480px){.grid.g4{grid-template-columns:1fr}}
+
+/* 줄바꿈 가독성 (D2.4) */
+p,li,td,th,small,.note,.kpi .s,.tl li span,.split2 span,.callout,dd,.sub{text-wrap:pretty}
+h1,h2,h3,h4,.kpi .l,.steps div,.btn,.ex-h,.split2 b,th,td.h,td.c small{text-wrap:balance}
+.btn,.bd,.pill,.nwb{white-space:nowrap}
+.form td.h{white-space:nowrap}
+.kpi .v{white-space:nowrap;font-size:clamp(19px,1.7vw,25px)}
+.lv{grid-template-columns:44px 1fr}
+.lv .k{grid-row:span 2;display:grid;place-items:center}
+.lv>div:nth-child(3n+2){border-bottom:0;padding-bottom:2px}
+.lv>div:nth-child(3n){padding-top:3px;font-size:13px}
+@media (max-width:640px){.form-body table{min-width:600px}td>.bd.warn{white-space:normal;border-radius:8px}.cost{grid-template-columns:1fr}.card>table td,.card>table th{padding-left:8px;padding-right:8px}}
+
+/* 휴대폰 표 카드 배치 (D2.8) */
+@media (max-width:640px){
+  .tbl.stack{overflow:visible}
+  .tbl.stack table,.tbl.stack tbody,.tbl.stack tr,.tbl.stack td{display:block;width:auto !important;min-width:0 !important}
+  .tbl.stack thead,.tbl.stack tr.st-head{display:none}
+  .tbl.stack tr{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 0 10px;background:#fff}
+  .tbl.stack td{border:0 !important;padding:3px 0 !important;text-align:left !important}
+  .tbl.stack td[data-l]::before{content:attr(data-l);display:block;font-size:11.5px;font-weight:700;color:var(--ink-3);margin-bottom:1px}
+  .tbl.stack td.st-short::before{display:inline-block;min-width:96px;margin:0 8px 0 0}
+  .tbl.stack td.st-first{font-weight:700;font-size:15px;padding-bottom:4px !important}
+  .tbl.stack td.st-grp{font-size:12px;font-weight:800;color:var(--brand)}
+}
+@media(max-width:640px){.body.tbl{padding-left:14px;padding-right:14px}.body.tbl th{white-space:normal}}
+.pubnote{background:#FFF8E6;border:1px solid #F0D9A6;color:#6B4E12;border-radius:12px;padding:10px 16px;font-size:13.5px;margin:-6px 0 18px}
+</style>
+</head>
+<body>
+
+<aside class="side" id="side">
+  <div class="logo">
+    <div class="wm">5인 이상 사업장<br>준비 안내</div>
+    <small>일반 배포판 · 가상 사례</small>
+  </div>
+  <nav class="nav" id="nav">
+    <a href="#dashboard" data-p="dashboard" class="top"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>대시보드</a>
+    <div class="grp">
+      <div class="grp-t">결론</div>
+      <a href="#compare" data-p="compare"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="8" height="16" rx="1.5"/><rect x="13" y="4" width="8" height="16" rx="1.5"/></svg>5인 전후 한눈에 비교</a>
+      <a href="#scenario4" data-p="scenario4"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M3 21c0-3.5 2.7-6 6-6s6 2.5 6 6M16 11h6"/></svg>4인 유지 시나리오</a>
+      <a href="#roadmap" data-p="roadmap"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10"/><path d="M4 6l1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17"/></svg>실행 로드맵</a>
+    </div>
+    <div class="grp">
+      <div class="grp-t">근거 <span class="chip safe">안전</span></div>
+      <a href="#sapa" data-p="sapa"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/></svg>중대재해처벌법</a>
+      <a href="#risk" data-p="risk"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3L12 4z"/><path d="M12 10v4M12 17h.01"/></svg>위험성평가</a>
+      <a href="#osh" data-p="osh"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3V4z"/><path d="M5 17a3 3 0 013-3h11"/></svg>산안법⁠·⁠법정교육</a>
+    </div>
+    <div class="grp">
+      <div class="grp-t">근거 <span class="chip labor">노무</span></div>
+      <a href="#labor" data-p="labor"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M3 13h18"/></svg>근로기준법⁠·포괄임금</a>
+    </div>
+    <div class="grp">
+      <div class="grp-t">활용</div>
+      <a href="#ifcase" data-p="ifcase"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M18 10c0 4-6 3-11 7"/></svg>조건별 안내 (IF)</a>
+      <a href="#support" data-p="support"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8C10.5 5 7 5 7 7s3 1 5 1zm0 0c1.5-3 5-3 5-1s-3 1-5 1z"/></svg>무료 지원</a>
+      <a href="#verify" data-p="verify"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5M8 11l2 2 4-4"/></svg>확인 필요 사항</a>
+    </div>
+    <div class="grp">
+      <div class="grp-t">자료</div>
+      <a href="#forms" data-p="forms"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg>바로 쓰는 양식</a>
+      <a href="#glossary" data-p="glossary"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h6a3 3 0 013 3v12a2 2 0 00-2-2H3zM21 5h-6a3 3 0 00-3 3v12a2 2 0 012-2h7z"/></svg>용어 풀이</a>
+      <a href="#refs" data-p="refs"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg>출처 목록</a>
+    </div>
+  </nav>
+  <div class="prog">
+    준비 진행률 <b id="sideCnt" style="float:right">0/0</b>
+    <div class="bar"><i id="sideBar" style="width:0"></i></div>
+  </div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <button class="menu-btn" id="menuBtn" aria-label="목차 열기">☰ 목차</button>
+    <h1>5인 이상 사업장 준비 안내 <small>가상 사례 · 일반 배포판 · 2026-10-13</small></h1>
+    <label class="toggle"><input type="checkbox" id="citeToggle" checked><span class="switch"></span>근거 표시</label>
+    <button class="btn" id="printBtn">🖨 <span class="print-label">전체 인쇄</span></button>
+  </header>
+
+  <main class="content">
+
+<!-- ================= DASHBOARD ================= -->
+<section class="page" id="dashboard">
+  <div class="banner">
+    <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+    <div><b>가상 사례: 법적 상시근로자 4인 (대표 제외)</b><span><b>주 5일 근무 직원</b>(정규⁠·⁠계약⁠·⁠인턴) 1명이 늘면 5인 이상이 되어 적용됩니다. 아르바이트⁠·단시간⁠·단기 인턴은 1개월 출근 일수에 따라 달라집니다. 그 전에 미리 갖춰 둡니다.</span></div>
+    <a class="btn ghost-w" href="#scenario4">4인 유지 시나리오</a><div class="pill">사전 구축 단계</div>
+  </div>
+  <div class="pubnote">이 자료는 <b>가상의 사례</b>(대표 포함 5명인 경영컨설팅사)를 가정해 만든 <b>일반 배포판</b>입니다. 실제 회사 정보는 들어 있지 않으며, 법률 자문이 아닙니다.</div>
+
+  <div class="card brief">
+    <div class="brief-h"><span class="bd done">대표님 보고 요약</span><span class="note">1분 요약 · 상세는 메뉴(목차)에서</span></div>
+    <div class="brief-grid">
+      <div>
+        <h4>결론</h4>
+        <ol class="concl">
+          <li><b>주 5일 근무 직원 1명</b>(정규⁠·⁠계약⁠·⁠인턴)이 늘면 <b>중대재해처벌법⁠·근로기준법</b>이 적용됩니다(사무직 컨설팅사도 예외 없음). 아르바이트⁠·단시간⁠·단기 인턴은 출근 일수에 따라 달라집니다.</li>
+          <li>준비의 핵심은 <b>의무 5가지를 실제로 하고, 반기 1회 점검 기록으로 남기는 것</b>입니다. 서류 문구만 갖추면 인정받기 어렵고, 대부분 무료 자료⁠·⁠무료 컨설팅으로 해결됩니다.</li>
+          <li>5인이 되면 비용이 바뀌는 쪽은 근로기준법입니다. <b>포괄임금 계약을 쓰고 있다면 채용 계획이 생길 때 먼저 정비</b>를 권합니다(4인 기준에서는 최저임금 미달 여부만 확인).</li>
+        </ol>
+        <div class="split2"><div><b>지금 해야 할 것 (4인 기준)</b><span>위험성평가 · 근로계약⁠·⁠임금 기본기 · 월별 인원 확인</span></div><div><b>채용 계획이 생기면 미리 할 것</b><span>중처법 서류 5종⁠·⁠반기 점검 · 포괄임금 정비 · 5인용 계약서</span></div></div>
+        <h4>왜 미리 준비하나</h4>
+        <ul class="why">
+          <li><b>위험성평가는 지금(4인)도 의무</b>입니다. 과태료만 2028.1.1부터이고, 사고가 나면 지금도 평가 기록이 책임 판단의 근거가 됩니다.<span class="cite" data-ref="s17"></span></li>
+          <li>아르바이트⁠·단시간 1명만 늘어도 적용될 수 있어 <b>시점을 놓치기 쉽습니다</b>.</li>
+          <li>포괄임금 전환과 서류 구축은 <b>1~2개월</b>이 걸려, 채용 확정 뒤 시작하면 늦습니다.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>결정해 주실 것 (4가지)</h4>
+        <table class="decide">
+          <thead><tr><th>결정 사항</th><th>권장</th></tr></thead>
+          <tbody>
+            <tr><td><b>① 실무 담당</b><br><small>대표님 직접 / 담당자 1명 지정 (법적 의무는 아님)</small></td><td>담당자 1명 지정</td></tr>
+            <tr><td><b>② 안전보건 예산</b><br><small>교육⁠·건강검진⁠·구급함⁠·소화기 등</small></td><td>소액이라도 항목 편성</td></tr>
+            <tr><td><b>③ 포괄임금 전환 방향</b><span class="nwb"> <span class="bd hire">채용 전 준비</span></span><br><small>기본급⁠·⁠고정 연장수당 구분, 초과분 정산</small></td><td>채용 확정 전 결정, 신규 채용자부터 적용</td></tr>
+            <tr><td><b>④ 무료 컨설팅 신청</b><br><small>서울시 위험성평가 · 노무⁠·⁠산업안전</small></td><td>이번 주 모집 여부 확인</td></tr>
+          </tbody>
+        </table>
+        <div class="cost">
+          <div><span>대표님 결재⁠·⁠확인 업무</span><b>연 4~5회 결재</b><small>처음: 경영방침⁠·실시규정⁠·예산 서명 / 매년: 위험성평가 결과⁠·⁠예산 승인 / 반기(예: 4월⁠·⁠10월): 점검 서명 (실무 담당자 지정 시)</small></div>
+          <div><span>예상 비용</span><b>안전보건은 소액, 인건비는 증가 가능</b><small>안전보건: 무료 양식⁠·⁠컨설팅 + 소액 비품 / 노무: 가산수당⁠·공휴일⁠·연차로 인건비 증가, 포괄임금 전환 영향은 노무사 검토</small></div>
+        </div>
+        <p class="note" style="margin:8px 0 0">담당자를 지정해도 법적 책임은 대표님께 그대로 있습니다. 담당자는 실무, 대표님은 보고받고 서명하는 구조입니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid g4">
+    <div class="kpi"><span class="ki"><svg class="kic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M3 21c0-3.5 2.7-6 6-6s6 2.5 6 6M19 8v6M16 11h6"/></svg></span><div class="l">적용 시점</div><div class="v">주 5일 +1명</div><div class="s">아르바이트⁠·⁠단기 인턴은 1개월 출근 일수로 판단<span class="cite" data-ref="s10"></span></div></div>
+    <div class="kpi risk"><span class="ki"><svg class="kic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M12 8v5M12 16h.01"/></svg></span><div class="l">대표 처벌 (사망사고)</div><div class="v">1년 이상 징역</div><div class="s">또는 10억 원 이하 벌금 · 법인 50억<span class="cite" data-ref="s2"></span></div></div>
+    <div class="kpi"><span class="ki"><svg class="kic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></span><div class="l">중처법 핵심 의무</div><div class="v">5가지</div><div class="s">+ 외주 시 1가지 · 기록으로 증명<span class="cite" data-ref="s1"></span></div></div>
+    <div class="kpi"><span class="ki"><svg class="kic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8C10.5 5 7 5 7 7s3 1 5 1zm0 0c1.5-3 5-3 5-1s-3 1-5 1z"/></svg></span><div class="l">활용할 무료 지원</div><div class="v">4건</div><div class="s">서울시 2 · 안전보건공단 1 · 두루누리 1</div></div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card">
+      <h3>준비 진행률</h3><p class="sub">실행 로드맵 체크 기준 · 이 컴퓨터에만 저장</p>
+      <div class="donut-wrap">
+        <div class="donut" aria-label="준비 진행률">
+          <svg viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" fill="none" stroke="#E4E8EE" stroke-width="5"/><circle id="donutArc" cx="21" cy="21" r="15.9" fill="none" stroke="#1E2B4A" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 100" pathLength="100"/></svg>
+          <div class="ct"><div><b id="donutPct">0%</b><small id="donutCnt">0 / 0 완료</small></div></div>
+        </div>
+        <div class="phase-list" id="phaseList"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>이번 달 할 일</h3><p class="sub">채용 전에 끝낼 항목 중 남은 것</p>
+      <ul class="tlist" id="dashTodo"></ul>
+      <a href="#roadmap" class="btn" style="width:100%;justify-content:center">전체 로드맵 보기 →</a>
+    </div>
+    <div class="card">
+      <h3>앞으로의 일정</h3><p class="sub">기준: 다음 채용 시점</p>
+      <ul class="tl">
+        <li class="now"><b>지금</b><span>위험성평가 실시 · 채용 계획 시 서류 5종⁠·⁠포괄임금 정비</span></li>
+        <li class="key"><b>5인 도달 시 (1개월 평균)</b><span>중처법⁠·근로기준법 적용, 계약서⁠·⁠급여 전환</span></li>
+        <li><b>도달 후 1개월</b><span>예산 승인, 의견청취, 교육 계획</span></li>
+        <li class="key"><b>반기마다 (예: 4월⁠·⁠10월)</b><span>반기 이행점검, 대표 보고⁠·⁠서명 (달은 회사가 정함)</span></li>
+        <li><b>매년 2월</b><span>안전보건공단 무료 컨설팅 신청</span></li>
+        <li><b>10인 도달 시</b><span>취업규칙 작성⁠·⁠신고</span></li>
+        <li class="key"><b>2028.1.1</b><span>위험성평가 과태료 부과 시작 (50인 미만)<span class="cite" data-ref="s36"></span></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid g21">
+    <div class="card">
+      <h3>중대재해처벌법 9개 의무, 우리 회사 해당 여부</h3><p class="sub">시행령 제4조 기준<span class="cite" data-ref="s1"></span></p>
+      <div class="seg" role="img" aria-label="적용 5개, 조건부 1개, 해당 없음 3개">
+        <div style="flex:5;background:var(--brand)">적용 5</div>
+        <div style="flex:1;background:#C98A1A">IF 1</div>
+        <div style="flex:3;background:#AEB4BE">해당 없음 3</div>
+      </div>
+      <div class="seg-leg"><span><i style="background:var(--brand)"></i>적용: 반드시 갖출 것</span><span><i style="background:#C98A1A"></i>IF: 외주가 있으면</span><span><i style="background:#AEB4BE"></i>해당 없음: 규모 기준 미달</span></div>
+      <div class="tbl" style="margin-top:12px">
+      <table>
+        <thead><tr><th>호</th><th>의무</th><th>해당</th><th>준비 서류</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>안전보건 목표⁠·⁠경영방침</td><td><span class="bd must">5인부터 필수</span></td><td><a href="#forms" data-go="f1">양식 1</a></td></tr>
+          <tr><td>3</td><td>유해⁠·⁠위험요인 확인⁠·⁠개선 (위험성평가 · <b>산안법상 지금도 의무</b>)</td><td><span class="bd must">5인부터 필수</span></td><td><a href="#forms" data-go="f2">양식 2⁠·⁠3</a></td></tr>
+          <tr><td>4</td><td>안전보건 예산 편성⁠·⁠집행</td><td><span class="bd must">5인부터 필수</span></td><td>예산표, 집행 증빙</td></tr>
+          <tr><td>7</td><td>종사자 의견청취</td><td><span class="bd must">5인부터 필수</span></td><td>회의록, 건의 기록</td></tr>
+          <tr><td>8</td><td>비상대응 매뉴얼</td><td><span class="bd must">5인부터 필수</span></td><td><a href="#forms" data-go="f8">양식 8</a></td></tr>
+          <tr><td>9</td><td>외주업체 안전보건 평가기준</td><td><span class="bd if">IF 외주</span></td><td><a href="#ifcase">조건별 안내</a></td></tr>
+          <tr class="dim"><td>2⁠·⁠5⁠·⁠6</td><td>전담조직, 관리책임자 평가, 안전관리자 배치</td><td><span class="bd na">해당 없음</span></td><td>대표가 직접 맡음을 명시 (팀장 등 관리감독자를 두면 5호 반기 평가)</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="card">
+      <h3>대표님이 직접 하실 일</h3><p class="sub">나머지는 담당자에게 맡길 수 있습니다</p>
+      <ul class="ceo-list" style="list-style:none;margin:0;padding:0">
+        <li><span class="no">1</span><span><b>실무 담당 결정</b><br><small class="note">직접 / 담당자 1명 지정</small></span></li>
+        <li><span class="no">2</span><span><b>경영방침 서명⁠·⁠게시</b><br><small class="note"><a href="#forms" data-go="f1">양식 1</a></small></span></li>
+        <li><span class="no">3</span><span><b>포괄임금 전환 방향 결정</b><span class="nwb"> <span class="bd hire">채용 전 준비</span></span><br><small class="note">노무사⁠·⁠서울시 무료 컨설팅 활용</small></span></li>
+        <li><span class="no">4</span><span><b>안전보건 예산 승인</b><br><small class="note">소액이라도 항목 편성</small></span></li>
+        <li><span class="no">5</span><span><b>반기 점검 보고받고 서명</b><br><small class="note">반기마다(예: 4월⁠·⁠10월) · <a href="#forms" data-go="f11">양식 11</a></small></span></li>
+      </ul>
+      <a href="#roadmap" class="btn" style="width:100%;justify-content:center;margin-top:8px">대표님 항목만 로드맵에서 보기 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPARE ================= -->
+<section class="page" id="compare">
+  <div class="page-head"><div class="eyebrow">결론</div><h2>5인 전후 한눈에 비교</h2></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>5인이 되는 순간 '법 두 개'가 새로 켜집니다. 안전(중대재해처벌법)은 서류와 점검, 노무(근로기준법)는 급여와 인사 규칙입니다.</p></div>
+    <div class="todo"><div class="t">대표님 할 일</div><ul><li>아래 표에서 <b>5인 이상</b>에 ✓가 새로 생기는 항목을 채용 전에 준비</li><li>비용 영향이 큰 것: <b>가산수당, 연차, 공휴일 유급, 포괄임금 정비</b></li></ul></div>
+  </div>
+  <div class="card">
+    <h3>무엇이 바뀌나</h3><p class="note" style="margin:0 0 6px">근거(안전⁠·⁠노무) 화면 제목 옆 배지로 <span class="scope new sm">5인부터 적용</span> 과 <span class="scope now sm">지금도 적용 · 규모 무관</span> 을 구분했습니다.</p><p class="sub">✓ 적용 · ✕ 미적용 · <b style="color:var(--ink);font-size:14px">상시근로자는 대표⁠·⁠등기임원 제외</b>, 단시간⁠·기간제⁠·인턴 포함<span class="cite" data-ref="s10"></span> · 노무 항목은 근로기준법 시행령 별표1<span class="cite" data-ref="s11"></span></p>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>구분</th><th>항목</th><th class="c">지금 (4인)</th><th class="c">채용 후 (5인 이상)</th><th>대표님 할 일</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="3"><b>안전</b></td><td>중대재해처벌법<span class="cite" data-ref="s39"></span></td><td class="c no">✕</td><td class="c yes">✓</td><td>서류 5종(+외주 시 1종) + 반기 점검</td></tr>
+        <tr><td>위험성평가<span class="cite" data-ref="s16"></span></td><td class="c yes">✓<br><small class="note">실시규정 작성 생략 가능</small></td><td class="c yes">✓<br><small class="note">전 절차</small></td><td>실시규정 + 최초평가</td></tr>
+        <tr><td>근로자 안전보건교육<span class="cite" data-ref="s30"></span></td><td class="c no">✕<br><small class="note">5인 미만 적용 제외</small></td><td class="c yes">✓</td><td>채용 시 교육, 정기교육</td></tr>
+        <tr><td rowspan="8"><b>노무</b></td><td>연장⁠·⁠야간⁠·⁠휴일 가산수당 50%<span class="cite" data-ref="s11"></span></td><td class="c no">✕</td><td class="c yes">✓</td><td>급여 계산 변경</td></tr>
+        <tr><td>연차유급휴가</td><td class="c no">✕</td><td class="c">△<br><small class="note">직전 1년 계속 5인 이상부터</small></td><td>연차관리대장 (시작 시점 노무사 확인)</td></tr>
+        <tr><td>공휴일⁠·대체공휴일 유급휴일</td><td class="c no">✕</td><td class="c yes">✓</td><td>공휴일 근무 시 가산</td></tr>
+        <tr><td>주 52시간 (40+12)</td><td class="c no">✕</td><td class="c yes">✓</td><td>출퇴근 기록</td></tr>
+        <tr><td>해고 제한⁠·서면통지⁠·부당해고 구제</td><td class="c no">✕</td><td class="c yes">✓</td><td>징계 절차, 해고통지서 양식</td></tr>
+        <tr><td>휴업수당 70%</td><td class="c no">✕</td><td class="c yes">✓</td><td>지급 기준</td></tr>
+        <tr><td>직장 내 괴롭힘 금지⁠·⁠조사 의무</td><td class="c no">✕</td><td class="c yes">✓</td><td>신고⁠·⁠조사 절차</td></tr>
+        <tr><td>임금명세서에 연장⁠·⁠야간⁠·⁠휴일 시간 기재<span class="cite" data-ref="s14"></span></td><td class="c no">✕</td><td class="c yes">✓</td><td>명세서 서식 변경</td></tr>
+        <tr class="dim"><td><b>변화 없음</b></td><td>주휴수당, 휴게, 해고예고, 근로계약서, 법정의무교육</td><td class="c yes">✓</td><td class="c yes">✓</td><td>현행 유지</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCENARIO4 ================= -->
+<section class="page" id="scenario4">
+  <div class="page-head"><div class="eyebrow">결론 · 시나리오</div><h2>4인 유지 시나리오</h2><span class="scope now">5인 미만 기준</span></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>4인(법적 상시근로자 5인 미만)을 유지하면 중대재해처벌법과 근로기준법 대부분이 적용되지 않습니다<span class="cite" data-ref="s39"></span><span class="cite" data-ref="s11"></span>. 할 일은 <b>① 인원 관리 ② 위험성평가 ③ 근로계약⁠·⁠임금 기본기</b>, 세 가지입니다.</p></div>
+    <div class="todo"><div class="t">할 일</div><ul><li><span class="role ceo">대표</span>채용⁠·⁠아르바이트 투입 전 5인 여부 확인 지시</li><li><span class="role staff">담당</span>월별 출근 인원표 작성</li><li><span class="role staff">담당</span>위험성평가 실시규정⁠·최초평가 (<a href="#forms" data-go="f2">양식 2⁠·⁠3</a>)</li><li><span class="role staff">담당</span>근로계약서⁠·최저임금⁠·퇴직금 기본 점검</li></ul></div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px">
+    <h3>언제 5인이 되나</h3><p class="sub">근로기준법 시행령 제7조의2 · 중대재해처벌법도 같은 방식으로 보는 것이 일반적 (⚠️ 판단 기준일은 확인 필요)<span class="cite" data-ref="s10"></span></p>
+    <div class="steps">
+      <div><b>산정 기간</b><br><small>법 적용 사유 발생일 전 1개월</small></div>
+      <div><b>평균 인원</b><br><small>그 기간 연인원 ÷ 가동일수</small></div>
+      <div><b>최종 판단</b><br><small>5인 미만인 날이 가동일수의 절반 이상이면 5인 미만, 절반 미만이면 5인 이상</small></div>
+    </div>
+    <div class="grid g2" style="margin:14px 0 0">
+      <div><h4 style="margin-top:0">셀 때 포함</h4><p style="margin:0">정규직, 기간제, <b>단시간⁠·아르바이트⁠·인턴</b>(근로자인 경우)</p></div>
+      <div><h4 style="margin-top:0">셀 때 제외</h4><p style="margin:0">대표, 등기임원, 파견근로자, 외주업체 직원, 프리랜서</p></div>
+    </div>
+    <h4>예시 계산 (가동일수 20일 기준)</h4>
+    <div class="grid g2" style="margin:0">
+      <div class="ex-card"><div class="ex-h">예시 A · 정규 4명 + 주 2일 아르바이트 1명</div>
+        <p>아르바이트 8일 출근 → 연인원 4×20 + 8 = 88 → 평균 <b>4.4명</b></p>
+        <p>5명인 날 8일(40%) → 5인 미만인 날 12일(60%) = 절반 이상</p>
+        <p class="ex-r ok">판단: 5인 미만 (적용 안 됨)</p></div>
+      <div class="ex-card"><div class="ex-h">예시 B · 정규 4명 + 주 3일 아르바이트 1명</div>
+        <p>아르바이트 12일 출근 → 연인원 4×20 + 12 = 92 → 평균 <b>4.6명</b></p>
+        <p>5명인 날 12일(60%) → 5인 미만인 날 8일(40%) = 절반 미만</p>
+        <p class="ex-r bad">판단: 평균이 5명 미만이어도 5인 이상으로 봄 (적용)</p></div>
+    </div>
+    <p class="note" style="margin-top:10px">예시는 이해를 돕기 위한 단순 계산입니다. 실제 판단은 날짜별 출근 기록으로 하며, 경계선이면 노무사 확인을 권합니다.</p>
+    <div class="grid g2" style="margin:14px 0 0">
+      <div class="ex-card"><div class="ex-h">예시 C · 정규 4명 + 여름 인턴 1명 (7/1~8/31, 주 5일)</div>
+        <p><b>7월 초</b>: 직전 1개월에 인턴 근무일이 적음 → 4인</p>
+        <p><b>7월 중순 ~ 9월 중순 무렵</b>: 직전 1개월 중 5명인 날이 절반 이상 → <b>5인</b>. 이 기간의 연장근로 가산수당⁠·⁠공휴일 유급, 사고 시 중대재해처벌법 적용</p>
+        <p><b>9월 중순 이후</b>: 인턴 근무일이 1개월 범위에서 빠짐 → 다시 4인</p>
+        <p class="ex-r bad">판단: 인턴이 있는 기간만 5인 사업장</p></div>
+      <div class="ex-card"><div class="ex-h">기간 기준과 인턴⁠·⁠실습생 구분</div>
+        <p><b>1개월 기준</b>: 1년에 한 번 정하는 것이 아니라, 연장근로⁠·해고⁠·사고처럼 법 적용을 따질 일이 생긴 날 기준 <b>직전 1개월</b>로 그때그때 판단합니다 (시행령 제7조의2①②)</p>
+        <p><b>중처법도 1개월 기준</b>(일반적 해석): 인턴 기간만 5인이어도 그 기간에 난 사고에는 중대재해처벌법이 적용될 수 있습니다. 1년 기준은 연차에만 해당합니다</p>
+        <p><b>연차만 1년 기준</b>: 직전 1년 동안 월 단위로 <b>한 달도 빠짐없이</b> 5인 이상이어야 적용됩니다 (같은 조③). 짧은 인턴 기간으로는 <b>15일 연차</b>가 생기지 않습니다</p>
+        <p><b>1년 미만 직원의 월 1일 연차</b>: 이 1년 기준에서 빠져 있어, 인턴 기간에 생기는지는 노무사 확인이 필요합니다</p>
+        <p><b>인턴</b>: 업무 지시⁠·⁠출퇴근 시간⁠·⁠급여가 있으면 근로자 → 셈에 포함 (무급이어도 같음)</p>
+        <p><b>실습생</b>: 학교 교육과정⁠·⁠협약에 따른 교육 목적 실습이면 빠질 수 있습니다. 실제로 직원처럼 일하면 근로자로 판단될 수 있습니다</p></div>
+    </div>
+    <p class="note" style="margin-top:10px">예시 C의 시작⁠·⁠종료 시점은 실제 출근일과 가동일수에 따라 달라집니다. 인턴⁠·⁠실습생 채용이 정해지면 노무사나 서울시 무료 노무 컨설팅(<a href="#support">무료 지원</a>)에서 근로자 여부와 산정 방법을 함께 확인받으세요.</p>
+  </div>
+
+  <div class="card" style="margin-bottom:18px">
+    <h3>4인일 때 우선순위</h3><p class="sub">5인 미만에도 적용되는 의무 중심</p>
+    <ol class="prio">
+      <li><b>상시근로자 수 매달 관리</b><span>가장 큰 위험은 모르는 사이에 5인이 되는 것입니다. 월별 출근 인원표를 남기고, 채용⁠·⁠아르바이트 투입 전에 확인하세요.</span></li>
+      <li><b>위험성평가</b><span class="nwb"> <span class="bd now">지금도 의무</span></span><span>산안법 제36조는 규모와 관계없이 적용됩니다. 5인 미만은 위험성평가 실시규정 작성만 생략할 수 있고(지침 제19조), 미실시 과태료는 50인 미만 기준 2028.1.1부터 부과되지만, 의무는 지금부터입니다<span class="cite" data-ref="s36"></span>. <a href="#forms" data-go="f2">양식 2⁠·⁠3⁠·⁠4⁠·⁠5</a></span></li>
+      <li><b>근로계약⁠·⁠임금 기본기</b><span>근로계약서 서면 교부, 최저임금, 주휴수당, 휴게, 해고예고(30일), 퇴직금(1년 이상 근무), 임금명세서, 4대보험은 5인 미만에도 적용됩니다<span class="cite" data-ref="s11"></span>. <b>포괄임금</b>은 4인이면 가산수당 의무가 없어 급하지 않습니다. 포괄 금액이 최저임금에 미달하지 않는지만 확인하고, 채용 계획이 생기면 정비합니다.</span></li>
+      <li><b>법정의무교육</b><span class="nwb"> <span class="bd now">지금도 의무</span></span><span>성희롱 예방(10인 미만은 자료 배포로 대체, 교육 내용은 상시 게시⁠·⁠비치), 장애인 인식개선(공단 보급 자료 배포 가능), 퇴직연금 도입 시 가입자 교육<span class="cite" data-ref="s46"></span><span class="cite" data-ref="s47"></span><span class="cite" data-ref="s48"></span>. <a href="#forms" data-go="f9">양식 9</a></span></li>
+      <li><b>산안법 기본 조치</b><span>산재 발생 시 보고(3일 이상 휴업 시 1개월 내)<span class="cite" data-ref="s44"></span>, 고객 폭언 시 보호 조치, 휴게 공간, <b>일반건강진단</b>(사무직 2년 1회, 국민건강보험 검진으로 대체 인정 · 결과 확인서 보관, 5인 미만도 적용). 근로자 안전보건교육은 5인 미만 적용 제외입니다(시행령 별표1 제6호). 안전⁠·⁠보건관리자 선임 등 관리체계 규정도 5인 미만은 적용 제외입니다(같은 별표1 제6호)<span class="cite" data-ref="s45"></span><span class="cite" data-ref="s42"></span>.</span></li>
+    </ol>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>4인 유지 vs 5인 전환: 의무 비교</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>항목</th><th class="c">4인 유지</th><th class="c">5인 전환</th></tr></thead>
+        <tbody>
+          <tr><td>중대재해처벌법<span class="cite" data-ref="s39"></span> (<a href="#sapa">보기</a>)</td><td class="c no">✕</td><td class="c yes">✓</td></tr>
+          <tr><td>위험성평가<span class="cite" data-ref="s17"></span> (<a href="#risk">보기</a>)</td><td class="c yes">✓<br><small class="note">실시규정 작성 생략 가능</small></td><td class="c yes">✓</td></tr>
+          <tr><td>근로자 안전보건교육<span class="cite" data-ref="s42"></span></td><td class="c no">✕<br><small class="note">5인 미만 적용 제외</small></td><td class="c yes">✓</td></tr>
+          <tr><td>가산수당⁠·연차⁠·공휴일 유급⁠·⁠주 52시간<span class="cite" data-ref="s11"></span> (<a href="#labor">보기</a>)</td><td class="c no">✕</td><td class="c yes">✓</td></tr>
+          <tr><td>해고 제한⁠·⁠직장 내 괴롭힘 조사</td><td class="c no">✕</td><td class="c yes">✓</td></tr>
+          <tr><td>근로계약서⁠·최저임금⁠·주휴⁠·퇴직금</td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+          <tr><td>법정의무교육<span class="cite" data-ref="s46"></span><span class="cite" data-ref="s47"></span></td><td class="c yes">✓</td><td class="c yes">✓</td></tr>
+        </tbody></table></div>
+    </div>
+    <div class="card">
+      <h3>판단에 참고할 차이</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>구분</th><th>4인 유지</th><th>5인 전환</th></tr></thead>
+        <tbody>
+          <tr><td><b>인건비</b></td><td>변화 없음</td><td>가산수당⁠·공휴일⁠·연차로 늘어남</td></tr>
+          <tr><td><b>서류 부담</b></td><td>위험성평가 중심</td><td>+ 중처법 서류 5종, 반기 점검</td></tr>
+          <tr><td><b>사고 시 책임</b></td><td>산안법⁠·⁠형법</td><td>+ 중대재해처벌법</td></tr>
+          <tr><td><b>인력 운영</b></td><td>투입할 때마다 인원 확인 필요</td><td>채용 제약 없음</td></tr>
+        </tbody></table></div>
+      <p class="note" style="margin-top:8px">금액은 근무 형태에 따라 크게 달라 넣지 않았습니다. 인건비 영향은 노무사 검토를 권합니다.</p>
+    </div>
+  </div>
+
+  <div class="ifbox">
+    <div class="h"><span class="bd if">IF</span><b>이런 일이 생기면 5인 전환 준비로 넘어가세요</b></div>
+    <ul><li>정규직⁠·⁠계약직 채용 계획</li><li>아르바이트⁠·⁠인턴 투입 (주 3일 이상이면 위 예시 B처럼, 풀타임 인턴은 예시 C처럼 5인이 될 수 있음)</li><li>프로젝트 인력 증원 (단기 계약직 포함)</li></ul>
+    <a class="btn primary" href="#roadmap" data-scen-go="5">5인 전환 로드맵 보기 →</a>
+  </div>
+
+  <div class="callout"><b>주의</b> · 사고가 나면 4인이어도 산안법⁠·⁠형법(업무상과실치사상)으로 처벌될 수 있습니다. · 정부가 2027년까지 5인 미만 사업장에 근로기준법을 단계적으로 적용하는 로드맵을 보고했다는 보도가 있습니다(2025.8)<span class="cite" data-ref="s49"></span>. 2026.10.13 현재 근로기준법 시행령 별표1은 바뀌지 않아 아직 적용되지 않으며, 법이 바뀌면 4인이어도 가산수당⁠·⁠연차 등이 생길 수 있습니다. · 5인 미만은 산안법 중 안전보건관리체계(제2장 제1⁠·⁠2절)와 안전보건교육(제3장) 등이 적용 제외이고, 위험성평가⁠·건강진단⁠·산재 보고 등은 적용됩니다(산안법 시행령 별표1 제6호)<span class="cite" data-ref="s42"></span>.</div>
+</section>
+
+<!-- ================= ROADMAP ================= -->
+<section class="page" id="roadmap">
+  <div class="page-head"><div class="eyebrow">할 일</div><h2>실행 로드맵</h2></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>'채용 전'에 서류와 포괄임금을 정비해 두면, 5인이 되었을 때는 계약서와 급여만 바꾸면 됩니다. 대표님이 직접 하실 일은 5개입니다.</p></div>
+    <div class="todo"><div class="t">사용 방법</div><ul><li><span class="role ceo">대표</span>는 대표님이 직접, <span class="role staff">담당</span>은 실무 담당자가 할 일입니다.</li><li>끝난 항목을 체크하면 진행률에 반영됩니다. 체크 상태는 <b>이 컴퓨터의 브라우저에만</b> 저장됩니다.</li><li><span class="bd now">지금도 의무</span> <span class="bd hire">채용 전 준비</span> <span class="bd must">5인부터 필수</span> <span class="bd if">IF</span> 해당 <span class="nwb">시 <span class="bd rec">권장</span></span></li></ul></div>
+  </div>
+  <div class="filter no-print" role="group" aria-label="보기 선택"><span class="flabel">시나리오</span><button type="button" class="on" data-scen="5">5인 전환</button><button type="button" data-scen="4">4인 유지</button><span class="fsep"></span><button type="button" class="on" data-filter="all">전체 보기</button><button type="button" data-filter="ceo">대표님 항목만</button></div><div class="callout info no-print" id="scenNote" style="display:none">4인 유지 기준: 5인 미만에도 적용되는 항목과 미리 해 두면 좋은 항목만 보여 줍니다.</div>
+  <div id="checklist"></div>
+  <div class="no-print" style="text-align:right"><button class="btn" id="resetCk">체크 초기화</button></div>
+</section>
+
+<!-- ================= SAPA ================= -->
+<section class="page" id="sapa">
+  <div class="page-head"><div class="eyebrow">근거 <span class="chip safe">안전</span></div><h2>중대재해처벌법</h2><span class="scope new">5인부터 새로 적용</span></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>사무직 회사도 예외 없이 적용됩니다. 의무를 제대로 이행했음이 <b>기록으로 입증되면</b> 사고가 나도 이 법으로는 처벌받지 않으며<span class="cite" data-ref="s39"></span><span class="cite" data-ref="s2"></span>(산안법⁠·⁠형법상 책임은 별도), 핵심은 '반기마다 실제로 점검한 기록'입니다.</p></div>
+    <div class="todo"><div class="t">할 일</div><ul><li><span class="role staff">담당</span>서류 5종 준비 (방침, 위험성평가, 예산, 의견청취, <span class="nwb">비상대응) <span class="bd if">IF</span></span> 외주 평가표</li><li><span class="role ceo">대표</span>경영방침 서명, 예산 승인</li><li><span class="role ceo">대표</span>반기마다(예: 4월⁠·⁠10월) 점검 보고받고 <b>서명</b></li></ul></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>적용 여부</h3>
+      <ul>
+        <li>2024.1.27부터 <b>5인 이상</b> 사업장 전면 적용. 50인 미만 2년 추가 유예안은 2024년 2월 무산<span class="cite" data-ref="s5"></span></li>
+        <li><b>사무직만 있는 회사도 중처법은 적용</b>됩니다. 산안법에 있는 '사무직 사업장' 예외가 중처법에는 없기 때문입니다<span class="cite" data-ref="s4"></span></li>
+        <li>의무 주체는 <b>대표님 본인</b>(경영책임자). 실무 담당자는 이 법(중처법)의 처벌 대상은 아님. 산안법⁠·⁠형법상 책임은 따로 따질 수 있음<span class="cite" data-ref="s3"></span></li>
+        <li>중대시민재해(제조물⁠·공중이용시설)는 사무실 컨설팅사와 사실상 무관<span class="cite" data-ref="s3"></span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>'중대산업재해'가 되는 경우</h3><p class="sub">중처법 제2조 정의<span class="cite" data-ref="s38"></span> · 직업성 질병: 시행령 별표1의 24종<span class="cite" data-ref="s40"></span></p>
+      <div class="steps" style="margin-top:6px">
+        <div><b>사망</b> 1명 이상</div>
+        <div>같은 사고로 <b>6개월 이상 치료</b> 부상자 2명 이상</div>
+        <div>같은 유해요인으로 <b>직업성 질병</b>(24종) 1년 내 3명 이상</div>
+      </div>
+      <div class="callout"><span class="bd warn">⚠️ 해석 쟁점</span> 과로사(뇌심혈관)는 24종에서 빠졌지만, 업무상 질병 사망이 '사망 1명'에 해당하는지는 해석이 갈립니다. 보수적으로 관리합니다<span class="cite" data-ref="s37"></span>.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px">
+    <h3>컨설팅사의 현실적인 위험 경로</h3><p class="sub">이 다섯 가지가 위험성평가의 출발점입니다</p>
+    <div class="tiles">
+      <div class="tile"><div class="em">🚗</div><b>출장 교통사고</b><span>장거리⁠·⁠야간 운전</span></div>
+      <div class="tile"><div class="em">🏭</div><b>고객사 현장실사</b><span>월 1~2회, 끼임⁠·⁠충돌</span></div>
+      <div class="tile"><div class="em">⏱️</div><b>과로</b><span>마감기 장시간 근로</span></div>
+      <div class="tile"><div class="em">🔥</div><b>사무실 화재</b><span>멀티탭⁠·⁠난방기</span></div>
+      <div class="tile"><div class="em">☀️</div><b>폭염 외근</b><span>여름철 열사병</span></div>
+    </div>
+  </div>
+
+  <details class="more" open>
+    <summary>시행령 제4조 9개 의무 상세 <small>· 우리 회사 해당표</small><span class="cite" data-ref="s1"></span></summary>
+    <div class="body tbl">
+      <table>
+        <thead><tr><th>호</th><th>의무 내용</th><th>해당</th><th>갖출 서류</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>안전⁠·⁠보건 목표와 경영방침</td><td><span class="bd must">5인부터 필수</span></td><td>대표 서명 방침 1장, 게시, 연 1회 갱신</td></tr>
+          <tr class="dim"><td>2</td><td>전담조직 (500인 이상)</td><td><span class="bd na">해당 없음</span></td><td>-</td></tr>
+          <tr><td>3</td><td>유해⁠·⁠위험요인 확인⁠·⁠개선, <b>반기 1회 점검</b> (위험성평가로 대신 가능)<span class="cite" data-ref="s3"></span></td><td><span class="bd must">5인부터 필수⁠·⁠핵심</span></td><td>위험성평가 결과서</td></tr>
+          <tr><td>4</td><td>안전보건 예산 편성⁠·⁠집행</td><td><span class="bd must">5인부터 필수</span></td><td>교육비⁠·검진⁠·구급함⁠·소화기 등 항목과 증빙</td></tr>
+          <tr class="dim"><td>5</td><td>안전보건관리책임자⁠·관리감독자 권한⁠·⁠예산⁠·⁠반기 평가</td><td><span class="bd na">형식상 해당 없음</span></td><td>대표가 직접 맡는 구조임을 명시. 팀장 등 직원을 직접 지휘⁠·⁠감독하는 관리감독자를 두면 권한⁠·⁠예산 부여와 반기 1회 평가 필요 (산안법 제16조)</td></tr>
+          <tr class="dim"><td>6</td><td>안전관리자 등 배치</td><td><span class="bd na">해당 없음</span></td><td>-</td></tr>
+          <tr><td>7</td><td>종사자 의견청취, <b>반기 점검</b></td><td><span class="bd must">5인부터 필수</span></td><td>건의 채널, 회의록</td></tr>
+          <tr><td>8</td><td>급박한 위험 대비 매뉴얼, <b>반기 점검</b></td><td><span class="bd must">5인부터 필수</span></td><td>화재⁠·심정지⁠·출장 사고⁠·⁠고객 폭언 대응, 비상연락망</td></tr>
+          <tr><td>9</td><td>도급⁠·⁠용역 업체 평가기준, <b>반기 점검</b></td><td><span class="bd if">IF 외주</span></td><td>외주업체 평가표</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:10px">+ 시행령 제5조: 산안법상 교육⁠·⁠건강검진 등을 실제로 했는지 반기 1회 점검하고, 빠진 것은 예산을 잡아 지시<span class="cite" data-ref="s1"></span></p>
+    </div>
+  </details>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>처벌 수준</h3><p class="sub"><span class="bd done">✓ 법률 원문 확인 (2026.10.12)</span><span class="cite" data-ref="s2"></span></p>
+      <table>
+        <thead><tr><th>구분</th><th>대표님</th><th>법인</th></tr></thead>
+        <tbody>
+          <tr><td>사망</td><td><b>1년 이상 징역</b> 또는 10억 원 이하 벌금 (<b>병과 가능</b>)</td><td><b>50억 원</b> 이하 벌금</td></tr>
+          <tr><td>부상⁠·⁠질병</td><td>7년 이하 징역 또는 1억 원 이하 벌금</td><td>10억 원 이하 벌금</td></tr>
+          <tr><td>재범</td><td colspan="2">형 확정 후 5년 내 다시 위반하면 형의 2분의 1까지 가중</td></tr>
+          <tr><td>손해배상</td><td colspan="2">고의⁠·⁠중과실 시 손해액 <b>5배 이내</b></td></tr>
+          <tr><td>교육</td><td colspan="2">사고 시 대표 안전보건교육(20시간 범위, 자비), 미이수 시 과태료 5천만 원 이하</td></tr>
+        </tbody>
+      </table>
+      <p class="note" style="margin-top:8px">법인은 상당한 주의와 감독을 다했으면 벌금을 면할 수 있습니다(제7조 단서). 이 증거가 평소의 점검 기록입니다.</p>
+    </div>
+    <div class="card">
+      <h3>양형기준 <span class="nwb">수정안 <span class="bd pend">⏳ 심의 중</span></span></h3><p class="sub">2026.9.21 양형위원회 심의<span class="cite" data-ref="s8"></span></p>
+      <p>기본 권고형 <b>징역 1년 6월 ~ 4년</b>. 형을 무겁게 하는 사유:</p>
+      <ul><li><b>안전보건 예산 미편성⁠·⁠삭감</b> → 시행령 4호</li><li><b>종사자 의견⁠·⁠아차사고 보고 묵살</b> → 7호</li><li><b>교육 장기 미실시⁠·⁠형식적 실시</b> → 제5조</li></ul>
+      <div class="callout info">평소의 <b>예산 집행⁠·의견청취⁠·교육 기록</b>이 대표님을 지키는 증거입니다. 매뉴얼 문구만 정비한 것은 감경 사유가 되지 않습니다.</div>
+    </div>
+  </div>
+
+  <div class="grid g21">
+    <div class="card">
+      <h3>집행 현실: 수사에서 실형까지</h3><p class="sub">양형위원회 자료 기준 (2025.9 보도) · 1심 판결 포함<span class="cite" data-ref="s15"></span></p>
+      <div class="hbars" id="funnel"></div>
+    </div>
+    <div class="card">
+      <h3>최근 동향</h3>
+      <ul>
+        <li><b>확정 판결</b> 기준으로는 누적 경영책임자 46명 중 실형 2명 (고용노동부 공표, 2026.3)<span class="cite" data-ref="s7"></span></li>
+        <li>2026.3 대법원, 일광폴리머 대표 <b>징역 3년 실형</b> 확정 (시행 이후 최고)<span class="cite" data-ref="s6"></span></li>
+        <li>형이 확정되면 <b>회사명이 공표</b>됩니다. 컨설팅사에는 평판 손상이 더 클 수 있습니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RISK ================= -->
+<section class="page" id="risk">
+  <div class="page-head"><div class="eyebrow">근거 <span class="chip safe">안전</span></div><h2>위험성평가</h2><span class="scope now">지금도 적용 · 규모 무관</span></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>위험성평가(사무실⁠·⁠출장의 위험을 찾아 고치는 점검)는 지금도 의무이고, 중대재해처벌법의 위험요인 점검 의무를 대신하는 핵심 서류입니다. 위험을 상⁠·⁠중⁠·⁠하로만 판단하는 쉬운 방법으로 하면 됩니다<span class="cite" data-ref="s17"></span><span class="cite" data-ref="s1"></span>.</p></div>
+    <div class="todo"><div class="t">할 일</div><ul><li><span class="role staff">담당</span>실시규정 작성 → 전 직원과 최초평가 (<a href="#forms" data-go="f2">양식 2⁠·⁠3</a>)</li><li><span class="role staff">담당</span>고객사 현장 방문마다 한 장 메모(OPS) (<a href="#forms" data-go="f4">양식 4</a>)</li><li><span class="role ceo">대표</span>결과 보고받고 서명, 3년 보존 지시</li></ul></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>언제 하나요</h3><p class="sub">시행규칙 제37조② (2026.5.29 개정) · 지침 제13~15조<span class="cite" data-ref="s41"></span><span class="cite" data-ref="s16"></span></p>
+      <ul class="tl">
+        <li class="now"><b>최초평가</b><span>작업을 시작하기 전까지. 이미 작업 중이므로 <b>바로 실시</b></span></li>
+        <li class="key"><b>정기평가</b><span>최초평가 다음 연도부터 매년 1회 이상 (예: 매년 10월). <b>5인 이상이 되면</b> 중처법에 따라 <b>반기마다(예: 4월⁠·⁠10월)</b> 다시 점검하고 대표 보고 (시행령 제4조3호)<span class="cite" data-ref="s1"></span></span></li>
+        <li><b>수시평가</b><span>사무실 이전, 새 유형의 현장실사, 휴업 이상 산재 발생 시 (작업 재개 전)</span></li>
+        <li><b>상시평가</b><span>월⁠·⁠주⁠·⁠일 요건을 모두 갖춰야 인정 → 우리 규모엔 부담, <b>정기+수시 권장</b></span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>직원 참여 5단계</h3><p class="sub">법 제36조②, 시행규칙 제37조의2~4, 고시 제6조<span class="cite" data-ref="s17"></span><span class="cite" data-ref="s41"></span></p>
+      <div class="steps">
+        <div>판단 기준 정하기</div><div>위험요인 찾기</div><div>위험성 결정</div><div>감소대책 세우기</div><div>이행 확인</div>
+      </div>
+      <ul style="margin-top:12px">
+        <li>근로자는 <b>사무실 순회 점검</b>에 참여시키고, 설문⁠·면담⁠·회의를 함께 쓸 수 있음 (시행규칙 제37조의2). 참석자 서명으로 기록</li>
+        <li>위험요인 찾기에는 원칙적으로 <b>사무실 순회점검</b>을 포함 (지침 제6조②)</li>
+        <li><b>아차사고</b>를 일으킨 요인은 반드시 평가 대상 (지침 제10조③)</li>
+        <li>근로자대표가 요구하면 참여시켜야 함 (법 제36조③ 신설)</li>
+        <li>근로자에게 <b>실시 전에는 일정</b>, <b>실시 후에는 위험요인⁠·⁠위험성 수준⁠·개선대책⁠·이행 결과</b>를 알림 (시행규칙 제37조의3)</li>
+        <li>기록에는 실시 시기⁠·⁠담당자, 참여 근로자⁠·근로자대표, 결과⁠·⁠개선대책을 넣고 <b>3년 보존</b> (시행규칙 제37조의4)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid g12">
+    <div class="card">
+      <h3>위험성 판단 기준 (3단계)</h3><p class="sub">실시규정에 미리 정해 둘 것<span class="cite" data-ref="s31"></span></p>
+      <div class="lv">
+        <div class="k hi">상</div><div>사망⁠·⁠장애 가능, 또는 법 기준 미충족</div><div class="hi"><b>허용 불가</b> · 즉시 개선</div>
+        <div class="k mid">중</div><div>요양 필요⁠·⁠3일 이상 휴업, 또는 아차사고 사례 있음</div><div class="mid"><b>허용 불가</b> · 빨리 개선</div>
+        <div class="k lo">하</div><div>3일 미만 휴업, 경미한 부상</div><div class="lo"><b>허용 가능</b> · 유지</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>평가 방법 비교</h3><p class="sub">지침 제9조: 하나 이상 선택<span class="cite" data-ref="s16"></span></p>
+      <div class="tbl">
+      <table>
+        <thead><tr><th>방법</th><th>방식</th><th>난이도</th><th>우리 회사</th></tr></thead>
+        <tbody>
+          <tr><td><b>3단계 판단법</b></td><td>위험한 상황을 상⁠·⁠중⁠·⁠하로 판단</td><td>낮음</td><td><span class="bd done">⭐ 주 방법</span></td></tr>
+          <tr><td><b>OPS</b><span class="cite" data-ref="s32"></span></td><td>질문 4개에 답하는 한 장 기록</td><td>가장 낮음</td><td><span class="bd done">⭐ 현장 방문용</span></td></tr>
+          <tr><td>체크리스트법</td><td>점검 항목에 적정/보완 표시</td><td>낮음</td><td><span class="bd rec">참고</span></td></tr>
+          <tr class="dim"><td>빈도⁠·⁠강도법</td><td>가능성 × 중대성 점수</td><td>높음</td><td><span class="bd na">과함</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="note">사무⁠·⁠출장 위험은 '적합/부적합'으로 가르기 어려워 상⁠·⁠중⁠·⁠하 판단이 맞습니다.</p>
+    </div>
+  </div>
+
+  <div class="grid g21">
+    <div class="card">
+      <h3>위험성평가 과태료 (2026.2.19 개정, 50인 미만 2028.1.1 부과)</h3>
+      <p class="sub"><span class="nwb">상한⁠·⁠시행일 <span class="bd done">✓ 원문 확인</span></span><span class="cite" data-ref="s36"></span> · 차수별 금액 ✓ 시행령 별표35 원문 (2027.1.1 시행본)<span class="cite" data-ref="s18"></span> · 단위: 만 원</p>
+      <div class="legend"><span><i style="background:var(--brand-light)"></i>1차</span><span><i style="background:var(--brand-mid)"></i>2차</span><span><i style="background:var(--brand)"></i>3차 이상</span></div>
+      <div id="fineChart"></div>
+      <details style="margin-top:10px"><summary class="note" style="cursor:pointer">표로 보기</summary>
+        <table style="margin-top:6px"><thead><tr><th>위반</th><th>1차</th><th>2차</th><th>3차 이상</th></tr></thead>
+        <tbody><tr><td>미실시</td><td>500</td><td>700</td><td>1,000</td></tr><tr><td>근로자 미참여⁠·⁠미주지<br><small class="note">일정⁠·⁠결과 중 하나만 알리지 않으면 100/200/300</small></td><td>150</td><td>300</td><td>500</td></tr><tr><td>미기록⁠·⁠미보존</td><td>50</td><td>150</td><td>300</td></tr></tbody></table>
+      </details>
+    </div>
+    <div class="card">
+      <h3>KRAS 활용</h3><p class="sub">kras.kosha.or.kr · 무료<span class="cite" data-ref="s19"></span></p>
+      <ul>
+        <li>2025.1.2 온라인⁠·⁠모바일 개편, 규모 제한 없음</li>
+        <li>'위험성평가 실시'에 빈도⁠·⁠강도 / 체크리스트 / 3단계 / OPS 메뉴<span class="cite" data-ref="s20"></span></li>
+        <li>업종별 체크리스트 예시는 <b>회원가입 후</b> 이용</li>
+        <li>산업보건평가에서 <b>서비스업</b> 선택, 직무스트레스⁠·뇌심혈관 점검 가능</li>
+      </ul>
+      <div class="callout info">KRAS 사용은 의무가 아닙니다. <a href="#forms" data-go="f3">양식 3</a>을 엑셀⁠·⁠한글로 작성해 보관해도 됩니다.</div>
+    </div>
+  </div>
+
+  <details class="more">
+    <summary>수시평가 사유와 우리 회사 예시 <small>· 고시 제15조②</small></summary>
+    <div class="body tbl">
+      <table>
+        <thead><tr><th>원문 사유</th><th>우리 회사에서 해당하는 경우</th></tr></thead>
+        <tbody>
+          <tr><td>건설물 설치⁠·이전⁠·변경⁠·해체</td><td>사무실 이전, 대규모 배치 변경</td></tr>
+          <tr><td>기계⁠·기구⁠·원재료 신규 도입⁠·⁠변경</td><td>업무용 차량 도입 등</td></tr>
+          <tr><td>작업방법⁠·⁠절차 신규 도입⁠·⁠변경</td><td>새로운 유형의 현장실사 업무 시작</td></tr>
+          <tr><td>중대산업사고 또는 산업재해(휴업 이상 요양)</td><td>출장 중 사고로 휴업 발생 → 작업 재개 전 실시</td></tr>
+          <tr><td>사업주가 필요하다고 판단</td><td>고객 폭언 사건, 아차사고 발생</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+</section>
+
+<!-- ================= OSH ================= -->
+<section class="page" id="osh">
+  <div class="page-head"><div class="eyebrow">근거 <span class="chip safe">안전</span></div><h2>산업안전보건법 · 법정교육</h2><span class="scope mix">일부만 5인부터 · 나머지 규모 무관</span></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>컨설턴트는 '사무 종사자'가 아니어서 산안법의 사무직 예외를 받기 어렵습니다<span class="cite" data-ref="s9"></span>. 5인 이상이 되면 근로자 안전보건교육도 의무입니다(5인 미만은 적용 제외, 시행령 별표1 제6호)<span class="cite" data-ref="s42"></span>. <span style="font-weight:400">(중대재해처벌법은 사무직 예외 자체가 없습니다)</span></p></div>
+    <div class="todo"><div class="t">할 일</div><ul><li><span class="role staff">담당</span>채용 시 교육과 정기 안전보건교육 실시, 수료 기록</li><li><span class="role staff">담당</span>법정의무교육 연 1회 (10인 미만은 자료 게시⁠·⁠배포로 대체 가능)</li><li><span class="role ceo">대표</span>반기 점검 때 교육 실시 여부 확인</li></ul></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>근로자 <span class="nwb">안전보건교육 <span class="bd must">5인부터 필수</span></span></h3><p class="sub">산안법 제29조, 시행규칙 별표4⁠·⁠5 · 5인 이상 의무는 <a href="https://edu.kosha.or.kr/curriculum/wrkrTrgtBplcInq" target="_blank" rel="noopener">근로자 안전보건교육 대상사업장 조회 ↗</a>에서 업종코드 <b>71531(경영 컨설팅업)</b>으로 확인<span class="cite" data-ref="s30"></span></p>
+      <ul>
+        <li><b>적용</b>: 5인 이상 시 필수 (업종코드 71531 경영 컨설팅업 기준). <b>5인 미만은 적용 제외</b> (시행령 별표1 제6호)<span class="cite" data-ref="s42"></span> → 4인인 지금은 의무 아님</li>
+        <li><b>채용 시 교육</b>: 8시간 이상 (근로계약 1주 이하 1시간, 1주 초과~1개월 이하 4시간). 동종 업종 6개월 이상 경력자를 이직 후 1년 내 채용하면 50% 이상으로 감경 가능</li>
+        <li><b>정기교육</b>: 사무직 매반기 6시간 이상 (연 12시간). 현장실사 등을 병행해 사무직으로 보기 어려우면 <b>매반기 12시간 이상</b> (시행규칙 별표4). 관리감독자(팀장 등)는 연간 16시간 이상. 매분기 3시간은 개정 전 기준이라 쓰지 않음<span class="cite" data-ref="s43"></span></li>
+        <li><b>방식</b>: 영상 링크 발송만으로 끝내지 않기 → 시청 이력 + 확인 문항 + 수료 서명 확보 (권장 운영 방침)</li>
+        <li><b>과태료</b>: 근로자 교육 미실시 1인당 1차 10만 · 2차 20만 · 3차 50만 원, 관리감독자 1인당 50만 · 250만 · 500만 원 (시행령 별표35)<span class="cite" data-ref="s42"></span>. 법률상 상한 500만 원 이하 (산안법 제175조⑤1)<span class="cite" data-ref="s36"></span></li>
+      </ul>
+      <div class="callout info">교육 기록(일시⁠·시간⁠·방식⁠·대상자⁠·수료 확인)을 보관해 중처법 시행령 제5조 반기 점검의 <b>의무이행 점검 증빙</b>으로 활용합니다<span class="cite" data-ref="s1"></span>.</div>
+    </div>
+    <div class="card">
+      <h3>그 밖의 산안법 의무 <span class="scope now sm">지금도 적용 · 규모 무관</span></h3><p class="sub">사무직 예외 해당 어려움<span class="cite" data-ref="s9"></span></p>
+      <table>
+        <tbody>
+          <tr><td><span class="bd now">지금도 의무</span></td><td>위험성평가 (<a href="#risk">화면 보기</a>)</td></tr>
+          <tr><td><span class="bd now">지금도 의무</span></td><td>일반건강진단: 사무직 2년 1회 / 비사무직 1년 1회 (산안법 제129조, 시행규칙 제197조). 직원이 국민건강보험 건강검진을 받으면 대체 인정 (회사는 수검 여부⁠·⁠결과 확인서를 받아 5년 보관, 시행규칙 제241조). 상시근로자 5인 미만 사업장도 적용 대상. 사무직 여부는 실제 직무 기준으로 판정 (현장⁠·⁠판매 업무를 병행하면 1년 1회일 수 있음) · 미실시 과태료 대상 근로자 1인당 10만 · 20만 · 30만 원 (시행령 별표35)<span class="cite" data-ref="s45"></span><span class="cite" data-ref="s42"></span></td></tr>
+          <tr><td><span class="bd now">지금도 의무</span></td><td>고객응대 직원 보호: 폭언 시 업무 중단⁠·⁠휴식 (제41조)<span class="cite" data-ref="s45"></span></td></tr>
+          <tr><td><span class="bd now">지금도 의무</span></td><td>산재 보고: 사망 또는 3일 이상 휴업 시 1개월 내 산업재해조사표 (제57조, 시행규칙 제73조)<span class="cite" data-ref="s44"></span></td></tr>
+          <tr><td><span class="bd now">지금도 의무</span></td><td>휴게시설: 규모와 관계없이 휴식시간에 쓸 수 있는 휴게 공간을 갖춰야 함 (제128조의2①). 크기⁠·⁠위치⁠·⁠온도 등 세부 설치⁠·⁠관리기준과 과태료는 상시 20명 이상 사업장부터 (시행령 제96조의2) → 사무실 안 휴식 공간 지정으로 충분<span class="cite" data-ref="s45"></span></td></tr>
+          <tr class="dim"><td><span class="bd na">해당 없음</span></td><td>안전⁠·⁠보건관리자, 산업안전보건위원회 (인원 기준 미달)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>법정의무교육과 권장 교육 (연 1회) <span class="scope now sm">규모 무관 · 5인 전환으로 바뀌는 것 없음</span></h3>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>교육</th><th>우리 회사 방법</th><th>주의</th></tr></thead>
+      <tbody>
+        <tr><td><b>퇴직연금 가입자 교육</b><span class="nwb"> <span class="bd if">IF</span></span></td><td>퇴직연금(DB⁠·⁠DC)을 도입했다면 연 1회 의무<span class="cite" data-ref="s48"></span></td><td>퇴직연금 사업자(금융기관) 교육 활용 가능 · 도입 여부 확인 필요</td></tr>
+        <tr><td><b>성희롱 예방교육</b><span class="cite" data-ref="s46"></span><span class="cite" data-ref="s24"></span></td><td>10인 미만: 자료 게시⁠·⁠배포로 대체 가능</td><td>법령 + 우리 회사 처리 절차⁠·⁠고충상담 절차 포함 · <b>교육 내용은 사무실 게시판이나 공용 폴더에 상시 게시⁠·⁠비치</b>(제13조③) · 미실시 과태료 500만 원 이하 · 자료 3년 보관 권장</td></tr>
+        <tr><td><b>장애인 인식개선교육</b><span class="cite" data-ref="s47"></span><span class="cite" data-ref="s25"></span></td><td>50인 미만: 자료 배포로 대체 가능</td><td><b>한국장애인고용공단 보급 자료</b> 배포 · 배포 확인 서명 · <b>3년 보관 의무</b>(법 제5조의2③)</td></tr>
+        <tr><td><b>개인정보보호교육</b></td><td>연 1회 권장</td><td>-</td></tr>
+        <tr><td><b>직장 내 괴롭힘 예방</b></td><td><span class="bd rec">권장</span> 성희롱 교육과 함께</td><td>5인 이상부터 괴롭힘 금지 적용</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LABOR ================= -->
+<section class="page" id="labor">
+  <div class="page-head"><div class="eyebrow">근거 <span class="chip labor">노무</span></div><h2>근로기준법 · 포괄임금</h2><span class="scope new">대부분 5인부터 적용</span></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>5인이 되면 비용이 바뀌는 쪽은 근로기준법입니다. <b>포괄임금 계약을 쓰고 있다면 채용 계획이 생길 때 먼저 정비</b>를 권합니다(4인 기준에서는 최저임금 미달 여부만 확인).</p></div>
+    <div class="todo"><div class="t">할 일</div><ul><li><span class="role ceo">대표</span>포괄임금 전환 방향 결정 (기본급⁠·⁠고정 연장수당 구분, 초과분 정산)</li><li><span class="role staff">담당</span>5인 이상용 근로계약서⁠·출퇴근 기록⁠·⁠급여 계산 준비</li><li><span class="role staff">담당</span>연차 적용 시작 시점 노무사 확인</li></ul></div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px;border-left:4px solid var(--must)">
+    <h3>⚠️ 포괄임금: 쓰고 있다면 우선 정비</h3><p class="sub">가상 사례에서는 포괄임금 계약을 쓰는 것으로 가정 · 5인 규정은 아니지만, 5인부터 가산수당 50%가 붙어 정비를 권합니다</p>
+    <div class="grid g3" style="margin:0">
+      <div><h4>왜 지금인가</h4><ul><li>고용노동부 「포괄임금 오남용 방지 지도 지침」 2026.4 발표<span class="cite" data-ref="s12"></span></li><li>포괄임금 금지 법안 9건 국회 <span class="nwb">계류 <span class="bd pend">⏳</span></span><span class="cite" data-ref="s13"></span></li><li>5인이 되면 가산수당 50%가 적용되어 정액급제의 위험이 커짐</li></ul></div>
+      <div><h4>무엇을 바꾸나</h4><ul><li>기본급과 <b>고정 연장수당을 구분</b>해 계약서에 명시</li><li>약정 시간을 넘는 연장근로는 <b>추가 지급</b></li><li>출퇴근⁠·⁠연장근로 기록으로 정산</li></ul></div>
+      <div><h4>어떻게</h4><ul><li><b>서울시 무료 노무 컨설팅</b>으로 공인노무사 점검 (<a href="#support">무료 지원</a>)</li><li>신규 채용자부터 새 계약서 적용</li><li>기존 직원은 협의 후 전환</li></ul></div>
+    </div>
+    <div class="callout" style="margin-top:14px"><b>왜 손봐야 하나</b><ul style="margin:6px 0 0;padding-left:18px"><li><b>4인인 지금</b>: 가산수당이 없어 급하지 않습니다. 포괄 금액 ÷ 실제 근로시간이 최저임금(2026년 시급 10,320원) 이상인지만 확인합니다</li><li><b>5인이 되면</b>: ① 연장⁠·⁠야간⁠·⁠휴일 50% 가산 ② 계약서가 한 덩어리면, 근로시간을 셀 수 있는 사무 업무는 포괄임금 약정이 인정되지 않아 월급 전체가 기본급으로 계산될 수 있음<span class="cite" data-ref="s12"></span> ③ 임금명세서에 연장시간 수 기재 ④ 주 52시간 관리로 실제 연장시간이 기록됨</li><li><b>예시</b>(단순 계산): 월 300만 원(수당 포함, 구분 없음), 매달 연장 20시간 → 300만 원 전체를 기본급으로 보면 시급 약 14,354원 → 연장수당 <b>월 약 43만 원 추가</b>, 임금 청구는 3년까지 거슬러 올라가 <b>1인당 최대 약 1,550만 원</b></li></ul><p class="note" style="margin:6px 0 0">실제 유효성은 계약 문구와 근무 형태에 따라 달라 노무사 검토가 필요합니다.</p></div>
+  </div>
+
+  <div class="card">
+    <h3>5인이 되면 새로 적용되는 항목</h3><p class="sub">근로기준법 시행령 별표1 기준<span class="cite" data-ref="s11"></span> · ✓ 국가법령정보센터 원문 확인 (2026.10.13)</p>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>항목</th><th>새로 생기는 의무</th><th>필요한 조치</th></tr></thead>
+      <tbody>
+        <tr><td><b>가산수당</b></td><td>연장⁠·야간⁠·휴일근로 통상임금 50% 가산</td><td>급여 계산 변경</td></tr>
+        <tr><td><b>연차휴가</b></td><td>최대 25일, 사용촉진 <span class="nwb">제도 <span class="bd warn">⚠️ 적용 시점 확인</span></span></td><td>연차관리대장</td></tr>
+        <tr><td><b>공휴일</b></td><td>관공서 공휴일⁠·대체공휴일 유급휴일</td><td>공휴일 근무 시 휴일가산</td></tr>
+        <tr><td><b>근로시간</b></td><td>주 40시간 + 연장 12시간</td><td>출퇴근⁠·⁠연장근로 기록</td></tr>
+        <tr><td><b>해고 제한</b></td><td>정당한 이유 필요, 부당해고 구제신청 가능</td><td>징계 절차 규정, 평가⁠·⁠경고 기록</td></tr>
+        <tr><td><b>해고 서면통지</b></td><td>사유⁠·⁠시기를 서면으로 (안 하면 무효)</td><td>해고통지서 양식</td></tr>
+        <tr><td><b>휴업수당</b></td><td>회사 사정으로 쉬면 평균임금 70%</td><td>지급 기준</td></tr>
+        <tr><td><b>직장 내 괴롭힘</b></td><td>금지, 신고 시 조사⁠·⁠조치 의무</td><td>신고⁠·⁠조사 절차 문서화</td></tr>
+        <tr><td><b>임금명세서</b></td><td>연장⁠·⁠야간⁠·⁠휴일 시간 수 기재 (위반 시 500만 원 이하 과태료)<span class="cite" data-ref="s14"></span></td><td>명세서 서식 변경</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= IF ================= -->
+<section class="page" id="ifcase">
+  <div class="page-head"><div class="eyebrow">활용</div><h2>조건별 안내 (IF)</h2></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>해당할 때만 하면 되는 의무입니다. 조건에 맞는지 먼저 확인하세요.</p></div>
+    <div class="todo"><div class="t">확인할 것</div><ul><li>외주 계약이 있는지</li><li>인턴⁠·⁠실습생을 받는지</li><li>앞으로 인원이 몇 명까지 늘지</li><li>사고가 나면 누가 무엇을 하는지</li></ul></div>
+  </div>
+
+  <div class="ifbox">
+    <div class="h"><span class="bd if">IF</span><b>외주(도급⁠·⁠용역⁠·⁠위탁)가 있다면</b></div>
+    <div class="grid g2" style="margin:0">
+      <div><h4 style="margin-top:0;color:var(--if)">해당 여부 확인</h4><p>아래 중 <b>하나라도 계약이 있으면 해당</b>합니다.</p><ul><li><b>프로젝트 일부 하도급</b> (예: 자료조사만 외주, 현장조사⁠·⁠실사 하도급)</li><li>프리랜서⁠·⁠외부 전문가 위탁, 외주 강사</li><li>사무실 청소⁠·⁠건물관리 용역</li></ul><p class="note">외주업체 직원⁠·⁠프리랜서는 상시근로자 수에는 들어가지 않지만, 중대재해처벌법상 보호 대상(종사자)에는 포함됩니다.</p></div>
+      <div><h4 style="margin-top:0;color:var(--if)">해당하면 할 일</h4><ul><li>외주업체 <b>안전보건 역량 평가표 1장</b> (안전교육 여부, 사고 이력, 보험 가입 등)</li><li>계약 시 평가표 확인, <b>반기 1회 점검</b></li><li>근거: 중처법 시행령 제4조9호<span class="cite" data-ref="s1"></span> · <a href="#forms" data-go="f12">양식 12</a></li></ul></div>
+    </div>
+    <div class="tbl" style="margin-top:12px"><table>
+      <thead><tr><th>외주 형태</th><th>위험도</th><th>준비 수준</th></tr></thead>
+      <tbody>
+        <tr><td><b>자료조사⁠·문헌조사⁠·보고서 작업</b> (외주업체 자기 사무실)</td><td><span class="bd done">낮음</span></td><td>계약 시 양식 12 평가표 1장, 반기 점검 때 '이상 없음' 기록</td></tr>
+        <tr><td><b>고객사 현장실사⁠·⁠공장 방문 조사</b> 하도급</td><td><span class="bd must">높음</span></td><td>평가표 + 방문 전 안전수칙 공유, 양식 4(현장 방문 메모) 작성 요청</td></tr>
+        <tr><td><b>우리 사무실에서 일하는 외주</b> (상주 프리랜서⁠·⁠청소 등)</td><td><span class="bd if">중간</span></td><td>평가표 + 우리 위험성평가 대상에 포함</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">⚠️ 외주업체가 자기 사무실에서 일할 때 우리 회사의 책임 범위는 해석이 갈립니다(중처법 제5조: 실질적으로 지배⁠·운영⁠·관리하는지). 다만 제9호의 평가기준과 반기 점검은 외주를 주는 것만으로 요구된다고 보는 편이 보수적입니다.</p>
+  </div>
+
+  <div class="ifbox">
+    <div class="h"><span class="bd if">IF</span><b>인턴⁠·⁠실습생을 받는다면</b></div>
+    <div class="grid g2" style="margin:0">
+      <div><h4 style="margin-top:0">먼저 구분</h4><ul><li><b>인턴</b>(근로계약서⁠·급여⁠·업무 지시): 상시근로자에 포함<span class="cite" data-ref="s10"></span>. 정규 4명 + 풀타임 인턴 1명이면 그 기간은 <b>5인</b></li><li><b>실습생</b>(학교 교육과정⁠·⁠협약, 교육 목적): 셈에서 빠질 수 있음. 다만 위험성평가⁠·안전교육 대상에는 포함</li><li>세는 방법은 <a href="#scenario4">4인 유지 시나리오</a>의 '언제 5인이 되나' 참고 (직전 1개월 기준)</li></ul></div>
+      <div><h4 style="margin-top:0">인턴 기간 운영</h4><ul><li>인턴 때문에 5인이 되는 기간에는 연장근로 가산수당 50%, 공휴일 유급 적용 (포괄임금이면 차액 정산)</li><li>그 기간에 중대재해가 나면 <b>사고 당시</b> 중대재해처벌법 의무를 갖췄는지로 판단. 다시 4인이 돼도 그 기간 사고의 책임은 남음</li><li>인턴이 정기적으로 온다면 중처법 서류 5종과 반기 점검을 <b>연중 유지</b> 권장 (위험성평가는 지금도 의무라 대부분 겹침)</li><li>월별 출근 인원표와 그 시기 서류는 4인이 된 뒤에도 보관</li></ul></div>
+    </div>
+    <p class="note" style="margin-top:8px">중대재해처벌법의 상시근로자 판단 시점과 실습생의 근로자 여부는 개별 판단이 필요합니다. 인턴⁠·⁠실습생 채용이 정해지면 노무사나 서울시 무료 노무 컨설팅(<a href="#support">무료 지원</a>)에서 함께 확인받으세요.</p>
+  </div>
+
+  <div class="ifbox">
+    <div class="h"><span class="bd if">IF</span><b>고객사 현장을 방문한다면 (가상 사례: 월 1~2회)</b></div>
+    <ul><li>방문 전 고객사 안전수칙 확인, 위험 구역 출입 회피, 안내자 동행</li><li>방문마다 <a href="#forms" data-go="f4">한 장 메모(양식 4)</a> 작성 → 위험성평가 기록으로 보관</li><li>새로운 유형의 실사(예: 공장 내부)를 시작하면 <b>수시평가</b></li></ul>
+  </div>
+
+  <div class="ifbox">
+    <div class="h"><span class="bd if">IF</span><b>사고가 발생한다면</b></div>
+    <div class="steps">
+      <div><b>응급조치⁠·⁠119</b><br><small>비상연락망(양식 8)대로</small></div>
+      <div><b>중대재해면 작업 중지⁠·⁠지체 없이 보고</b><br><small>관할 지방고용노동관서 (산안법 제54조)</small></div>
+      <div><b>산업재해조사표</b><br><small>3일 이상 휴업 시 1개월 내<span class="cite" data-ref="s44"></span></small></div>
+      <div><b>재발방지 대책</b><br><small>중처법 제4조①2호<span class="cite" data-ref="s39"></span></small></div>
+      <div><b>수시평가</b><br><small>작업 재개 전</small></div>
+    </div>
+    <p class="note" style="margin-top:8px">산안법 제54조: 중대재해가 발생하면 즉시 작업을 중지하고 근로자를 대피시키며, 지체 없이 고용노동부(관할 지방고용노동관서)에 보고해야 합니다. 중대산업재해 시 대표 안전보건교육(20시간 범위)도 받아야 합니다<span class="cite" data-ref="s44"></span><span class="cite" data-ref="s2"></span>.</p>
+  </div>
+
+  <div class="card">
+    <h3>인원이 늘면 추가되는 의무</h3>
+    <div class="thr">
+      <div><div class="dot now">5</div><b>5인 이상</b><span>중처법, 근로기준법<br>(연차는 시점 확인),<br>안전보건교육</span></div>
+      <div><div class="dot">10</div><b>10인 이상</b><span>취업규칙 작성⁠·⁠신고<span class="cite" data-ref="s27"></span><br>성희롱 교육 실제 실시<br>두루누리 대상 제외</span></div>
+      <div><div class="dot">30</div><b>30인 이상</b><span>노사협의회(분기 1회)<span class="cite" data-ref="s28"></span><br>고충처리위원, 채용절차법</span></div>
+      <div><div class="dot">50</div><b>50인 이상</b><span>안전⁠·⁠보건관리자 (업종별 확인)<span class="cite" data-ref="s29"></span><br>장애인 의무고용</span></div>
+    </div>
+    <div class="callout info" style="margin-top:16px">10인 미만은 취업규칙 신고 의무가 없지만, 지금 사내 규정을 만들어 두면 해고 분쟁 시 '정당한 이유'의 근거가 되고 10인이 되면 그대로 신고할 수 있습니다<span class="cite" data-ref="s27"></span>.</div>
+  </div>
+</section>
+
+<!-- ================= SUPPORT ================= -->
+<section class="page" id="support">
+  <div class="page-head"><div class="eyebrow">활용</div><h2>무료 지원</h2></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>서울 소재라면 서울시 무료 컨설팅 2종을 먼저 활용하시길 권합니다(다른 지역은 지자체⁠·안전보건공단 사업 확인). 위험성평가와 포괄임금 정비를 무료로 점검받을 수 있습니다.</p></div>
+    <div class="todo"><div class="t">할 일</div><ul><li><span class="role ceo">대표</span>컨설팅 신청 여부 결정</li><li><span class="role staff">담당</span>이번 주: 서울시 노동정책과에 <b>10월 잔여 모집 여부</b> 전화 확인</li><li><span class="role staff">담당</span>마감됐다면 내년 2월 공단 컨설팅 신청</li></ul></div>
+  </div>
+  <div class="callout">카드를 누르면 신청⁠·⁠안내 사이트가 새 탭으로 <span class="nwb">열립니다. <span class="bd warn">⚠️ 확인 필요</span></span> 4건 모두 <b>2026년 10월 현재 모집 중인지 확인되지 않았습니다.</b> 서울시 노동정책과 번호가 자료마다 <b>02-2133-5590</b>과 <b>02-2133-5432</b>로 다릅니다.</div>
+  <div class="grid g2">
+    <div class="sup link" data-href="https://news.seoul.go.kr/economy/risk-consulting" role="link" tabindex="0" title="서울시 신청 안내 바로가기 (새 탭)"><span class="rank">추천 1</span><h3>서울시 위험성평가 무료 컨설팅</h3><span class="bd done">대상 해당</span>
+      <dl><dt>대상</dt><dd>서울 소재 50인 미만 민간 사업장 (건설 제외)</dd><dt>내용</dt><dd>안전보건지킴이 방문, 최대 3회: 위험성평가 실시(실시규정 포함) → 추가 요인⁠·⁠개선 지도 → 우수사업장 인정 기준 안내</dd><dt>비용</dt><dd>무료</dd><dt>신청</dt><dd>100개소 선착순, QR 온라인 또는 이메일</dd></dl>
+      <a class="btn primary go" href="https://news.seoul.go.kr/economy/risk-consulting" target="_blank" rel="noopener">서울시 신청 안내 바로가기 ↗</a><span class="cite" data-ref="s22"></span></div>
+    <div class="sup link" data-href="https://mediahub.seoul.go.kr/archives/2018643" role="link" tabindex="0" title="서울시 안내·신청 방법 바로가기 (새 탭)"><span class="rank">추천 2</span><h3>서울시 인사⁠·노무⁠·산업안전 무료 컨설팅</h3><span class="bd done">대상 해당</span>
+      <dl><dt>대상</dt><dd>서울 소재 30인 미만 민간 사업장 등</dd><dt>내용</dt><dd>공인노무사 방문, 노동법 준수와 산안법 의무 점검 → <b>포괄임금 정비와 함께 받기 좋음</b></dd><dt>기간</dt><dd>2026.3~12월</dd><dt>신청</dt><dd>100개 사업장 선착순, 하반기 구글폼</dd></dl>
+      <a class="btn primary go" href="https://mediahub.seoul.go.kr/archives/2018643" target="_blank" rel="noopener">서울시 안내⁠·⁠신청 방법 바로가기 ↗</a><span class="cite" data-ref="s23"></span></div>
+    <div class="sup link" data-href="https://www.kosha.or.kr" role="link" tabindex="0" title="안전보건공단 홈페이지 바로가기 (새 탭)"><span class="rank">추천 3</span><h3>안전보건공단 안전보건관리체계 구축 컨설팅</h3><span class="bd rec">내년 2월 신청</span>
+      <dl><dt>대상</dt><dd>중소규모 사업장 (2026년 약 35,000개소)</dd><dt>내용</dt><dd>전문가 방문, 사업주⁠·⁠근로자와 함께 위험성평가</dd><dt>비용</dt><dd>전액 무료</dd><dt>신청</dt><dd>kosha.or.kr 온라인, 팩스⁠·⁠우편⁠·⁠방문</dd></dl>
+      <p class="note">'작고 위험한 사업장' 중심이라 사무직은 선정 우선순위가 낮을 수 있습니다.</p><a class="btn primary go" href="https://www.kosha.or.kr" target="_blank" rel="noopener">안전보건공단 홈페이지 바로가기 ↗</a><span class="cite" data-ref="s21"></span></div>
+    <div class="sup link" data-href="https://www.insurancesupport.or.kr" role="link" tabindex="0" title="두루누리 사회보험 바로가기 (새 탭)"><span class="rank">채용 시</span><h3>두루누리 사회보험료 지원</h3><span class="bd done">대상 해당</span>
+      <dl><dt>대상</dt><dd>10인 미만, 월보수 270만 원 미만 신규가입자</dd><dt>내용</dt><dd>국민연금⁠·고용보험료 80%, 최대 36개월</dd><dt>신청</dt><dd>4대보험 취득신고와 동시에 (소급 안 됨)</dd></dl>
+      <a class="btn primary go" href="https://www.insurancesupport.or.kr" target="_blank" rel="noopener">두루누리 사회보험 바로가기 ↗</a><span class="cite" data-ref="s26"></span></div>
+  </div>
+  <div class="card"><h3>무료 도구</h3><p style="margin:0"><b>KRAS 위험성평가 지원시스템</b> (<a href="https://kras.kosha.or.kr" target="_blank" rel="noopener">kras.kosha.or.kr ↗</a>): 온라인 평가, 자료모음집⁠·교육영상 제공<span class="cite" data-ref="s19"></span></p></div>
+<div class="card" style="margin-top:18px"><h3>법정교육 무료 자료⁠·⁠교육</h3><p class="sub">공식 기관 사이트 · 2026.10.13 접속 확인 · 4인 사업장은 성희롱 예방⁠·⁠장애인 인식개선을 <b>자료 배포 + 배포 확인 서명</b>으로 할 수 있습니다<span class="cite" data-ref="s46"></span><span class="cite" data-ref="s47"></span>. 성희롱 예방교육 내용은 사내에 상시 게시⁠·⁠비치합니다 (<a href="#forms" data-go="f9">양식 9</a>)</p><div class="tbl"><table><thead><tr><th>교육</th><th>지금(4인)</th><th>사이트</th><th>쓸 것</th></tr></thead><tbody><tr><td><b>장애인 인식개선</b></td><td><span class="bd now">지금도 의무</span></td><td><a href="https://edu.kead.or.kr" target="_blank" rel="noopener">한국장애인고용공단 인식개선 교육포털 ↗</a></td><td>자료실 <b>간이교육자료</b>(50인 미만 배포용), 무료 강사 지원</td></tr><tr><td><b>직장 내 성희롱 예방</b></td><td><span class="bd now">지금도 의무</span></td><td><a href="https://www.nosa.or.kr/frt/ndw/cum/lstNdwCum.do" target="_blank" rel="noopener">노사발전재단 고용차별상담 ↗</a></td><td>무료 교육⁠·⁠상담 문의 1588-2089 · 배포 자료에 우리 회사 처리⁠·⁠고충상담 절차를 덧붙이고 상시 게시⁠·⁠비치</td></tr><tr><td><b>개인정보보호</b></td><td><span class="bd rec">권장</span></td><td><a href="https://edu.privacy.go.kr" target="_blank" rel="noopener">개인정보보호위원회 개인정보배움터 ↗</a></td><td>무료 온라인 교육, 자료실</td></tr><tr><td><b>근로자 안전보건교육</b></td><td><span class="bd must">5인부터</span></td><td><a href="https://edu.kosha.or.kr" target="_blank" rel="noopener">안전보건공단 산업안전포털 교육시스템 ↗</a></td><td>채용 시 8시간⁠·⁠정기 사무직 매반기 6시간 (옛 산업안전보건교육포털)</td></tr><tr><td><b>퇴직연금 가입자 교육</b></td><td><span class="bd if">IF</span></td><td>가입한 금융기관</td><td>퇴직연금(DB⁠·⁠DC) 도입 시 연 1회</td></tr></tbody></table></div></div>
+</section>
+
+<!-- ================= VERIFY ================= -->
+<section class="page" id="verify">
+  <div class="page-head"><div class="eyebrow">활용</div><h2>확인 필요 사항</h2></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">한 줄 요약</div><p>법령 원문과 아직 대조하지 못한 항목입니다. 대부분 결론을 바꾸지는 않지만, 금액과 시점은 확인 후 확정합니다.</p></div>
+    <div class="todo"><div class="t">확인 방법</div><ul><li>국가법령정보센터에서 조문 출력 → 대조</li><li>노무사 질의 1회로 노무 항목 정리</li></ul></div>
+  </div>
+  <div class="card">
+    <div class="tbl">
+    <table>
+      <thead><tr><th>중요도</th><th>항목</th><th>현재 근거</th><th>확인 방법</th></tr></thead>
+      <tbody>
+        <tr><td><span class="bd must">높음</span></td><td>연차휴가 적용 시작 시점 (직전 1년 계속 5인 이상, 1년 미만 근속자 월 1일 연차는 1년 기준에서 제외)</td><td>시행령 제7조의2③ 원문 (2026.10.13)</td><td>노무사 확인</td></tr>
+        <tr><td><span class="bd must">높음</span></td><td>퇴직연금(DB⁠·⁠DC) 도입 여부 → 가입자 교육 의무 해당 여부</td><td>회사 확인 필요</td><td>급여⁠·⁠인사 담당 확인</td></tr>
+        <tr><td><span class="bd if">보통</span></td><td>외주업체가 자기 사무실에서 일할 때 우리 회사의 책임 범위 (중처법 제5조)</td><td>해석 쟁점</td><td>노무사⁠·⁠변호사 확인</td></tr>
+        <tr><td><span class="bd if">보통</span></td><td>컨설턴트가 사무직 종사 근로자인지 (정기교육 매반기 6시간 또는 12시간, 건강진단 2년 또는 1년 주기)</td><td>실제 직무 판단</td><td>노무사 확인</td></tr>
+        <tr><td><span class="bd if">보통</span></td><td>관리감독자(팀장 등 직원을 직접 지휘⁠·⁠감독하는 사람) 지정 여부 → 두면 중처법 시행령 제4조5호 반기 평가, 연간 16시간 교육</td><td>회사 확인 필요</td><td>조직도 확인</td></tr>
+        
+        <tr><td><span class="bd na">낮음</span></td><td>과로사의 '사망 1명' 해당 여부</td><td>해석 쟁점</td><td>원문으로 확정 불가, 보수적 관리</td></tr>
+        <tr><td><span class="bd if">보통</span></td><td>무료 컨설팅 10월 모집 여부, 서울시 문의 번호</td><td>공고 기준</td><td>기관 전화</td></tr>
+        <tr><td><span class="bd pend">⏳ 계류</span></td><td>포괄임금 금지 법안, 양형기준 수정안, 산안법 개정안(2026.10.1 통과) 공포일<span class="cite" data-ref="s35"></span>, 5인 미만 근로기준법 확대<span class="cite" data-ref="s49"></span></td><td>국회⁠·⁠양형위</td><td>분기 1회 모니터링</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>성희롱 예방교육 미실시⁠·⁠미게시 과태료 500만 원 이하, 교육 내용 상시 게시⁠·⁠비치 의무</td><td>남녀고용평등법 제13조③⁠·제39조③ 원문 (2026.10.13)<span class="cite" data-ref="s46"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>성희롱 예방교육 자료 배포 대체 (10인 미만)</td><td>남녀고용평등법 시행령 제3조④ 원문 (2026.10.13)<span class="cite" data-ref="s46"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>장애인 인식개선 자료 배포 대체 (공단 보급 자료), 3년 보관 의무</td><td>장애인고용법 제5조의2③, 시행령 제5조의2⑥ 원문 (2026.10.13)<span class="cite" data-ref="s47"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>중처법 시행령 제4조3호 (위험성평가로 반기 점검 대체)</td><td>고용노동부 자율점검표(공통) 조문 인용</td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>일반건강진단: 사무직 2년 1회⁠·⁠비사무직 1년 1회, 국민건강보험 검진 대체, 5인 미만도 적용</td><td>산안법 제129조, 시행규칙 제197조 (조사 2026.10.13)<span class="cite" data-ref="s45"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>근로자 안전보건교육 시간: 정기 사무직 매반기 6시간(그 밖 12시간), 채용 시 8시간, 관리감독자 연간 16시간</td><td>시행규칙 별표4 원문, 2025.5.30 개정본 (2026.10.13)<span class="cite" data-ref="s43"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>근로자 교육 미실시 과태료: 1인당 10/20/50만 원, 관리감독자 50/250/500만 원, 법률상 상한 500만 원 이하</td><td>산안법 제175조⑤1, 시행령 별표35 원문 (2026.10.13)<span class="cite" data-ref="s36"></span><span class="cite" data-ref="s42"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>5인 미만 사업장 근로자 안전보건교육 적용 제외</td><td>산안법 시행령 별표1 제6호 원문, 2026.7.28 개정본 (2026.10.13)<span class="cite" data-ref="s42"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>일반건강진단 미실시 과태료: 대상 근로자 1인당 10/20/30만 원</td><td>산안법 시행령 별표35 원문 (2026.10.13)<span class="cite" data-ref="s42"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>위험성평가 과태료 차수별: 미실시 500/700/1,000, 미참여⁠·⁠미주지 150/300/500, 기록 50/150/300만 원</td><td>산안법 시행령 별표35 원문, 2027.1.1 시행본 (2026.10.13)<span class="cite" data-ref="s42"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>위험성평가 시기⁠·⁠근로자 참여(순회점검)⁠·공유⁠·기록 3년 보존</td><td>시행규칙 제37조②, 제37조의2~4 원문, 2026.5.29 개정 (2026.10.13)<span class="cite" data-ref="s41"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>폭염: 체감 33도 이상이면 매 2시간 이내 20분 이상 휴식</td><td>안전보건규칙 제560조③ 원문, 2025.7.17 신설 (2026.10.13)<span class="cite" data-ref="s33"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>5인이 되면 새로 적용되는 근로기준법 조항 (해고 제한⁠·서면통지⁠·휴업수당⁠·근로시간⁠·공휴일⁠·가산수당⁠·연차⁠·괴롭힘)</td><td>근로기준법 시행령 별표1 원문, 2018.6.29 개정 (2026.10.13)<span class="cite" data-ref="s11"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>중대재해처벌법 5명 미만 사업장 적용 제외</td><td>중처법 제3조 원문 (2026.10.13)<span class="cite" data-ref="s39"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>휴게시설: 규모와 관계없이 갖출 의무, 세부 설치⁠·⁠관리기준은 상시 20명 이상 등 · 중대산업재해 정의 · 재발방지 대책(중처법 제4조①2호)</td><td>산안법 제128조의2, 시행령 제96조의2, 중처법 제2⁠·⁠4조 원문 (2026.10.13)<span class="cite" data-ref="s45"></span><span class="cite" data-ref="s38"></span><span class="cite" data-ref="s39"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>상시근로자 산정: 직전 1개월 연인원 ÷ 가동일수, 5인 미만인 날 절반 기준, 파견근로자 제외</td><td>근로기준법 시행령 제7조의2①②④ 원문 (2026.10.13)<span class="cite" data-ref="s10"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>경영 컨설팅업(업종코드 71531) 근로자 안전보건교육 의무 (5인 이상)</td><td>산업안전포털 교육시스템 「근로자 안전보건교육 대상사업장 조회」<span class="cite" data-ref="s30"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>중처법 처벌 수준 (제6⁠·7⁠·8⁠·15조)</td><td>국가법령정보센터 원문 (2026.10.12)<span class="cite" data-ref="s2"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>중대재해 즉시 작업중지⁠·⁠대피, 지체 없는 보고 (산안법 제54조)</td><td>산안법 원문 (2026.10.12)<span class="cite" data-ref="s44"></span></td><td>-</td></tr>
+        <tr><td><span class="bd done">✓ 확인 완료</span></td><td>위험성평가 과태료 상한, 50인 미만 2028.1.1 부과</td><td>산안법 제175조⁠·⁠부칙 원문 (2026.10.12)<span class="cite" data-ref="s36"></span></td><td>-</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORMS ================= -->
+<section class="page" id="forms">
+  <div class="page-head"><div class="eyebrow">자료</div><h2>바로 쓰는 양식 (12종)</h2></div>
+  <div class="lead-box">
+    <div class="one"><div class="t">사용 방법</div><p>공식 양식을 바탕으로 사무직 회사에 맞게 고친 예시입니다. 바로 출력하려면 [이 양식만 인쇄]를 쓰세요.</p><p style="margin-top:8px;font-size:14px;font-weight:400">💡 <b>첫 위험성평가는 무료 컨설팅으로 검토받으세요.</b> 양식 2⁠·⁠3을 초안으로 가져가면 전문가가 함께 고쳐 줍니다. (<a href="#support">무료 지원</a>)</p><p style="margin-top:8px;font-size:14px;font-weight:400"><span class="note">Word 양식 세트는 별도 파일로 제공됩니다.</span></p></div>
+    <div class="todo"><div class="t">순서</div><ul><li><b>지금(4인)은 양식 2⁠·⁠3⁠·⁠4⁠·⁠5(위험성평가)와 양식 9의 성희롱⁠·⁠장애인 인식개선 교육부터 씁니다. 나머지는 채용 전에 미리 만듭니다.</b></li><li>양식 1 경영방침 서명 → 2 실시규정 → 10 회의로 3 최초 위험성평가</li><li>7 예산⁠·⁠8 비상대응 게시 → 평소 4⁠·⁠5⁠·⁠6⁠·⁠9 기록</li><li>반기마다(회사가 정한 달, 예: 4월⁠·⁠10월) 양식 11 반기 점검</li><li>보관: 위험성평가 3년⁠·⁠건강진단 결과 5년(법정), 중처법 이행 서류 5년 이상 권장</li><li>위험요인⁠·⁠대책 예시는 실무 예시입니다</li></ul></div>
+  </div>
+  <div class="form" id="f1">
+    <div class="form-h"><h3>양식 1. 안전보건 경영방침 및 목표</h3><span class="bd must">중처법 4조1호</span><button class="btn no-print" data-print="f1">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 중대재해처벌법 시행령 제4조제1호 · 사내 게시 · 연 1회 검토</p>
+<h4>안전보건 경영방침</h4>
+<p>(회사명)은 모든 구성원의 생명과 건강을 경영의 최우선 가치로 삼고, 안전보건 관계 법령을 지키는 안전보건관리체계를 구축하여 구성원이 사무실과 출장지, 고객사 현장 어디에서나 안전하게 일할 수 있도록 다음을 실천한다.</p>
+<p>1. 대표는 '구성원의 생명 보호'와 '안전한 근무환경 조성'을 경영의 최우선 목표로 삼는다.</p>
+<p>2. 출장⁠·⁠이동, 고객사 현장실사, 고객응대, 장시간 근로, 사무환경의 위험요인을 구성원과 함께 찾아 개선한다.</p>
+<p>3. 안전보건에 필요한 인력과 예산을 확보하고, 목표와 실행계획을 세워 이행한다.</p>
+<p>4. 구성원의 의견을 상시로 듣고, 아차사고와 건의는 반드시 검토해 결과를 알린다.</p>
+<p>5. 안전보건교육과 비상대응 훈련으로 모든 구성원이 위험과 대처 방법을 알도록 한다.</p>
+<p>6. 외주업체와 고객사에도 우리의 안전보건 방침과 요구사항을 알리고 협력한다.</p>
+<p>7. 반기마다 이행 상황을 점검하고, 부족한 점은 지체 없이 개선한다.</p>
+
+<h4>올해 안전보건 목표 및 추진계획</h4>
+<table>
+<tr><th style="width:18%">목표</th><th style="width:28%">세부 추진계획</th><th style="width:16%">성과지표</th><th style="width:12%">일정</th><th style="width:13%">담당</th><th style="width:13%">예산(만원)</th></tr>
+<tr><td>중대재해 0건</td><td>위험성평가 개선대책 이행, 현장 방문 전 위험 메모</td><td>재해 건수 0건</td><td>연중</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>위험성평가 정착</td><td>최초평가 → 정기평가(연 1회) → 수시평가</td><td>개선대책 이행률 100%</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>안전보건교육</td><td>채용 시 교육, 정기교육, 위험성평가 결과 공유</td><td>이수율 100%</td><td>상⁠·⁠하반기</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>구성원 의견 반영</td><td>건의서 상시 접수, 반기 의견청취 회의</td><td>반기 1회 이상, 처리율 100%</td><td>4월⁠·⁠10월</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>비상대응 준비</td><td>매뉴얼⁠·⁠연락망 게시, 대피 경로 점검</td><td>반기 점검 2회</td><td>4월⁠·⁠10월</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>건강한 근무</td><td>근로시간 관리, 건강검진 확인, 사무환경 개선</td><td>건강검진 수검률 100%</td><td>연중</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+<p>제정일:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개정일:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일</p>
+<p style="text-align:right; font-size:11pt; margin-top:14pt">(회사명) 대표이사&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(서명)</p>
+
+
+</div>
+  </div>
+  <div class="form" id="f2">
+    <div class="form-h"><h3>양식 2. 위험성평가 실시규정 (3단계 판단법)</h3><span class="bd now">4인에도 필요</span><span class="bd must">위험성평가 지침 제19조</span><span class="bd rec">컨설팅 때 가져갈 초안</span><button class="btn no-print" data-print="f2">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 산업안전보건법 제36조, 시행규칙 제37조⁠·제37조의2~4(2026.5.29 개정), 사업장 위험성평가에 관한 지침(고용노동부고시 제2026-73호) 제19조 · 최초 위험성평가 시 작성, 변경 시 개정</p>
+<table>
+<tr><td class="h">사업장명</td><td>(회사명)</td><td class="h">작성일(개정일)</td><td>&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;일</td></tr>
+<tr><td class="h">목적</td><td colspan="3">사무실⁠·출장⁠·고객사 현장실사⁠·고객응대 업무의 유해⁠·⁠위험요인을 찾아 위험성을 결정하고, 줄이는 조치를 마련해 실행한다.</td></tr>
+<tr><td class="h">적용 범위</td><td colspan="3">회사의 모든 업무와 구성원(기간제⁠·단시간⁠·아르바이트⁠·인턴⁠·실습생 포함), 사무실 방문객, 외주업체 작업자</td></tr>
+<tr><td class="h">평가 방법</td><td colspan="3">위험성 수준 3단계 판단법(상⁠·⁠중⁠·⁠하). 고객사 현장 방문은 핵심요인 기술법(OPS) 한 장 메모(양식 4)로 기록한다.</td></tr>
+<tr><td class="h">위험성 판단 기준</td><td colspan="3"><b>상</b>: 사망⁠·⁠장애가 생길 수 있음, 또는 법 기준 미충족 → 허용 불가, 즉시 개선<br><b>중</b>: 요양이 필요하거나 3일 이상 휴업, 또는 아차사고 사례가 있음 → 허용 불가, 가능한 빨리 개선<br><b>하</b>: 3일 미만 휴업 또는 경미한 부상⁠·⁠질병 → 허용 가능, 현재 상태 유지</td></tr>
+<tr><td class="h">허용 가능한 수준</td><td colspan="3">'하'만 허용한다. '상'⁠·'중'은 감소대책을 세워 '하'가 될 때까지 개선한다.</td></tr>
+<tr><td class="h">실시 원칙</td><td colspan="3">① 대표가 위험성평가를 총괄한다. ② 실무 담당자를 지정한다(지정하지 않으면 대표가 직접 수행). ③ 전 과정에 구성원을 참여시킨다. ④ 결과를 모든 구성원에게 알리고 안전보건교육에 포함한다. ⑤ 감소대책에 필요한 예산을 지원한다.</td></tr>
+<tr><td class="h">역할</td><td colspan="3"><b>대표(총괄)</b>: 방침⁠·⁠목표 게시, 예산 지원, 결과 보고받고 승인, 반기 점검 서명<br><b>담당자(실무)</b>: 실시규정 관리, 순회점검⁠·⁠의견 수렴, 결과서 작성, 교육⁠·⁠기록 보관<br><b>전 직원(참여)</b>: 위험요인⁠·아차사고 제보, 평가 회의 참여, 감소대책 준수, 현장 방문 시 양식 4 작성<br><span class="ex">※ 10명 미만 소규모 사업장 조직 구성 (안전보건관리책임자 → 담당자 → 근로자)</span></td></tr>
+<tr><td class="h">평가 시기</td><td colspan="3"><b>최초</b>(작업 시작 전, 이미 업무 중이면 즉시):&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;월까지 &nbsp;/&nbsp; <b>정기</b>(최초평가 다음 연도부터 매년 1회 이상): 매년&nbsp;&nbsp;&nbsp;&nbsp;월 (최초⁠·⁠수시평가 결과 재검토) &nbsp;/&nbsp; <b>반기 점검</b>(5인 이상): 매년 4월⁠·⁠10월<br><b>수시</b>(관련 작업 시작 전): ① 사무실 설치⁠·⁠이전⁠·⁠변경 ② 장비⁠·⁠차량 등 신규 도입⁠·⁠변경 ③ 정비⁠·⁠보수 ④ 작업방법⁠·⁠절차 신규 도입⁠·⁠변경(새 유형의 현장실사 등) ⑤ 중대산업사고 또는 휴업 이상 산업재해 발생 ⑥ 그 밖에 대표가 필요하다고 판단한 경우(고객 폭언, 아차사고 등)</td></tr>
+<tr><td class="h">평가 대상</td><td colspan="3">① 사무실 환경(바닥⁠·전선⁠·조명⁠·전기⁠·화재) ② 출장⁠·⁠이동(운전, 대중교통) ③ 고객사 현장실사(기계⁠·⁠차량⁠·⁠고소 구역) ④ 고객응대(폭언⁠·⁠갑질) ⑤ 근로시간⁠·직무스트레스 ⑥ 장시간 모니터 작업(근골격계) ⑦ 폭염⁠·⁠한파 외근 ⑧ 비상상황(화재⁠·심정지⁠·지진) ⑨ 발생한 아차사고 ⑩ 산업재해의 원인 요인</td></tr>
+<tr><td class="h">절차</td><td colspan="3">사전준비(판단 기준 확정) → 유해⁠·⁠위험요인 파악(사무실 순회점검 + 구성원 의견) → 위험성 결정(상⁠·⁠중⁠·⁠하) → 감소대책 수립⁠·⁠실행(제거 → 공학적 → 관리적 → 개인보호구 순) → 기록⁠·⁠공유</td></tr>
+<tr><td class="h">근로자 참여</td><td colspan="3">위험요인 파악은 <b>사무실 순회점검에 근로자를 참여</b>시켜 하고, 설문⁠·면담⁠·회의를 병행할 수 있다(시행규칙 제37조의2). 판단 기준 결정, 위험성 결정, 감소대책 수립, 이행 확인에도 전 직원이 참여하고 회의록(양식 10)에 서명한다. 근로자대표가 요구하면 근로자대표를 참여시킨다(법 제36조③).</td></tr>
+<tr><td class="h">공유 방법</td><td colspan="3"><b>실시 전</b>: 평가 일정을 알린다. <b>실시 후</b>: 파악한 위험요인, 위험성 수준, 개선대책과 이행 결과를 사내 게시⁠·⁠메신저로 알린다(시행규칙 제37조의3). 안전보건교육 내용에 포함하고, 고객사 현장 방문 전에는 짧은 브리핑으로 위험요인을 알린다.</td></tr>
+<tr><td class="h">기록⁠·⁠보존</td><td colspan="3">기록에는 ① 실시 시기⁠·⁠담당자 ② 참여 근로자⁠·근로자대표 ③ 위험요인⁠·⁠위험성 수준⁠·개선대책⁠·이행 결과를 넣는다(시행규칙 제37조의4). 결과서, 회의록, 이행 증빙은 출력해 대표 승인을 받고 <b>3년간</b> 보존한다.</td></tr>
+</table>
+<table class="sgn" style="width:auto; margin-left:auto"><tr><td>담당자</td><td>근로자 대표<br>(없으면 참여 근로자)</td><td>대표</td></tr><tr><td class="s"></td><td class="s"></td><td class="s"></td></tr></table>
+
+
+
+
+
+
+</div>
+  </div>
+  <div class="form" id="f3">
+    <div class="form-h"><h3>양식 3. 위험성평가 결과서 (3단계 판단법)</h3><span class="bd now">4인에도 필요</span><span class="bd must">산안법 36조</span><span class="bd rec">컨설팅 때 가져갈 초안</span><button class="btn no-print" data-print="f3">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 산업안전보건법 제36조, 중대재해처벌법 시행령 제4조제3호(5인 이상) · 평가 완료일부터 3년 보존</p>
+<table>
+<tr><td class="h" style="width:10%">평가 대상</td><td colspan="3">사무실 및 출장⁠·⁠현장실사 업무</td><td class="h" style="width:10%">평가 구분</td><td>□⁠최초 □⁠정기 □⁠수시</td></tr>
+<tr><td class="h" style="width:10%">실시 일자</td><td style="width:23%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일</td><td class="h" style="width:10%">담당자</td><td style="width:23%">&nbsp;</td><td class="h" style="width:10%">대표 승인</td><td style="width:24%">&nbsp;</td></tr>
+</table>
+<table>
+<tr><th style="width:3%">번호</th><th style="width:24%">유해⁠·⁠위험요인 (위험한 상황과 결과)</th><th style="width:13%">현재 시행 중인 조치</th><th style="width:9%">위험성 수준</th><th style="width:27%">개선대책 (제거→공학→관리→보호구)</th><th style="width:8%">예정일</th><th style="width:8%">완료일</th><th style="width:8%">담당자</th></tr>
+<tr><td class="c">1</td><td>장거리 운전 후 졸음으로 인한 <b>교통사고</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>장거리는 대중교통 우선, 2시간 운전 시 휴식, 야간 운전 자제, 출장 일정 사전 공유</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="c">2</td><td>고객사 공장 실사 중 기계⁠·⁠지게차 등으로 인한 <b>끼임⁠·충돌⁠·떨어짐</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>위험 구역 출입 회피, 방문 전 고객사 안전수칙 확인⁠·⁠안내자 동행, 필요 시 안전화⁠·⁠안전모</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="c">3</td><td>마감기 장시간 근로로 인한 <b>뇌심혈관 질환(과로)</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>프로젝트 인력 재배분, 출퇴근 기록⁠·⁠연속 야근 제한, 건강검진 결과 확인</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="c">4</td><td>업무량⁠·⁠고객 압박으로 인한 <b>직무스트레스</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>정기 업무량 조정 면담, 근로자건강센터 등 상담 안내</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="c">5</td><td>고객 폭언⁠·⁠갑질로 인한 <b>정신적 건강장해</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>응대 중단 권한 부여, 대표 보고 절차, 휴식 보장, 기록</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="c">6</td><td>장시간 모니터 작업⁠·⁠부적절한 자세로 인한 <b>근골격계 질환</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>모니터 받침대⁠·⁠의자 조절, 50분 작업 후 휴식⁠·⁠스트레칭</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="c">7</td><td>바닥 전선⁠·⁠젖은 바닥으로 인한 <b>넘어짐</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>전선 정리⁠·⁠덮개, 청소 후 표지</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="c">8</td><td>멀티탭 과부하⁠·⁠난방기로 인한 <b>전기화재</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>과부하 차단형 멀티탭 교체, 퇴근 시 전원 차단, 소화기 비치⁠·⁠대피 경로 게시</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="c">9</td><td>심정지⁠·⁠부상 시 <b>응급조치 지연</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>구급함 비치, 가까운 AED 위치 공유, 비상연락망 게시(양식 8)</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="c">10</td><td>여름철 외근⁠·⁠현장실사 중 <b>열사병</b></td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>폭염 시 일정 조정⁠·⁠물⁠·⁠그늘, 체감 33도 이상 2시간마다 20분 휴식(안전보건규칙 제560조③)</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr class="tall"><td class="c">11</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□⁠상 □⁠중 □⁠하</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+</table>
+<p class="note">※ 평가자: 대표⁠·⁠담당자⁠·⁠전 직원 (참석자 서명은 양식 10). 위험요인⁠·개선대책은 작성 예시이므로 순회점검과 구성원 의견으로 추가하고, 아차사고(양식 5) 요인은 반드시 넣습니다. 결과는 게시⁠·⁠공유합니다.</p>
+
+
+
+
+
+
+</div>
+  </div>
+  <div class="form" id="f4">
+    <div class="form-h"><h3>양식 4. 고객사 현장 방문 위험 메모 (OPS)</h3><span class="bd now">4인에도 필요</span><span class="bd if">IF 현장 방문</span><button class="btn no-print" data-print="f4">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 산업안전보건법 제36조 · 고객사 현장 방문마다 1장 · 위험성평가 기록으로 3년 보존</p>
+<table>
+<tr><td class="h">고객사⁠·⁠장소</td><td>&nbsp;</td><td class="h">방문 일자</td><td>&nbsp;</td></tr>
+<tr><td class="h">방문자</td><td>&nbsp;</td><td class="h">업무 내용</td><td>&nbsp;</td></tr>
+</table>
+<table>
+<tr><th style="width:30%">질문</th><th>기록</th></tr>
+<tr><td class="h" style="height:44pt">① 어떤 유해⁠·⁠위험요인이 있는가?</td><td><span class="ex">예: 지게차 통행로, 회전 기계, 고소 작업장, 화학물질 취급 구역, 소음</span></td></tr>
+<tr><td class="h" style="height:44pt">② 누가, 어떻게 피해를 입을 수 있는가?</td><td>&nbsp;</td></tr>
+<tr><td class="h" style="height:44pt">③ 현재 시행 중인 조치는?</td><td><span class="ex">예: 고객사 방문자 안전교육 수강, 안내자 동행, 안전화 착용</span></td></tr>
+<tr><td class="h" style="height:44pt">④ 추가로 필요한 조치는?</td><td><span class="ex">없으면 "현재 조치 유지"</span></td></tr>
+<tr><td class="h">담당자 / 개선 기한 / 완료일</td><td>&nbsp;</td></tr>
+<tr><td class="h" style="height:44pt">방문자 의견<br>(어떤 위험을 느꼈나요?)</td><td>&nbsp;</td></tr>
+</table>
+<h4>방문 전 확인</h4>
+<table>
+<tr><td style="width:50%">□ 고객사 안전수칙⁠·⁠출입 절차 확인</td><td>□ 필요한 보호구(안전화⁠·⁠안전모 등) 준비</td></tr>
+<tr><td>□ 이동 수단⁠·⁠일정 공유 (장거리 운전 시 휴식 계획)</td><td>□ 폭염⁠·⁠한파 시 일정 조정 여부 확인</td></tr>
+</table>
+<table class="sgn" style="width:auto; margin-left:auto"><tr><td>방문자</td><td>담당자 확인</td></tr><tr><td class="s"></td><td class="s"></td></tr></table>
+
+
+</div>
+  </div>
+  <div class="form" id="f5">
+    <div class="form-h"><h3>양식 5. 아차사고 보고서</h3><span class="bd now">4인에도 필요</span><span class="bd rec">아차사고</span><button class="btn no-print" data-print="f5">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 위험성평가 지침 제10조③ (아차사고를 일으킨 유해⁠·⁠위험요인은 위험성평가 대상에 포함) · 누구나 작성</p>
+<table>
+<tr><td class="h" style="width:22%">작성자</td><td style="width:28%">&nbsp;</td><td class="h" style="width:22%">작성일</td><td style="width:28%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일</td></tr>
+<tr><td class="h">발생 일시</td><td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;분</td></tr>
+<tr><td class="h">발생 장소</td><td colspan="3">□ 사무실 &nbsp;□ 출장⁠·⁠이동 중 &nbsp;□ 고객사 현장 &nbsp;□ 기타(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td></tr>
+<tr><td class="h">발생 형태</td><td colspan="3">□ 넘어짐 &nbsp;□ 부딪힘 &nbsp;□ 떨어짐 &nbsp;□ 교통 &nbsp;□ 감전⁠·⁠화재 &nbsp;□ 고객 폭언⁠·⁠폭행 &nbsp;□ 기타(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td></tr>
+<tr><td class="h" style="height:80pt">무슨 일이 있었나요?<br><span class="ex">(누가⁠·언제⁠·어디서⁠·무엇을⁠·어떻게⁠·왜)</span></td><td colspan="3"></td></tr>
+<tr><td class="h" style="height:60pt">원인이라고 생각하는 것</td><td colspan="3"></td></tr>
+<tr><td class="h" style="height:60pt">재발 방지 아이디어</td><td colspan="3"></td></tr>
+</table>
+<h4>처리 (담당자 작성)</h4>
+<table>
+<tr><td class="h" style="width:22%">조치 담당자</td><td style="width:28%">&nbsp;</td><td class="h" style="width:22%">조치 완료일</td><td style="width:28%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일</td></tr>
+<tr><td class="h">위험성평가 반영</td><td colspan="3">□ 결과서(양식 3)에 추가 &nbsp;□ 수시평가 실시</td></tr>
+<tr><td class="h" style="height:44pt">조치 내용</td><td colspan="3"></td></tr>
+<tr><td class="h">작성자에게 결과 안내</td><td colspan="3">□ 완료 (일자:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td></tr>
+</table>
+<p class="note">※ 아차사고 제보자에게 불이익을 주지 않습니다.</p>
+
+
+</div>
+  </div>
+  <div class="form" id="f6">
+    <div class="form-h"><h3>양식 6. 안전보건 건의서 외</h3><span class="bd must">중처법 4조7호</span><button class="btn no-print" data-print="f6">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 중대재해처벌법 시행령 제4조제7호 (종사자 의견청취) · 누구나 상시 제출 · 메일⁠·⁠메신저로 제출해도 됨</p>
+<table>
+<tr><td class="h">제출일</td><td>&nbsp;</td><td class="h">제출자 (익명 가능)</td><td>&nbsp;</td></tr>
+<tr><td class="h">분야</td><td colspan="3">□ 사무환경 &nbsp;□ 출장⁠·⁠이동 &nbsp;□ 고객사 현장 &nbsp;□ 근로시간⁠·스트레스 &nbsp;□ 고객응대 &nbsp;□ 교육 &nbsp;□ 기타</td></tr>
+<tr><td class="h" style="height:70pt">불편하거나 위험하다고 느낀 점</td><td colspan="3"></td></tr>
+<tr><td class="h" style="height:60pt">개선 의견</td><td colspan="3"></td></tr>
+</table>
+<h4>검토 결과 (담당자 → 대표)</h4>
+<table>
+<tr><td class="h" style="width:22%">처리 담당자</td><td style="width:28%">&nbsp;</td><td class="h" style="width:22%">완료일</td><td style="width:28%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일</td></tr>
+<tr><td class="h">반영 여부</td><td colspan="3">□ 반영 &nbsp;□ 일부 반영 &nbsp;□ 미반영 (사유:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td></tr>
+<tr><td class="h" style="height:40pt">조치 내용</td><td colspan="3"></td></tr>
+<tr><td class="h">제출자 안내</td><td colspan="3">□ 완료 (일자:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td></tr>
+</table>
+
+<h4 class="sub">양식 6-2. 의견청취 접수⁠·⁠처리 대장</h4>
+<p class="meta">상시 건의(양식 6-1), 반기 의견청취 회의(양식 10), 면담 결과를 한곳에 기록 · 반기 점검(양식 11) 때 대표 확인</p>
+<table class="tall">
+<tr><th style="width:5%">번호</th><th style="width:12%">접수일</th><th style="width:18%">방법</th><th style="width:26%">의견 요지</th><th style="width:19%">조치 내용</th><th style="width:12%">완료일</th><th style="width:8%">안내</th></tr>
+<tr><td class="c">1</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">2</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">3</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">4</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">5</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">6</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">7</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">8</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">9</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">10</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">11</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">12</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+<tr><td class="c">13</td><td>&nbsp;</td><td>□⁠건의 □⁠회의 □⁠면담</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td class="c">□</td></tr>
+
+
+</table>
+
+
+</div>
+  </div>
+  <div class="form" id="f7">
+    <div class="form-h"><h3>양식 7. 안전보건 예산 편성⁠·⁠집행표</h3><span class="bd must">중처법 4조4호</span><button class="btn no-print" data-print="f7">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 중대재해처벌법 시행령 제4조제4호 · 연 1회 편성, 반기 점검 때 집행 확인 · 소액이라도 항목을 편성하고 증빙을 남깁니다</p>
+<table>
+<tr><td class="h">대상 연도</td><td>&nbsp;</td><td class="h">편성일</td><td>&nbsp;</td></tr>
+</table>
+<table class="tall">
+<tr><th style="width:15%">항목</th><th style="width:22%">내용 (예시)</th><th style="width:14%">편성액(원)</th><th style="width:14%">집행액(원)</th><th style="width:11%">집행일</th><th style="width:12%">증빙</th><th style="width:12%">비고</th></tr>
+<tr><td>안전보건교육</td><td>정기⁠·⁠채용 시 교육, 외부 교육 수강료</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>건강관리</td><td>건강검진 보조, 상담 지원</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>응급⁠·⁠비상 대비</td><td>구급함, 소화기 점검⁠·⁠교체, 비상연락망 게시물</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>사무환경 개선</td><td>모니터 받침대, 의자, 멀티탭 교체, 전선 정리</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>현장실사 보호구</td><td>안전화, 안전모 등</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>위험성평가 개선대책</td><td>결과서(양식 3)의 개선대책 이행 비용</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>외부 자문</td><td>노무⁠·⁠안전 자문 (무료 컨설팅 우선 활용)</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>기타</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><th>합계</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td colspan="3"></td></tr>
+</table>
+<p class="note">※ 예산 미편성⁠·⁠삭감은 중대재해 발생 시 형을 무겁게 하는 사유로 논의되고 있습니다. 집행 영수증⁠·⁠구매 내역을 증빙으로 보관하세요.</p>
+<table class="sgn" style="width:auto; margin-left:auto"><tr><td>담당자</td><td>대표 승인</td></tr><tr><td class="s"></td><td class="s"></td></tr></table>
+
+
+</div>
+  </div>
+  <div class="form" id="f8">
+    <div class="form-h"><h3>양식 8. 비상대응 매뉴얼 및 비상연락망</h3><span class="bd must">중처법 4조8호</span><button class="btn no-print" data-print="f8">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 중대재해처벌법 시행령 제4조제8호 (작업 중지⁠·⁠대피 등 대응조치, 구호조치, 추가 피해 방지) · 사내 게시 · 반기 1회 점검</p>
+<table>
+<tr><th style="width:13%">상황</th><th style="width:31%">대응조치 (중지⁠·⁠대피⁠·⁠위험 제거)</th><th style="width:22%">구호조치</th><th style="width:20%">추가 피해 방지</th><th style="width:14%">보고</th></tr>
+<tr><td><b>화재</b></td><td>"불이야" 알림 → 119 → 초기 소화, 어려우면 계단으로 대피(엘리베이터 금지)</td><td>인원 확인, 부상자 119 인계</td><td>출입 통제, 전원 차단</td><td>대표 → 건물관리</td></tr>
+<tr><td><b>심정지⁠·⁠쓰러짐</b></td><td>119 신고(스피커폰) → 주변 사람에게 AED 요청</td><td>심폐소생술, AED 사용</td><td>현장 보존, 경과 기록</td><td>대표</td></tr>
+<tr><td><b>출장 중 교통사고</b></td><td>비상등⁠·안전지대로 이동 → 119⁠·⁠112 신고</td><td>부상자 응급처치, 병원 이송</td><td>2차 사고 방지(삼각대), 보험사 연락</td><td>즉시 회사 보고</td></tr>
+<tr><td><b>고객사 현장 사고</b></td><td>작업 중지 요청, 고객사 안전관리자 호출, 119</td><td>고객사 응급 체계에 따라 처치</td><td>현장 접근 금지, 경위 기록</td><td>대표, 고객사</td></tr>
+<tr><td><b>고객 폭언⁠·⁠폭행</b></td><td>응대 중단, 자리 이탈, 필요 시 112</td><td>휴식 부여, 필요 시 치료⁠·⁠상담 지원</td><td>녹취⁠·⁠기록 보존, 재발 시 응대 제한</td><td>대표</td></tr>
+<tr><td><b>지진</b></td><td>책상 아래로 대피 → 흔들림이 멈추면 계단으로 넓은 곳 이동</td><td>부상자 응급처치</td><td>가스⁠·⁠전기 차단</td><td>대표</td></tr>
+<tr><td><b>폭염 중 열사병</b></td><td>작업 중지, 그늘⁠·⁠시원한 곳으로 이동, 119</td><td>옷을 느슨하게, 몸 식히기, 의식 있으면 물</td><td>당일 외근 일정 조정</td><td>대표</td></tr>
+</table>
+<p class="note">※ 중대재해 발생 시 즉시 작업 중지⁠·⁠대피 후 지체 없이 관할 지방고용노동관서에 보고(산안법 제54조) · 사망 또는 3일 이상 휴업 재해는 1개월 안에 산업재해조사표 제출(시행규칙 제73조)</p>
+<h4>비상연락망</h4>
+<table>
+<tr><td class="h" style="width:20%">대표</td><td style="width:30%">&nbsp;</td><td class="h" style="width:22%">담당자</td><td style="width:28%">&nbsp;</td></tr>
+<tr><td class="h">소방⁠·⁠구급 / 경찰</td><td>119 / 112</td><td class="h">관할 지방고용노동관서</td><td>&nbsp;</td></tr>
+<tr><td class="h">가까운 병원</td><td>&nbsp;</td><td class="h">건물 관리사무소</td><td>&nbsp;</td></tr>
+<tr><td class="h">AED 위치</td><td>&nbsp;</td><td class="h">구급함⁠·⁠소화기 위치</td><td>&nbsp;</td></tr>
+<tr><td class="h">대피 경로</td><td>&nbsp;</td><td class="h">집결 장소</td><td>&nbsp;</td></tr>
+<tr><td class="h">반기 점검</td><td colspan="3">상반기: &nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;일 (점검자:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) &nbsp;&nbsp;/&nbsp;&nbsp; 하반기: &nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;일 (점검자:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) · 연락처⁠·소화기⁠·구급함⁠·대피로⁠·숙지 확인</td></tr>
+</table>
+
+
+</div>
+  </div>
+  <div class="form" id="f9">
+    <div class="form-h"><h3>양식 9. 안전보건교육 연간 계획 외</h3><span class="bd now">일부 4인에도 필요</span><span class="bd must">산안법 29조</span><button class="btn no-print" data-print="f9">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 산업안전보건법 제29조 (근로자 안전보건교육, 5인 이상 · 5인 미만은 적용 제외), 중대재해처벌법 시행령 제5조 (교육 실시 반기 점검, 5인 이상) · 성희롱 예방⁠·⁠장애인 인식개선은 4인에도 의무 · 대상 연도:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년</p>
+<table>
+<tr><th style="width:17%">교육 구분</th><th style="width:27%">과정⁠·⁠내용</th><th style="width:13%">일정</th><th style="width:12%">대상</th><th style="width:11%">시간</th><th style="width:20%">방법</th></tr>
+<tr><td>채용 시 교육</td><td>회사 안전수칙, 위험성평가 결과, 비상대응</td><td>입사 시</td><td>신규 입사자</td><td>8시간 이상</td><td>대면⁠·⁠온라인</td></tr>
+<tr><td>정기교육 (상반기)</td><td>사무⁠·⁠출장 안전, 근골격계⁠·스트레스 관리</td><td>&nbsp;</td><td>전 직원</td><td>6시간 이상</td><td>온라인(수료 확인)</td></tr>
+<tr><td>정기교육 (하반기)</td><td>위험성평가 결과 공유, 비상대응 숙지</td><td>&nbsp;</td><td>전 직원</td><td>6시간 이상</td><td>대면 회의</td></tr>
+<tr><td>직장 내 성희롱 예방</td><td>법령 + 우리 회사의 처리 절차⁠·⁠조치 기준, 고충상담⁠·⁠구제 절차 포함</td><td>연 1회</td><td>전 직원</td><td>&nbsp;</td><td>자료 게시⁠·⁠배포 가능 (10인 미만)</td></tr>
+<tr><td>장애인 인식개선</td><td>고용노동부⁠·한국장애인고용공단 보급 자료 사용</td><td>연 1회</td><td>전 직원</td><td>&nbsp;</td><td>자료 배포 가능 (50인 미만)</td></tr>
+<tr><td>직장 내 괴롭힘 예방 (권장)</td><td>성희롱 예방교육과 함께</td><td>연 1회</td><td>전 직원</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>개인정보보호 (권장)</td><td>&nbsp;</td><td>연 1회</td><td>전 직원</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>(IF) 퇴직연금 가입자 교육</td><td>퇴직연금 도입 시 의무</td><td>연 1회</td><td>가입자</td><td>&nbsp;</td><td>금융기관 교육 활용</td></tr>
+<tr><td>(IF) 관리감독자 정기교육</td><td>팀장 등 직원을 지휘⁠·⁠감독하는 사람이 있을 때</td><td>연간</td><td>관리감독자</td><td>연간 16시간 이상</td><td>외부 교육 활용</td></tr>
+</table>
+<p class="note">※ 사무직 근로자 정기교육은 매반기 6시간 이상, 채용 시 교육은 8시간 이상입니다(근로계약 1주 이하 1시간, 1주 초과~1개월 이하 4시간, 시행규칙 별표4). 현장실사 등을 병행해 사무직으로 보기 어려우면 정기교육은 매반기 12시간 이상입니다. 관리감독자(팀장 등)는 정기교육 연간 16시간 이상, 채용 시 8시간 이상입니다. 영상 링크 발송만으로 끝내지 말고 시청 이력⁠·⁠확인 문항⁠·⁠수료 서명을 확보하세요.</p>
+<div class="callout info no-print"><b>법정교육 자료⁠·⁠무료 교육 사이트</b> (공식 기관, 2026.10.13 접속 확인)<ul style="margin:6px 0 0;padding-left:18px"><li><b>장애인 인식개선</b>: 한국장애인고용공단 「직장 내 장애인 인식개선 교육포털」, 자료실의 <b>간이교육자료</b>(50인 미만 배포용), 무료 강사 지원 <a href="https://edu.kead.or.kr" target="_blank" rel="noopener">edu.kead.or.kr</a></li><li><b>성희롱 예방</b>: 노사발전재단 고용차별상담, 무료 교육⁠·⁠상담 문의 1588-2089 <a href="https://www.nosa.or.kr/frt/ndw/cum/lstNdwCum.do" target="_blank" rel="noopener">nosa.or.kr</a> · 배포 자료에는 우리 회사 처리⁠·⁠고충상담 절차를 직접 덧붙이고, 교육 내용은 상시 게시⁠·⁠비치합니다</li><li><b>개인정보보호</b> (권장): 개인정보보호위원회 「개인정보배움터」, 무료 온라인 교육⁠·⁠자료실 <a href="https://edu.privacy.go.kr" target="_blank" rel="noopener">edu.privacy.go.kr</a></li><li><b>근로자 안전보건교육</b> (5인 이상부터): 안전보건공단 「산업안전포털 교육시스템」(옛 산업안전보건교육포털) <a href="https://edu.kosha.or.kr" target="_blank" rel="noopener">edu.kosha.or.kr</a></li><li><b>퇴직연금 가입자 교육</b> (도입 시): 가입한 퇴직연금 금융기관이 제공하는 교육을 활용합니다</li></ul></div>
+
+<h4 class="sub">양식 9-2. 교육 실시 기록</h4>
+<table>
+<tr><td class="h" style="width:22%">장소⁠·⁠방법</td><td style="width:28%">&nbsp;</td><td class="h" style="width:22%">강사</td><td style="width:28%">&nbsp;</td></tr>
+<tr><td class="h">교육 일시</td><td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td></tr>
+<tr><td class="h">교육 구분</td><td colspan="3">□ 채용 시 &nbsp;□ 정기 &nbsp;□ 법정의무 &nbsp;□ 기타(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)</td></tr>
+<tr><td class="h" style="height:40pt">교육 내용</td><td colspan="3"></td></tr>
+</table>
+<table class="tall">
+<tr><th style="width:20%">소속/직책</th><th style="width:15%">성명</th><th style="width:15%">서명</th><th style="width:20%">소속/직책</th><th style="width:15%">성명</th><th style="width:15%">서명</th></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+<p class="note">※ 교육 자료(또는 사진)를 함께 보관합니다. 법정의무교육을 자료 배포로 대신한 경우 대표를 포함한 전원에게 배포 확인 서명을 받습니다. 성희롱 예방교육 내용은 사무실 게시판이나 공용 폴더에 <b>상시 게시⁠·⁠비치</b>해야 합니다(남녀고용평등법 제13조③, 위반 시 과태료 500만 원 이하). 장애인 인식개선 교육 관련 자료는 3년 보관 의무가 있습니다(장애인고용법 제5조의2③). 성희롱 예방 자료는 같은 기간 보관을 권장합니다.</p>
+
+
+</div>
+  </div>
+  <div class="form" id="f10">
+    <div class="form-h"><h3>양식 10. 안전보건 회의록</h3><span class="bd rec">근로자 참여</span><button class="btn no-print" data-print="f10">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 위험성평가 지침 제6조 (근로자 참여), 중대재해처벌법 시행령 제4조제7호 (의견청취) · 위험성평가 회의, 반기 의견청취 회의 등에 사용</p>
+<table>
+<tr><td class="h" style="width:22%">장소</td><td style="width:28%">&nbsp;</td><td class="h" style="width:22%">작성자</td><td style="width:28%">&nbsp;</td></tr>
+<tr><td class="h">회의 일시</td><td colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</td></tr>
+<tr><td class="h">회의 구분</td><td colspan="3">□ 위험성평가 착수(판단 기준 결정) &nbsp;□ 위험요인 파악⁠·⁠위험성 결정 &nbsp;□ 감소대책 결정⁠·⁠이행 확인 &nbsp;□ 반기 의견청취 &nbsp;□ 기타</td></tr>
+<tr><td class="h" style="height:90pt">논의 내용</td><td colspan="3"></td></tr>
+<tr><td class="h" style="height:60pt">결정 사항⁠·⁠후속 조치<br><span class="ex">(담당자⁠·⁠기한)</span></td><td colspan="3"></td></tr>
+<tr><td class="h" style="height:40pt">구성원 의견</td><td colspan="3"><span class="ex">의견청취 대장(양식 6-2)에도 옮겨 적습니다</span></td></tr>
+</table>
+<h4>참석자</h4>
+<table class="tall">
+<tr><th style="width:20%">소속/직책</th><th style="width:15%">성명</th><th style="width:15%">서명</th><th style="width:20%">소속/직책</th><th style="width:15%">성명</th><th style="width:15%">서명</th></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+
+</div>
+  </div>
+  <div class="form" id="f11">
+    <div class="form-h"><h3>양식 11. 반기 이행점검표</h3><span class="bd must">중처법 4⁠·⁠5조</span><button class="btn no-print" data-print="f11">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 중대재해처벌법 시행령 제4조⁠·⁠제5조 · 매년 4월(상반기)⁠·10월(하반기) · 담당자 점검 → 대표 확인⁠·⁠서명</p>
+<table>
+<tr><td class="h" style="width:22%">점검 기간</td><td style="width:28%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년 &nbsp;□⁠상반기 &nbsp;□⁠하반기</td><td class="h" style="width:22%">점검일</td><td style="width:28%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;년&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;월&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;일</td></tr>
+<tr><td class="h" style="width:22%">점검자</td><td style="width:28%">&nbsp;</td><td class="h" style="width:22%">대표 확인</td><td style="width:28%;text-align:right;padding-right:18px">(서명)</td></tr>
+</table>
+<table>
+<tr><th style="width:9%">근거</th><th style="width:44%">점검 항목</th><th style="width:13%">이행</th><th style="width:11%">증빙</th><th style="width:23%">미흡 시 조치⁠·⁠예산⁠·⁠기한</th></tr>
+<tr><td class="c">4조1호</td><td>경영방침⁠·⁠목표를 게시하고 목표 달성 정도를 확인했는가</td><td class="c">□⁠예 □⁠아니오</td><td>양식 1</td><td>&nbsp;</td></tr>
+<tr><td class="c">4조3호</td><td>위험성평가를 실시(재검토)하고 결과를 보고받았는가, 개선대책을 이행했는가</td><td class="c">□⁠예 □⁠아니오</td><td>양식 3⁠·⁠4⁠·⁠5</td><td>&nbsp;</td></tr>
+<tr><td class="c">4조4호</td><td>안전보건 예산을 편성하고 용도에 맞게 집행했는가</td><td class="c">□⁠예 □⁠아니오</td><td>양식 7</td><td>&nbsp;</td></tr>
+<tr><td class="c">4조7호</td><td>구성원 의견을 듣고, 개선방안을 이행했는지 확인했는가</td><td class="c">□⁠예 □⁠아니오</td><td>양식 6⁠·⁠10</td><td>&nbsp;</td></tr>
+<tr><td class="c">4조8호</td><td>비상대응 매뉴얼대로 조치할 수 있는지 점검했는가</td><td class="c">□⁠예 □⁠아니오</td><td>양식 8</td><td>&nbsp;</td></tr>
+<tr><td class="c">4조9호<br>(IF)</td><td>외주업체를 평가기준에 따라 평가⁠·⁠점검했는가</td><td class="c">□⁠예 □⁠아니오<br>□⁠해당 없음</td><td>양식 12</td><td>&nbsp;</td></tr>
+<tr><td class="c">5조</td><td>안전보건교육을 실시하고 수료를 확인했는가</td><td class="c">□⁠예 □⁠아니오</td><td>양식 9</td><td>&nbsp;</td></tr>
+<tr><td class="c">5조</td><td>건강진단 등 그 밖의 안전보건 관계 법령 의무를 이행했는가</td><td class="c">□⁠예 □⁠아니오</td><td>검진 현황</td><td>&nbsp;</td></tr>
+<tr><td class="c">법 4조①2</td><td>(해당 시) 재해 발생 후 재발방지 대책을 세우고 이행했는가</td><td class="c">□⁠예 □⁠아니오<br>□⁠해당 없음</td><td>양식 3⁠·⁠5, 재해조사 기록</td><td>&nbsp;</td></tr>
+<tr><td class="c">법 4조①3</td><td>(해당 시) 행정기관의 개선⁠·⁠시정명령을 이행했는가</td><td class="c">□⁠예 □⁠아니오<br>□⁠해당 없음</td><td>명령서, 이행 결과</td><td>&nbsp;</td></tr>
+</table>
+<h4>7대 요소 자가진단 (선택 · 고용노동부 자율점검표 1-1~1-7 활용)</h4>
+<table>
+<tr><td class="h" style="width:22%">요소</td><td>① 경영자 리더십 &nbsp;② 근로자 참여 &nbsp;③ 위험요인 파악 &nbsp;④ 제거⁠·⁠대체⁠·⁠통제 &nbsp;⑤ 비상조치계획 &nbsp;⑥ 도급⁠·⁠용역(IF) &nbsp;⑦ 평가⁠·⁠개선</td></tr>
+<tr><td class="h">미흡한 요소 / 보완할 점</td><td>&nbsp;</td></tr>
+</table>
+
+
+</div>
+  </div>
+  <div class="form" id="f12">
+    <div class="form-h"><h3>양식 12. (IF) 외주업체 안전보건 수준 평가표</h3><span class="bd if">IF 외주</span><button class="btn no-print" data-print="f12">🖨 이 양식만 인쇄</button></div>
+    <div class="form-body">
+<p class="meta">근거: 중대재해처벌법 시행령 제4조제9호 · 프로젝트 일부 하도급(자료조사⁠·현장조사), 프리랜서 위탁, 청소⁠·⁠건물관리, 외주 강사 등 외주가 있을 때 사용 · 계약 시 평가, 반기 점검</p>
+<table>
+<tr><td class="h">업체명</td><td>&nbsp;</td><td class="h">업무 내용</td><td>&nbsp;</td></tr>
+<tr><td class="h">계약 기간</td><td>&nbsp;</td><td class="h">평가일 / 평가자</td><td>&nbsp;</td></tr>
+<tr><td class="h">작업 장소</td><td colspan="3">□ 외주업체 사무실 (자료조사⁠·문헌조사⁠·보고서 작업) → 위험도 낮음: 이 평가표로 확인<br>□ 우리 사무실 (상주 프리랜서⁠·⁠청소 등) → 우리 위험성평가 대상에 포함<br>□ 고객사 현장 (현장실사⁠·⁠공장 방문) → 방문 전 안전수칙 공유, 양식 4 작성 요청</td></tr>
+</table>
+<table>
+<tr><th style="width:22%">구분 (배점)</th><th style="width:50%">평가 기준</th><th style="width:12%">배점</th><th style="width:16%">득점</th></tr>
+<tr><td rowspan="2"><b>A. 안전보건 관리 (20)</b></td><td>안전보건 방침 또는 안전수칙이 있는가</td><td class="c">10</td><td>&nbsp;</td></tr>
+<tr><td>안전보건 책임자(담당자)가 정해져 있는가</td><td class="c">10</td><td>&nbsp;</td></tr>
+<tr><td rowspan="3"><b>B. 실행 수준 (40)</b></td><td>소속 작업자에게 안전보건교육을 하고 기록하는가</td><td class="c">15</td><td>&nbsp;</td></tr>
+<tr><td>작업의 위험요인을 알고 보호구⁠·안전수칙을 지키는가</td><td class="c">15</td><td>&nbsp;</td></tr>
+<tr><td>사고⁠·⁠아차사고를 우리 회사에 알리는 체계가 있는가</td><td class="c">10</td><td>&nbsp;</td></tr>
+<tr><td rowspan="2"><b>C. 운영 관리 (20)</b></td><td>비상시 연락체계(담당자 연락처)를 공유했는가</td><td class="c">10</td><td>&nbsp;</td></tr>
+<tr><td>필요한 보험(산재⁠·⁠배상책임 등)에 가입되어 있는가</td><td class="c">10</td><td>&nbsp;</td></tr>
+<tr><td><b>D. 재해 발생 (20)</b></td><td>최근 3년간 산업재해 발생 현황 (없음 20 / 경미 10 / 중대재해 0)</td><td class="c">20</td><td>&nbsp;</td></tr>
+<tr><th>합계</th><td>&nbsp;</td><td class="c">100</td><td>&nbsp;</td></tr>
+</table>
+<table>
+<tr><td class="h">판정</td><td>□ 적격 (&nbsp;&nbsp;&nbsp;&nbsp;점 이상) &nbsp;&nbsp;□ 조건부 (보완 후 계약) &nbsp;&nbsp;□ 부적격 &nbsp;&nbsp;&nbsp;&nbsp;대표 확인:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(서명)</td></tr>
+<tr><td class="h" style="height:26pt">보완 요청 사항</td><td>&nbsp;</td></tr>
+</table>
+<p class="note">※ 외주업체 직원⁠·⁠프리랜서는 상시근로자 수에는 들어가지 않지만, 중대재해처벌법상 보호 대상(종사자)에는 포함됩니다. 외주업체가 자기 사무실에서 일할 때 우리 회사의 책임 범위는 해석이 갈리므로(중처법 제5조) 노무사⁠·⁠변호사 확인을 권합니다. ※ 공식 예시(100점, 제조⁠·⁠건설용)를 사무실 외주 업무에 맞게 줄였습니다. 적격 기준 점수는 회사가 정합니다. 우리 회사 사업장에서 일하는 외주 작업자도 위험성평가 대상에 포함합니다.</p>
+
+
+
+</div>
+  </div>
+</section>
+
+<!-- ================= GLOSSARY ================= -->
+<section class="page" id="glossary">
+  <div class="page-head"><div class="eyebrow">자료</div><h2>용어 풀이</h2></div>
+  <div class="card legend" style="margin-bottom:18px"><h3>표시(배지) 뜻</h3><div class="lg"><span><span class="bd now">지금도 의무</span> 4인인 지금도 법적 의무</span><span><span class="bd must">5인부터 필수</span> 5인 이상이 되면 법적 의무</span><span><span class="bd hire">채용 전 준비</span> 5인이 되기 전(채용이 정해지기 전)에 미리 갖출 일</span><span><span class="bd if">IF</span> 해당 상황(외주⁠·⁠현장 방문 등)이 있을 때만</span><span><span class="bd rec">권장</span> 의무는 아니지만 하면 좋은 일</span><span><span class="bd na">해당 없음</span> 우리 규모에는 적용 안 됨</span><span><span class="bd warn">⚠️ 확인</span> 원문 확인이 더 필요한 내용</span></div></div>
+  <div class="card">
+    <div class="tbl">
+    <table>
+      <thead><tr><th style="width:190px">용어</th><th>쉬운 말</th></tr></thead>
+      <tbody>
+        <tr><td><b>상시근로자</b></td><td>1개월 동안 평균적으로 일한 인원. 대표⁠·⁠등기임원은 빼고, 아르바이트⁠·단시간⁠·계약직⁠·인턴(근로자인 경우)은 넣어서 셉니다. 직전 1개월 기준으로 그때그때 판단합니다.</td></tr>
+        <tr><td><b>경영책임자</b></td><td>중대재해처벌법의 의무를 지는 사람. 우리 회사는 대표님입니다.</td></tr>
+        <tr><td><b>중대산업재해</b></td><td>사망 1명, 같은 사고로 6개월 이상 치료 2명, 같은 유해요인 직업성 질병(24종) 1년 내 3명 중 하나<span class="cite" data-ref="s38"></span></td></tr>
+        <tr><td><b>위험성평가</b></td><td>일하면서 다칠 수 있는 위험을 직원과 함께 찾아 '상⁠·⁠중⁠·⁠하'로 판단하고 고치는 점검. 결과를 기록해 3년 보관합니다.</td></tr>
+        <tr><td><b>3단계 판단법</b></td><td>위험을 점수 계산 없이 상⁠·⁠중⁠·⁠하로만 나누는 가장 쉬운 위험성평가 방법</td></tr>
+        <tr><td><b>OPS (핵심요인 기술법)</b></td><td>질문 4개(무슨 위험? 누가 다치나? 지금 조치는? 더 할 조치는?)에 답하는 한 장 메모. 고객사 현장 방문 때 씁니다.</td></tr>
+        <tr><td><b>KRAS</b></td><td>안전보건공단의 무료 온라인 위험성평가 시스템 (kras.kosha.or.kr)</td></tr>
+        <tr><td><b>최초⁠·정기⁠·수시평가</b></td><td>작업 시작 전 처음 한 번(최초), 1년마다 다시(정기), 사무실 이전⁠·⁠사고 등 변화가 생길 때(수시)</td></tr>
+        <tr><td><b>아차사고</b></td><td>다칠 뻔했지만 다치지 않은 일. 위험성평가에 반드시 넣어야 합니다.</td></tr>
+        <tr><td><b>반기 점검</b></td><td>6개월마다(예: 4월⁠·⁠10월) 안전 서류와 조치가 제대로 되고 있는지 확인하고 대표님이 서명하는 것</td></tr>
+        <tr><td><b>도급⁠·⁠용역⁠·⁠위탁</b></td><td>회사 일을 외부 업체나 개인에게 맡기는 것 (청소, 건물관리, 외주 강사, 조사 하도급 등)</td></tr>
+        <tr><td><b>근로자대표</b></td><td>직원 과반수를 대표하는 사람. 요구하면 위험성평가에 참여시켜야 합니다.</td></tr>
+        <tr><td><b>포괄임금</b></td><td>연장근로 수당 등을 실제 시간과 상관없이 월급에 미리 포함해 주는 방식</td></tr>
+        <tr><td><b>가산수당</b></td><td>연장⁠·야간⁠·휴일에 일하면 통상임금의 50%를 더 주는 것</td></tr>
+        <tr><td><b>병과</b></td><td>징역과 벌금을 함께 선고하는 것</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REFS ================= -->
+<section class="page" id="refs">
+  <div class="page-head"><div class="eyebrow">자료</div><h2>출처 목록</h2></div>
+  <div class="card">
+    <div class="legend-src" style="margin-bottom:14px">
+      <span><i class="dot" style="background:var(--law)"></i>법령</span><span><i class="dot" style="background:var(--gov)"></i>정부⁠·⁠공공기관</span><span><i class="dot" style="background:var(--expert)"></i>로펌⁠·⁠전문가</span><span><i class="dot" style="background:var(--press)"></i>언론</span><span><i class="dot" style="background:var(--brand-mid)"></i>수집 자료</span>
+    </div>
+    <div id="refList"></div>
+    <p class="note">기준일 2026-10-12. 언론 링크는 사라질 수 있습니다. '수집 자료'는 KRAS(안전보건공단 위험성평가 지원시스템)에서 받을 수 있는 공식 안내 자료입니다.</p>
+  </div>
+</section>
+
+<footer class="note" style="margin-top:30px">본 자료는 공개 법령⁠·⁠정부 자료를 바탕으로 정리한 안내 자료이며 법률 자문이 아닙니다. 부록 양식은 법정 서식이 아닌 기록용 예시로, 같은 내용을 기록하면 다른 형식을 써도 됩니다. 노무사 등 전문가 확인이 필요한 항목은 <a href="#verify">「확인 필요 사항」</a>에 모아 두었습니다.</footer>
+  </main>
+</div>
+
+<div class="popover" id="popover" role="dialog" aria-label="출처 정보"><button class="x" aria-label="닫기">×</button><div class="card-inner" id="popBody"></div></div>
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="출처 정보"><div class="grab"></div><div class="card-inner" id="sheetBody"></div></div>
+<div class="tip" id="tip"></div>
+
+<script>
+/* ---------------- 출처 ---------------- */
+const TYPES={law:{label:"법령",color:"var(--law)"},gov:{label:"정부·공공기관",color:"var(--gov)"},expert:{label:"로펌·전문가",color:"var(--expert)"},press:{label:"언론",color:"var(--press)"},local:{label:"수집 자료",color:"var(--brand-mid)"}};
+const LOCAL="위험성평가 자료/";
+const S={
+ s1:{type:"law",org:"국가법령정보센터",title:"중대재해 처벌 등에 관한 법률 시행령",date:"현행",checked:"2026.10 확인",quote:"제4조 안전보건관리체계 구축 조치 9개 항목, 제5조 관계 법령 의무이행 점검",url:"https://www.law.go.kr/법령/중대재해처벌등에관한법률시행령",alt:{label:"casenote 사본",url:"https://casenote.kr/법령/중대재해_처벌_등에_관한_법률_시행령"}},
+ s2:{type:"law",org:"국가법령정보센터",title:"중대재해 처벌 등에 관한 법률 제6·7·8·15조",date:"현행",checked:"2026.10.12 원문 확인",quote:"제6조① 1년 이상 징역 또는 10억 원 이하 벌금(병과 가능), 제7조 법인 50억 원 이하, 제15조 손해액 5배 이내 배상",url:"https://www.law.go.kr/법령/중대재해처벌등에관한법률"},
+ s7:{type:"press",org:"경향신문",title:"중대재해처벌법 확정 사업장 공표",date:"2026.3.31",checked:"2026.10 확인",quote:"누적 확정 경영책임자 46명 중 실형 2명",url:"https://www.khan.co.kr/article/202603311039001"},
+ s3:{type:"gov",org:"서울특별시",title:"중대재해처벌법 Q&A",date:"-",checked:"2026.10 확인",quote:"의무 주체는 경영책임자, 위험성평가 결과를 보고받으면 3호 점검 이행으로 볼 수 있음",url:"https://news.seoul.go.kr/safe/punishment-qna"},
+ s4:{type:"expert",org:"법무법인 신앤김",title:"뉴스레터 1744호",date:"-",checked:"2026.10 확인",quote:"산안법의 사무직 사업장 적용 제외는 산안법에만 있고, 중대재해처벌법은 사무직 사업장에도 적용됨",url:"https://www.shinkim.com/kor/media/newsletter/1744"},
+ s5:{type:"press",org:"뉴시스",title:"50인 미만 중처법 유예 협상 최종 결렬",date:"2024.2.1",checked:"2026.10 확인",quote:"2년 추가 유예 무산, 5인 이상 사업장 전면 적용 유지",url:"https://www.newsis.com/view/NISX20240201_0002614093"},
+ s6:{type:"press",org:"파이낸셜뉴스",title:"대법원, 일광폴리머 대표 징역 3년 확정",date:"2026.3.17",checked:"2026.10 확인",quote:"시행 이후 최고 형량, 법인 벌금 5억 원",url:"https://www.fnnews.com/news/202603171253506053"},
+ s8:{type:"press",org:"법률신문",title:"중대재해처벌법 양형기준 수정안 심의",date:"2026.9",checked:"2026.10 확인",quote:"기본 1년6월~4년, 예산 미편성·의견 묵살·형식적 교육은 특별가중인자",url:"https://www.lawtimes.co.kr/news/articleView.html?idxno=226959",pending:"양형위 심의 중"},
+ s9:{type:"expert",org:"법무법인 율촌",title:"사무직 사업장 적용 제외 요건",date:"2025.7",checked:"2026.10 확인",quote:"근로자 전원이 한국표준직업분류상 '사무 종사자'여야 예외 인정",url:"https://www.yulchon.com/ko/resources/publications/legal-update-view/41212/page.do"},
+ s10:{type:"law",org:"국가법령정보센터",title:"근로기준법 시행령 제7조의2 상시근로자 수 산정",date:"-",checked:"2026.10.13 원문 확인",quote:"법 적용 사유 발생일 전 1개월 연인원 ÷ 가동일수(①), 5인 미만인 날이 가동일수의 2분의 1 미만이면 5인 이상으로 봄(②), 연차는 직전 1년 월 단위로 모두 5인 이상(③), 파견근로자 제외(④)",url:"https://www.law.go.kr/법령/근로기준법시행령/제7조의2"},
+ s11:{type:"law",org:"국가법령정보센터",title:"근로기준법 시행령 별표1 (5인 미만 사업장 적용 규정)",date:"2018.6.29 개정",checked:"2026.10.13 원문 확인",quote:"5인 미만에는 별표1에 열거된 조항만 적용. 해고 제한·서면통지, 휴업수당, 근로시간·연장 제한, 공휴일 유급, 연장·야간·휴일 가산, 연차, 직장 내 괴롭힘 조항은 5인 이상부터",url:"https://www.law.go.kr/법령/근로기준법시행령"},
+ s12:{type:"gov",org:"고용노동부",title:"포괄임금 오남용 방지 지도 지침",date:"2026.4",checked:"2026.10 확인",quote:"기본급과 수당을 구분하지 않는 정액급제 문제 지적",url:"https://www.moel.go.kr/news/enews/report/enewsView.do?news_seq=19208"},
+ s13:{type:"press",org:"자본시장뉴스",title:"포괄임금 금지 법안 국회 계류",date:"2026.9",checked:"2026.10 확인",quote:"포괄임금 금지 법안 9건 계류",url:"https://www.jabon.co.kr/news/articleView.html?idxno=6782",pending:"국회 계류"},
+ s14:{type:"expert",org:"taxly",title:"임금명세서 교부 의무화",date:"-",checked:"2026.10 확인",quote:"5인 이상은 연장·야간·휴일근로시간 수 기재, 위반 시 500만 원 이하 과태료",url:"https://taxly.kr/post/206-임금명세서-교부-의무화"},
+ s15:{type:"press",org:"경향신문",title:"중대재해처벌법 수사·기소·선고 현황",date:"2025.9.28",checked:"2026.10 확인",quote:"수사 1,252건 중 기소 121건, 유죄 65건 중 실형 6건",url:"https://www.khan.co.kr/article/202509281030001/"},
+ s16:{type:"law",org:"고용노동부 고시 제2026-73호",title:"사업장 위험성평가에 관한 지침 (2026.11.4 시행)",date:"2026.11.4 전부개정",checked:"수집 원문 확인",quote:"제13조 최초(작업 시작 전)·제14조 정기(매년 1회 이상)·제15조 수시·제16조 상시평가, 제9조 평가 방법, 제19조 실시규정(5인 미만 생략 가능)",url:"https://www.law.go.kr/행정규칙/사업장위험성평가에관한지침"},
+ s17:{type:"law",org:"산업안전보건법 제36조",title:"위험성평가의 실시 (법률 제21374호, 2026.6.1 시행)",date:"2026.2.19 개정",checked:"수집 원문 확인",quote:"근로자 참여(②), 근로자대표 요구 시 참여(③ 신설), 결과 공유(④ 신설), 기록·보존(⑤)",url:"https://www.law.go.kr/법령/산업안전보건법"},
+ s18:{type:"expert",org:"법무법인 율촌",title:"개정 산업안전보건법 위험성평가 과태료 신설",date:"2026.6.25",checked:"2026.10 확인",quote:"차수별 금액: 미실시 500/700/1,000만 원, 미참여 150/300/500만 원, 기록 위반 50/150/300만 원",url:"https://www.yulchon.com/ko/resources/publications/legal-update-view/44278/page.do"},
+ s37:{type:"expert",org:"법무법인 신앤김",title:"뉴스레터 1564호",date:"-",checked:"2026.10 확인",quote:"과로사(뇌심혈관 질환)는 직업성 질병 24종에 포함되지 않으나, 업무상 질병 사망의 중대산업재해 해당 여부는 해석이 갈림",url:"https://www.shinkim.com/kor/media/newsletter/1564"},
+ s36:{type:"law",org:"국가법령정보센터",title:"산업안전보건법 제175조 및 부칙 (법률 제21374호)",date:"2026.2.19 개정",checked:"2026.10.12 원문 확인",quote:"미실시 1천만 원 이하(④2의2), 미참여·미주지 500만 원 이하(⑤1), 기록 위반 300만 원 이하(⑥2의2), 50인 미만 2028.1.1 시행(부칙 제1조), 안전보건교육 미실시 500만 원 이하(⑤1)",url:"https://www.law.go.kr/법령/산업안전보건법/(21374,20260219)"},
+ s19:{type:"gov",org:"고용노동부",title:"KRAS 위험성평가 지원시스템 개편",date:"2025.1.2",checked:"2026.10 확인",quote:"온라인·모바일 위험성평가, 자료모음집 제공",url:"https://www.moel.go.kr/news/enews/report/enewsView.do?news_seq=17418"},
+ s20:{type:"local",org:"KRAS 가이드 (수집 자료)",title:"빈도·강도법 안내 (KRAS 화면 포함)",date:"-",checked:"수집 자료 p.2",quote:"위험성평가 실시 메뉴: 빈도·강도법 / 체크리스트법 / 3단계 판단법 / OPS",url:"https://kras.kosha.or.kr"},
+ s21:{type:"gov",org:"고용노동부·안전보건공단",title:"2026 안전보건관리체계 구축 컨설팅 공동 보도자료",date:"2026.2.11",checked:"2026.10 확인",quote:"2026.2.19부터 접수, 전액 무료, 약 35,000개소",url:"https://www.kosca21.or.kr/km_board/upload/km_b_notice/1771511017_01.pdf"},
+ s22:{type:"gov",org:"서울특별시",title:"2026 위험성평가 무료 컨설팅",date:"2026.3.27 (7.27 수정)",checked:"2026.10 확인",quote:"서울 소재 50인 미만, 최대 3회 방문, 100개소 선착순",url:"https://news.seoul.go.kr/economy/risk-consulting",warn:"10월 모집 여부 미확인"},
+ s23:{type:"gov",org:"내 손안에 서울",title:"인사·노무·산업안전 무료 컨설팅",date:"2026.7.2",checked:"2026.10 확인",quote:"30인 미만, 공인노무사 방문, 2026.3~12월",url:"https://mediahub.seoul.go.kr/archives/2018643",warn:"10월 모집 여부 미확인"},
+ s24:{type:"expert",org:"shoplworks",title:"성희롱 예방교육 안내",date:"-",checked:"2026.10 확인",quote:"10인 미만은 자료 게시·배포로 대신, 3년 보관",url:"https://www.shoplworks.com/blog-insight/sexual-harassment-prevention-education"},
+ s25:{type:"expert",org:"시프티",title:"5대 법정의무교육 가이드",date:"-",checked:"2026.10 확인",quote:"장애인 인식개선교육은 50인 미만 자료 배포로 대신 가능",url:"https://shiftee.io/ko/blog/article/comprehensive-guide-to-5-mandatory-workplace-trainings-for-hr"},
+ s26:{type:"expert",org:"clobe",title:"2026 두루누리 사회보험료 지원",date:"2026",checked:"2026.10 확인",quote:"10인 미만, 월보수 270만 원 미만, 80% 최대 36개월",url:"https://clobe.ai/blog/durunuri-social-insurance-support-2026"},
+ s27:{type:"expert",org:"taxguide",title:"10인 이상 취업규칙",date:"-",checked:"2026.10 확인",quote:"10인 이상 취업규칙 작성·신고, 미이행 시 500만 원 이하 과태료",url:"https://taxguide.im/blog/workplace-rules-10-employees"},
+ s28:{type:"expert",org:"shoplworks",title:"30인 이상 사업장 의무",date:"-",checked:"2026.10 확인",quote:"노사협의회 설치, 분기 1회 회의",url:"https://www.shoplworks.com/blog-insight/businesses-obligations-30-or-more-employees"},
+ s29:{type:"expert",org:"shoplworks",title:"50인 이상 사업장 의무",date:"-",checked:"2026.10 확인",quote:"안전·보건관리자, 장애인 의무고용",url:"https://www.shoplworks.com/blog-insight/businesses-obligations-50-or-more-employees"},
+ s30:{type:"gov",org:"안전보건공단 산업안전포털 교육시스템",title:"근로자 안전보건교육 대상사업장 조회 (업종코드 71531 경영 컨설팅업)",date:"-",checked:"2026.10 담당자 직접 확인",quote:"업종코드 71531(경영 컨설팅업)으로 조회하면 5인 이상 사업장은 근로자 안전보건교육 실시 대상",url:"https://edu.kosha.or.kr/curriculum/wrkrTrgtBplcInq"},
+ s31:{type:"local",org:"KRAS 가이드 (수집 자료)",title:"위험성 수준 3단계 판단법",date:"-",checked:"수집 자료 p.5·7",quote:"상·중·하 판단 기준 예시, 결과서 양식",url:"https://kras.kosha.or.kr"},
+ s32:{type:"local",org:"KRAS 가이드 (수집 자료)",title:"핵심요인 기술법(OPS)",date:"-",checked:"수집 자료 p.1·7",quote:"중·소규모 사업장용, 핵심 질문 4개, 한 장 기록",url:"https://kras.kosha.or.kr"},
+ s33:{type:"law",org:"국가법령정보센터",title:"산업안전보건기준에 관한 규칙 제560조 (온도·습도 조절 등)",date:"2025.7.17 신설(③)",checked:"2026.10.13 원문 확인",quote:"체감온도 33도 이상 작업 시 매 2시간 이내 20분 이상 휴식",url:"https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제560조",alt:{label:"보도 (뉴시스)",url:"https://www.newsis.com/view/NISX20250715_0003252520"}},
+ s35:{type:"press",org:"파이낸셜뉴스",title:"산업안전보건법 개정안 국회 통과",date:"2026.10.1",checked:"2026.10 확인",quote:"연간 3명 이상 사망 시 과징금, 근로자 작업중지요구권",url:"https://www.fnnews.com/news/202610011512443974",pending:"공포일 미확인"},
+ s38:{type:"law",org:"국가법령정보센터",title:"중대재해처벌법 제2조 (정의)",date:"2021.1.26 제정",checked:"2026.10.13 원문 확인",quote:"중대산업재해: 산업재해 중 사망자 1명 이상, 동일한 사고로 6개월 이상 치료가 필요한 부상자 2명 이상, 동일한 유해요인으로 직업성 질병자 1년 이내 3명 이상(제2호 가~다목)",url:"https://www.law.go.kr/법령/중대재해처벌등에관한법률/제2조"},
+ s39:{type:"law",org:"국가법령정보센터",title:"중대재해처벌법 제3조·제4조 (적용범위, 안전 및 보건 확보의무)",date:"2021.1.26 제정",checked:"2026.10.13 원문 확인",quote:"상시 근로자 5명 미만 사업장 적용 제외(제3조). 안전보건관리체계 구축·이행(①1호), 재해 재발방지 대책 수립·이행(①2호), 개선·시정명령 이행(①3호), 안전보건 관계 법령 의무이행 관리(①4호)",url:"https://www.law.go.kr/법령/중대재해처벌등에관한법률/제3조",alt:{label:"제4조 원문",url:"https://www.law.go.kr/법령/중대재해처벌등에관한법률/제4조"}},
+ s40:{type:"law",org:"국가법령정보센터",title:"중대재해처벌법 시행령 제2조·별표1 (직업성 질병)",date:"-",checked:"2026.10.13 원문 확인",quote:"법 제2조제2호다목의 직업성 질병자는 별표1의 직업성 질병(급성중독, 독성간염, 혈액전파성 질병, 산소결핍증, 열사병 등 24종)에 걸린 사람",url:"https://www.law.go.kr/법령/중대재해처벌등에관한법률시행령/제2조"},
+ s41:{type:"law",org:"국가법령정보센터",title:"산업안전보건법 시행규칙 제37조·제37조의2~4 (위험성평가 시기·참여·공유·기록)",date:"2026.5.29 개정",checked:"2026.10.13 원문 확인",quote:"최초평가는 최초로 작업을 시작하기 전까지, 정기평가는 다음 연도부터 매년 1회 이상(제37조②). 사업장 순회 점검으로 근로자 참여, 설문·면담 병행 가능(제37조의2). 실시 전 일정, 실시 후 유해·위험요인·위험성 수준·개선대책·이행 결과 공유(제37조의3). 실시 시기·담당자, 참여 근로자·근로자대표, 결과를 기록하고 3년 보존(제37조의4)",url:"https://www.law.go.kr/법령/산업안전보건법시행규칙/제37조의2"},
+ s42:{type:"law",org:"국가법령정보센터",title:"산업안전보건법 시행령 별표1·별표35 (적용 제외, 과태료 부과기준)",date:"2026.7.28 개정",checked:"2026.10.13 원문 확인",quote:"상시 5명 미만: 제2장 제1·2절, 제3장(제29조③ 추가교육 제외), 제47·49·50·159조 적용 제외(별표1 제6호). 과태료: 근로자 교육 1인당 10/20/50만 원, 관리감독자 50/250/500만 원, 일반건강진단 1인당 10/20/30만 원, 위험성평가 미실시 500/700/1,000만 원(별표35)",url:"https://www.law.go.kr/법령/산업안전보건법시행령"},
+ s43:{type:"law",org:"국가법령정보센터",title:"산업안전보건법 시행규칙 별표4 (안전보건교육 시간)",date:"2025.5.30 개정",checked:"2026.10.13 원문 확인",quote:"정기교육 사무직 매반기 6시간 이상, 그 밖의 근로자 매반기 12시간 이상, 관리감독자 연간 16시간 이상. 채용 시 8시간 이상(근로계약 1주 이하 1시간, 1주 초과~1개월 이하 4시간)",url:"https://www.law.go.kr/법령/산업안전보건법시행규칙"},
+ s44:{type:"law",org:"국가법령정보센터",title:"산업안전보건법 제54조·제57조, 시행규칙 제73조 (중대재해 조치, 산업재해 보고)",date:"-",checked:"2026.10.13 원문 확인",quote:"중대재해 시 즉시 작업 중지·대피, 지체 없이 보고(제54조). 사망 또는 3일 이상 휴업 재해는 발생일부터 1개월 이내 산업재해조사표 제출(시행규칙 제73조①)",url:"https://www.law.go.kr/법령/산업안전보건법/제54조",alt:{label:"시행규칙 제73조",url:"https://www.law.go.kr/법령/산업안전보건법시행규칙/제73조"}},
+ s45:{type:"law",org:"국가법령정보센터",title:"산업안전보건법 제41조·제128조의2·제129조 (고객응대 보호, 휴게시설, 일반건강진단)",date:"-",checked:"2026.10.13 원문 확인",quote:"일반건강진단 실시, 고용노동부령으로 정하는 건강진단(국민건강보험 검진 등)을 받으면 실시한 것으로 봄(제129조①). 휴게시설은 모든 사업주가 갖춰야 하고(제128조의2①), 크기·위치 등 설치·관리기준은 상시 20명 이상 등 사업장(시행령 제96조의2)",url:"https://www.law.go.kr/법령/산업안전보건법/제129조",alt:{label:"제128조의2 원문",url:"https://www.law.go.kr/법령/산업안전보건법/제128조의2"}},
+ s46:{type:"law",org:"국가법령정보센터",title:"남녀고용평등법 제13조·제39조, 시행령 제3조 (성희롱 예방교육)",date:"-",checked:"2026.10.13 원문 확인",quote:"성희롱 예방 교육 매년 실시(제13조①), 교육 내용 상시 게시·비치(제13조③), 위반 시 500만 원 이하 과태료(제39조③), 10인 미만 등은 자료 게시·배포로 대체(시행령 제3조④)",url:"https://www.law.go.kr/법령/남녀고용평등과일·가정양립지원에관한법률/제13조"},
+ s47:{type:"law",org:"국가법령정보센터",title:"장애인고용법 제5조의2, 시행령 제5조의2 (장애인 인식개선 교육)",date:"-",checked:"2026.10.13 원문 확인",quote:"사업주는 장애인 인식개선 교육 실시(①), 결과 자료 작성·보관(③), 50인 미만은 공단 보급 자료 배포로 대체 가능(시행령)",url:"https://www.law.go.kr/법령/장애인고용촉진및직업재활법/제5조의2"},
+ s48:{type:"law",org:"국가법령정보센터",title:"근로자퇴직급여 보장법 제32조 (퇴직연금 가입자 교육)",date:"-",checked:"2026.10.13 원문 확인",quote:"확정급여형·확정기여형 퇴직연금제도를 설정한 사용자는 매년 1회 이상 가입자에게 교육(제32조②)",url:"https://www.law.go.kr/법령/근로자퇴직급여보장법/제32조"},
+ s49:{type:"press",org:"한국경제",title:"5인 미만 사업장 근로기준법 적용 확대 로드맵",date:"2025.8.10",checked:"2026.10.13 확인",quote:"2027년까지 5인 미만 사업장에 근로기준법을 단계적으로 완전 적용하는 로드맵을 대통령실에 보고",url:"https://www.hankyung.com/article/2025081018591",pending:"법 개정 전"}
+};
+
+/* ---------------- 체크리스트 ---------------- */
+const PHASES=[
+ {id:"pre",name:"채용 전 (지금)",color:"var(--brand-2)",items:[
+  ["c0","실무 담당 결정 (대표 직접 / 담당자 1명 지정)","법적 의무는 아님 · 지정해도 대표 책임은 그대로",["rec"],null,"ceo"],
+  ["c1","상시근로자 수 산정표 작성","월별 출근 인원 기록, 대표⁠·⁠등기임원 제외, 아르바이트⁠·단시간⁠·인턴 포함",["rec"],null,"staff"],
+  ["c1a","근로계약서⁠·최저임금⁠·주휴수당⁠·퇴직금 기본 점검","5인 미만에도 적용 · 임금명세서 교부 포함",["now"],null,"staff"],
+  ["c2","안전보건 경영방침⁠·⁠목표 확정, 대표 서명⁠·⁠게시","중처법 시행령 4조1호",["hire"],"f1","ceo"],
+  ["c3","위험성평가 실시규정 작성","지침 제19조",["now"],"f2","staff"],
+  ["c4","최초 위험성평가 실시 (전 직원, 3단계 판단법)","결과 게시⁠·⁠공유 · 대표 보고",["now"],"f3","staff"],
+  ["c5","비상대응 매뉴얼⁠·비상연락망 작성⁠·⁠게시","중처법 시행령 4조8호",["hire"],"f8","staff"],
+  ["c6","포괄임금 전환 방향 결정","기본급과 고정 연장수당 구분 · 우선 정비",["rec"],null,"ceo"],
+  ["c7","5인 이상용 근로계약서 양식 준비","소정근로시간, 연장근로 합의, 연차, 가산수당 명시",["hire"],null,"staff"],
+  ["c8","출퇴근⁠·⁠연장근로 기록 체계 도입","주 52시간⁠·가산수당 정산 근거",["hire"],null,"staff"],
+  ["c9","서울시 무료 컨설팅 2종 모집 여부 문의","02-2133-5590 / 5432",["rec"],null,"staff"],
+  ["c10","외주 계약 현황 확인","프로젝트 일부 하도급(자료조사⁠·현장조사), 프리랜서, 청소⁠·⁠건물관리, 외주 강사",["if"],"f12","staff"],
+  ["c10b","퇴직연금(DB⁠·⁠DC) 도입 여부 확인","도입했다면 가입자 교육 연 1회 의무",["if"],null,"staff"]]},
+ {id:"hire",name:"5인 도달 시",color:"var(--brand)",items:[
+  ["c11","새 근로계약서로 계약","신규 채용자부터",["must"],null,"staff"],
+  ["c12","급여에 가산수당⁠·⁠공휴일 유급 반영, 임금명세서에 근로시간 기재","",["must"],null,"staff"],
+  ["c14","채용 시 안전보건교육 + 두루누리 신청","두루누리는 4대보험 취득신고와 동시에 (선택)",["must"],null,"staff"],
+  ["c15","사내 규정: 징계⁠·⁠해고 절차, 해고통지서, 괴롭힘 신고⁠·⁠조사 절차","대표 승인",["must"],null,"staff"]]},
+ {id:"m1",name:"5인 도달 후 1개월",color:"var(--k3)",items:[
+  ["c16","안전보건 예산 승인","교육비, 건강검진, 구급함, 소화기 등",["must"],"f7","ceo"],
+  ["c17","직원 의견청취 채널 개설, 첫 회의 기록","중처법 시행령 4조7호",["must"],"f6","staff"],
+  ["c18","안전보건교육 연간 계획 수립","사무직 매반기 6시간⁠·⁠채용 시 8시간 (시행규칙 별표4)",["must"],"f9","staff"],
+  ["c13","연차관리대장 준비","직전 1년 계속 5인 이상부터 적용 · 노무사 확인",["rec"],null,"staff"],
+  ["c19","외주업체 평가표 작성","외주가 있는 경우",["if"],"f12","staff"],
+  ["c20","노무사 질의: 연차 적용 시점 등","",["rec"],null,"staff"]]},
+ {id:"year",name:"반기 · 연간 · 수시",color:"var(--k2)",items:[
+  ["c21","반기 이행점검 보고받고 서명 (예: 4월⁠·⁠10월)","중처법 시행령 4⁠·⁠5조",["must"],"f11","ceo"],
+  ["c22","안전보건교육 실시⁠·⁠수료 기록","",["must"],"f9","staff"],
+  ["c23","법정의무교육 연 1회 (성희롱⁠·⁠장애인) + 개인정보보호(권장)","자료 배포⁠·⁠확인 서명 · 성희롱 교육 내용 상시 게시 · 장애인 교육 자료 3년 보관",["now"],"f9","staff"],
+  ["c23b","퇴직연금 가입자 교육 연 1회","퇴직연금 도입 시",["if"],null,"staff"],
+  ["c24","위험성평가 정기평가(연 1회)","결과 공유⁠·⁠3년 보존",["now"],"f3","staff"],
+  ["c24b","경영방침 갱신, 다음 해 안전보건 예산 반영","중처법 시행령 4조1⁠·⁠4호",["must"],"f1","staff"],
+  ["c25","고객사 현장 방문마다 한 장 메모(OPS) 작성 (월 1~2회)","",["if"],"f4","staff"],
+  ["c26","매년 2월 안전보건공단 무료 컨설팅 신청","",["rec"],null,"staff"],
+  ["c27","계류 법안 모니터링 (분기 1회)","포괄임금 금지, 양형기준, 산안법 개정",["rec"],null,"staff"]]}
+];
+const BADGE={must:'<span class="bd must">5인부터 필수</span>',now:'<span class="bd now">지금도 의무</span>',hire:'<span class="bd hire">채용 전 준비</span>',if:'<span class="bd if">IF</span>',rec:'<span class="bd rec">권장</span>'};
+const FOUR=new Set(["c0","c1","c1a","c3","c4","c9","c10b","c23","c23b","c24","c25","c26"]);
+let scen="5";
+const ROLE={ceo:'<span class="role ceo">대표</span>',staff:'<span class="role staff">담당</span>'};
+const KEY="public-sapa-ck-v1";
+let state={};
+try{state=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(_){state={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(_){}};
+const allItems=PHASES.flatMap(p=>p.items.map(i=>({id:i[0],t:i[1],p:p.id})));
+
+function renderChecklist(){
+  const box=document.getElementById("checklist");
+  const view=PHASES.map(p=>({...p,items:scen==="4"?p.items.filter(i=>FOUR.has(i[0])):p.items})).filter(p=>p.items.length);
+  box.innerHTML=view.map(p=>`
+   <div class="card phase">
+    <div class="phase-h"><i class="dot" style="background:${p.color};width:12px;height:12px;border-radius:50%"></i><b>${p.name}</b><span class="cnt" data-pc="${p.id}"></span></div>
+    ${p.items.map(([id,t,s,tags,form,role])=>`
+     <label class="ck${state[id]?" ok":""}" data-ck="${id}" data-role="${role}">
+      <input type="checkbox" data-id="${id}" ${state[id]?"checked":""}>
+      <span class="tx">${ROLE[role]}<b>${t}</b>${s?`<small>${s}</small>`:""}</span>
+      <span class="tags">${tags.map(x=>BADGE[x]).join("")}${form?` <a href="#forms" data-go="${form}">양식 ${form.replace("f","")}</a>`:""}</span>
+     </label>`).join("")}
+   </div>`).join("");
+}
+function updateProgress(){
+  const done=allItems.filter(i=>state[i.id]).length,total=allItems.length,pct=Math.round(done/total*100);
+  const arc=document.getElementById("donutArc");arc.setAttribute("stroke-dasharray",`${pct} ${100-pct}`);arc.style.display=pct?"":"none";
+  document.getElementById("donutPct").textContent=pct+"%";
+  document.getElementById("donutCnt").textContent=`${done} / ${total} 완료`;
+  document.getElementById("sideCnt").textContent=`${done}/${total}`;
+  document.getElementById("sideBar").style.width=pct+"%";
+  document.getElementById("phaseList").innerHTML=PHASES.map(p=>{const d=p.items.filter(i=>state[i[0]]).length;return `<div><span><i class="dot" style="background:${p.color};border-radius:50%;margin-right:6px"></i>${p.name}</span><b>${d}/${p.items.length}</b></div>`}).join("");
+  document.querySelectorAll("[data-pc]").forEach(el=>{const p=PHASES.find(x=>x.id===el.dataset.pc);el.textContent=`${p.items.filter(i=>state[i[0]]).length} / ${p.items.length} 완료`});
+  const todo=PHASES[0].items.filter(i=>!state[i[0]]).slice(0,5);
+  document.getElementById("dashTodo").innerHTML=todo.length?todo.map(([id,t])=>`<li><input type="checkbox" data-id="${id}"><span>${t}</span></li>`).join(""):`<li class="ok"><span>채용 전 준비를 모두 마쳤습니다 🎉</span></li>`;
+}
+document.addEventListener("change",e=>{
+  const id=e.target.dataset&&e.target.dataset.id; if(!id)return;
+  state[id]=e.target.checked; save();
+  document.querySelectorAll(`[data-id="${id}"]`).forEach(x=>x.checked=e.target.checked);
+  const row=document.querySelector(`[data-ck="${id}"]`); if(row)row.classList.toggle("ok",e.target.checked);
+  updateProgress();
+});
+function setFilter(f){document.body.classList.toggle("only-ceo",f==="ceo");document.querySelectorAll("[data-filter]").forEach(b=>b.classList.toggle("on",b.dataset.filter===f))}
+function setScen(s){scen=s;document.querySelectorAll("[data-scen]").forEach(b=>b.classList.toggle("on",b.dataset.scen===s));const n=document.getElementById("scenNote");if(n)n.style.display=s==="4"?"block":"none";renderChecklist();updateProgress()}
+document.addEventListener("click",e=>{const sc=e.target.closest("[data-scen]");if(sc)setScen(sc.dataset.scen);const sg=e.target.closest("[data-scen-go]");if(sg)setScen(sg.dataset.scenGo);});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-filter]");if(b)setFilter(b.dataset.filter);const c=e.target.closest(".ceo-list ~ a[href='#roadmap']");if(c)setFilter("ceo")});
+document.getElementById("resetCk").addEventListener("click",()=>{if(!confirm("체크 상태를 모두 지울까요?"))return;state={};save();renderChecklist();updateProgress()});
+
+/* ---------------- 차트 ---------------- */
+const tip=document.getElementById("tip");
+document.addEventListener("mousemove",e=>{const t=e.target.closest("[data-tip]");if(!t){tip.style.display="none";return}tip.textContent=t.dataset.tip;tip.style.display="block";tip.style.left=Math.min(e.clientX+12,innerWidth-250)+"px";tip.style.top=(e.clientY+14)+"px"});
+(function funnel(){
+  const d=[["수사",1252,"var(--brand-light)"],["기소",121,"var(--brand-mid)"],["유죄",65,"#4A6FB0"],["실형",6,"var(--brand)"]],max=1252;
+  document.getElementById("funnel").innerHTML=d.map(([l,v,c],i)=>`<div class="row"><span class="lab">${l}</span><div class="track"><div class="fill" style="width:${Math.max(v/max*100,.6)}%;background:${c}" data-tip="${l} ${v.toLocaleString()}건${i?` · 수사 대비 ${(v/max*100).toFixed(1)}%`:""}"></div></div><span class="val">${v.toLocaleString()}건${i?`<small>${(v/max*100).toFixed(1)}%</small>`:""}</span></div>`).join("");
+})();
+(function fines(){
+  const g=[["미실시",[500,700,1000]],["근로자 미참여⁠·⁠미주지",[150,300,500]],["미기록⁠·⁠미보존",[50,150,300]]],cols=["var(--brand-light)","var(--brand-mid)","var(--brand)"],lv=["1차","2차","3차 이상"],H=180;
+  const lines=[250,500,750,1000].map(v=>`<div class="gridline" style="bottom:${v/1000*H}px"><span>${v}</span></div>`).join("");
+  document.getElementById("fineChart").innerHTML=`<div class="vchart" style="padding-left:30px">${lines}${g.map(([n,vs])=>`<div class="grp">${vs.map((v,i)=>`<div class="b" style="height:${v/1000*H}px;background:${cols[i]}" data-tip="${n} ${lv[i]}: ${v.toLocaleString()}만 원">${i===2?`<em>${v.toLocaleString()}</em>`:""}</div>`).join("")}</div>`).join("")}</div><div class="vlabels" style="padding-left:36px">${g.map(x=>`<div>${x[0]}</div>`).join("")}</div>`;
+})();
+
+/* ---------------- 각주 ---------------- */
+const isMobile=()=>matchMedia("(max-width:640px)").matches;
+const pop=document.getElementById("popover"),popBody=document.getElementById("popBody"),sheet=document.getElementById("sheet"),sheetBody=document.getElementById("sheetBody"),scrim=document.getElementById("scrim");
+let lastBtn=null;const num={};let n=0;Object.keys(S).forEach(k=>num[k]=++n);
+const occ={};
+document.querySelectorAll(".cite").forEach(el=>{
+  const k=el.dataset.ref,s=S[k];if(!s)return;
+  const id=`cite-${k}-${(occ[k]=occ[k]||[]).length+1}`;occ[k].push(id);el.id=id;
+  const f=(s.warn?"⚠️":"")+(s.pending?"⏳":"");
+  el.innerHTML=`<button type="button" data-type="${s.type}" data-ref="${k}" aria-label="출처 ${num[k]}: ${s.org}">${num[k]}</button>${f?`<span class="flag">${f}</span>`:""}`;
+});
+function card(k){const s=S[k],t=TYPES[s.type];return `
+ <div class="type"><i class="dot" style="background:${t.color}"></i>[${num[k]}] ${t.label} · <span class="org">${s.org}</span></div>
+ <p class="title">${s.title}</p><div class="dates">${s.date} · ${s.checked}</div>
+ ${(s.warn||s.pending)?`<div class="badges">${s.warn?`<span class="bd warn">⚠️ ${s.warn}</span>`:""}${s.pending?`<span class="bd pend">⏳ ${s.pending}</span>`:""}</div>`:""}
+ <div class="quote">${s.quote}</div>
+ <div class="actions">${s.url?`<a class="btn primary" href="${encodeURI(s.url).replace(/%25/g,"%")}" target="_blank" rel="noopener">원문 보기 ↗</a>`:`<span class="note">온라인 링크 없음 (직접 확인 자료)</span>`}${s.alt?`<a class="btn" href="${s.alt.url}" target="_blank" rel="noopener">${s.alt.label} ↗</a>`:""}<a class="btn" href="#refs" data-goref="${k}">목록에서 보기</a></div>`}
+function openCard(b){const k=b.dataset.ref;lastBtn=b;
+  if(isMobile()){sheetBody.innerHTML=card(k);sheet.classList.add("open");scrim.classList.add("open");return}
+  popBody.innerHTML=card(k);pop.classList.add("open");
+  const r=b.getBoundingClientRect(),w=pop.offsetWidth,h=pop.offsetHeight;
+  let left=Math.max(scrollX+16,Math.min(r.left+scrollX-12,scrollX+document.documentElement.clientWidth-w-16));
+  let top=r.bottom+scrollY+8;if(r.bottom+h+16>innerHeight&&r.top>h+16)top=r.top+scrollY-h-8;
+  pop.style.left=left+"px";pop.style.top=top+"px";}
+function closeCard(){pop.classList.remove("open");sheet.classList.remove("open");scrim.classList.remove("open");lastBtn=null}
+(function refs(){
+  document.getElementById("refList").innerHTML=Object.keys(TYPES).map(type=>{
+    const it=Object.entries(S).filter(([,s])=>s.type===type);if(!it.length)return"";
+    return `<div class="ref-group"><h4><i class="dot" style="background:${TYPES[type].color}"></i>${TYPES[type].label}</h4><ol>${it.map(([k,s])=>`
+     <li id="ref-${k}"><span class="ref-num">[${num[k]}]</span><div class="ref-body">
+      ${s.url?`<a class="src" href="${encodeURI(s.url).replace(/%25/g,"%")}" target="_blank" rel="noopener">${s.org}, 「${s.title}」 ↗</a>`:`<b>${s.org}, 「${s.title}」</b>`}
+      ${s.warn?` <span class="bd warn">⚠️ ${s.warn}</span>`:""}${s.pending?` <span class="bd pend">⏳ ${s.pending}</span>`:""}
+      <div class="ref-sub">${s.date} · ${s.checked}${s.alt?` · <a href="${s.alt.url}" target="_blank" rel="noopener">${s.alt.label} ↗</a>`:""}</div>
+      ${s.url?`<div class="url-print">${s.url}</div>`:""}
+      <div class="back">${(occ[k]||[]).map((id,i)=>`<a href="#" data-back="${id}">↩ 본문 ${i+1}</a>`).join("")}</div>
+     </div></li>`).join("")}</ol></div>`}).join("");
+})();
+
+/* ---------------- 라우팅 ---------------- */
+const pages=[...document.querySelectorAll(".page")].map(p=>p.id);
+function show(id,focusEl){
+  if(!pages.includes(id))id="dashboard";
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+  document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("active",a.dataset.p===id));
+  document.body.classList.remove("nav-open");closeCard();
+  if(focusEl){const el=document.getElementById(focusEl);if(el){setTimeout(()=>{el.scrollIntoView({behavior:"smooth",block:"start"});el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")},30);return}}
+  scrollTo({top:0});
+}
+function pageOf(el){return el.closest(".page").id}
+addEventListener("hashchange",()=>show(location.hash.slice(1)));
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".cite button");
+  if(b){e.preventDefault();(lastBtn===b&&pop.classList.contains("open"))?closeCard():openCard(b);return}
+  const go=e.target.closest("[data-go]");
+  if(go){e.preventDefault();history.replaceState(null,"","#forms");show("forms",go.dataset.go);return}
+  const gr=e.target.closest("[data-goref]");
+  if(gr){e.preventDefault();history.replaceState(null,"","#refs");show("refs","ref-"+gr.dataset.goref);return}
+  const bk=e.target.closest("[data-back]");
+  if(bk){e.preventDefault();const el=document.getElementById(bk.dataset.back);const pid=pageOf(el);history.replaceState(null,"","#"+pid);show(pid);setTimeout(()=>{el.scrollIntoView({behavior:"smooth",block:"center"});const t=el.closest("p,td,li,div.s")||el;t.classList.remove("flash");void t.offsetWidth;t.classList.add("flash")},40);return}
+  const pr=e.target.closest("[data-print]");
+  if(pr){const f=document.getElementById(pr.dataset.print);f.classList.add("printing");document.body.classList.add("print-one");if(pr.dataset.print==="f3"){const st=document.createElement("style");st.id="lsPage";st.textContent="@page{size:A4 landscape;margin:10mm}";document.head.appendChild(st)}print();return}
+  if(e.target.closest(".popover .x")||e.target===scrim){closeCard();return}
+  if(!e.target.closest(".popover"))closeCard();
+  if(document.body.classList.contains("nav-open")&&!e.target.closest(".side")&&!e.target.closest("#menuBtn"))document.body.classList.remove("nav-open");
+});
+addEventListener("afterprint",()=>{const ls=document.getElementById("lsPage");if(ls)ls.remove();document.body.classList.remove("print-one");document.querySelectorAll(".form.printing").forEach(f=>f.classList.remove("printing"))});
+addEventListener("beforeprint",()=>{document.querySelectorAll("details").forEach(d=>{d.dataset.was=d.open?"1":"";d.open=true})});
+addEventListener("afterprint",()=>{document.querySelectorAll("details").forEach(d=>{d.open=d.dataset.was==="1"})});
+document.getElementById("printBtn").addEventListener("click",()=>print());
+document.getElementById("menuBtn").addEventListener("click",()=>document.body.classList.toggle("nav-open"));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeCard();document.body.classList.remove("nav-open")}});
+addEventListener("resize",()=>{if(pop.classList.contains("open"))closeCard()});
+const tg=document.getElementById("citeToggle");
+try{if(localStorage.getItem("public-hide-cites")==="1")tg.checked=false}catch(_){}
+const applyTg=()=>{document.body.classList.toggle("hide-cites",!tg.checked);try{localStorage.setItem("public-hide-cites",tg.checked?"0":"1")}catch(_){};if(!tg.checked)closeCard()};
+tg.addEventListener("change",applyTg);applyTg();
+
+document.addEventListener("click",e=>{const c=e.target.closest(".sup.link");if(!c||e.target.closest("a,button"))return;window.open(c.dataset.href,"_blank","noopener")});
+document.addEventListener("keydown",e=>{const c=e.target.closest&&e.target.closest(".sup.link");if(c&&e.key==="Enter"&&e.target===c)window.open(c.dataset.href,"_blank","noopener")});
+renderChecklist();updateProgress();show(location.hash.slice(1)||"dashboard");
+</script>
+<script>
+/* 휴대폰 표 카드 배치: 머리글 이름을 각 칸에 붙임 */
+(function(){
+  var clean=function(s){return s.replace(/[\s\u00a0\u2060]+/g,' ').trim();};
+  [].forEach.call(document.querySelectorAll('.tbl table'),function(t){
+    var head=t.tHead&&t.tHead.rows[0], rows=[].slice.call(t.tBodies.length?t.tBodies[0].rows:t.rows);
+    if(!head){var r0=t.rows[0];if(r0&&[].every.call(r0.cells,function(c){return c.tagName==='TH';})){head=r0;r0.classList.add('st-head');rows=rows.filter(function(r){return r!==r0;});}}
+    if(!head)return;
+    var labels=[];[].forEach.call(head.cells,function(c){for(var i=0;i<(c.colSpan||1);i++)labels.push(clean(c.textContent));});
+    if(labels.length<3)return;
+    var occ=[];
+    rows.forEach(function(r){
+      var busy=occ.slice();for(var i=0;i<occ.length;i++)if(occ[i]>0)occ[i]--;
+      var col=0,titled=false;
+      [].forEach.call(r.cells,function(c){
+        while(busy[col]>0)col++;
+        var span=c.colSpan||1;
+        if(c.rowSpan>1){c.classList.add('st-grp');for(var k=0;k<span;k++)occ[col+k]=c.rowSpan-1;}
+        else if(!titled){c.classList.add('st-first');titled=true;}
+        else if(labels[col]){c.setAttribute('data-l',labels[col]);if(clean(c.textContent).length<=8)c.classList.add('st-short');}
+        col+=span;
+      });
+    });
+    var w=t.closest('.tbl');if(w)w.classList.add('stack');
+  });
+})();
+</script>
+</body>
+</html>
